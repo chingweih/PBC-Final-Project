@@ -1,3 +1,5 @@
+# 原始檔案
+
 import random
 import time
 player_decide = str()
