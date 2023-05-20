@@ -83,6 +83,7 @@ class Trust:
         return [self.player_score, self.opponent_score, self.player_score + self.opponent_score]
 
 
+# Testing fuction
 def main():
     get = Trust("copy_cat")
     opponents = get.opponents_list
