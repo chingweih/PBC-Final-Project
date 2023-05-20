@@ -2,11 +2,17 @@ import random
 
 
 class Trust:
+
+    # Initialize: 輸入本回合對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock"]
     def __init__(self, opponent: str) -> None:
+
+        # Check illegal inputs
         opponents = ["copy_cat", "always_black",
                      "always_coop", "coop_until_cheated", "sherlock"]
         if opponent not in opponents:
             raise ValueError('Opponent not in list.')
+
+        # Initialize variables
         self.player_choice = bool
         self.player_score = 0
         self.opponent_score = 0
@@ -14,23 +20,30 @@ class Trust:
         self.player_cheat = 0
         self.opponent = opponent
 
-    def add_points(self, player, opponent, cheat=0) -> None:
+    # Add player and opponent's score and update cheat count
+    def add_points(self, player: int, opponent: int, cheat: int = 0) -> None:
         self.player_score += player
         self.opponent_score += opponent
         self.player_cheat += cheat
 
+    # Opponent algorithms (bool): 合作 - True; 欺騙 - False
+    # Copy Cat: 第一局合作，後模仿玩家上一局選擇
     def copy_cat(self) -> bool:
         return True if self.game_count == 1 else self.player_choice
 
+    # Always Black: 永遠欺騙
     def always_black(self) -> bool:
         return False
 
+    # Always Coop: 永遠合作
     def always_coop(self) -> bool:
         return True
 
+    # Coop Until Cheated: 先合作，被欺騙過後騙到底
     def coop_until_cheated(self) -> bool:
         return self.player_cheat < 1
 
+    # Sherlock: 一三四局合作、第二局欺騙後，如果玩家沒有欺騙過則欺騙，否則模仿玩家上一局選擇
     def sherlock(self) -> bool:
         if self.game_count in [1, 3, 4]:
             return True
@@ -39,7 +52,11 @@ class Trust:
         else:
             return False if self.player_cheat == 0 else self.player_choice
 
+    # 主對戰程式：輸入玩家當局選擇（布林值）
+    # Return List = [回合數, 玩家當局選擇, 對手當局選擇, 玩家分數, 對手分數]
     def battle(self, choice: bool) -> list:
+
+        # Get opponent's choice
         opponent_glossary = {
             "copy_cat": self.copy_cat(),
             "always_black": self.always_black(),
@@ -49,6 +66,7 @@ class Trust:
         }
         opponent_choice = opponent_glossary[self.opponent]
 
+        # Check results and add points accordingly
         if choice and opponent_choice:
             self.add_points(2, 2)
         elif not choice and not opponent_choice:
@@ -63,8 +81,11 @@ class Trust:
 
         return [self.game_count - 1, choice, opponent_choice, self.player_score, self.opponent_score]
 
+    def final_score(self) -> list:
+        return [self.player_score, self.opponent_score, self.player_score + self.opponent_score]
 
-def testing(opponent):
+
+def main(opponent):
     game = Trust(opponent)
     test_list = [random.choice([True, False]), random.choice([True, False]), random.choice(
         [True, False]), random.choice([True, False]), random.choice([True, False])]
@@ -77,4 +98,4 @@ if __name__ == '__main__':
     opponents = ["copy_cat", "always_black",
                  "always_coop", "coop_until_cheated", "sherlock"]
     for opponent in opponents:
-        testing(opponent)
+        main(opponent)
