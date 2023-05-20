@@ -1,2 +1,2 @@
 import tkinter as tk
-from battle_class import Trust
+from module_trust import Trust
