@@ -7,9 +7,9 @@ class Trust:
     def __init__(self, opponent: str) -> None:
 
         # Check illegal inputs
-        opponents = ["copy_cat", "always_black",
-                     "always_coop", "coop_until_cheated", "sherlock"]
-        if opponent not in opponents:
+        self.opponents_list = ["copy_cat", "always_black",
+                               "always_coop", "coop_until_cheated", "sherlock", "whatever"]
+        if opponent not in self.opponents_list:
             raise ValueError('Opponent not in list.')
 
         # Initialize variables
@@ -52,19 +52,17 @@ class Trust:
         else:
             return False if self.player_cheat == 0 else self.player_choice
 
+    # Whatever: 隨機選擇
+    def whatever(self) -> bool:
+        return random.choice([True, False])
+
     # 主對戰程式：輸入玩家當局選擇（布林值）
     # Return List = [回合數, 玩家當局選擇, 對手當局選擇, 玩家分數, 對手分數]
     def battle(self, choice: bool) -> list:
 
         # Get opponent's choice
-        opponent_glossary = {
-            "copy_cat": self.copy_cat(),
-            "always_black": self.always_black(),
-            "always_coop": self.always_coop(),
-            "coop_until_cheated": self.coop_until_cheated(),
-            "sherlock": self.sherlock()
-        }
-        opponent_choice = opponent_glossary[self.opponent]
+        opponent = getattr(self, self.opponent)
+        opponent_choice = opponent()
 
         # Check results and add points accordingly
         if choice and opponent_choice:
@@ -85,17 +83,18 @@ class Trust:
         return [self.player_score, self.opponent_score, self.player_score + self.opponent_score]
 
 
-def main(opponent):
-    game = Trust(opponent)
-    test_list = [random.choice([True, False]), random.choice([True, False]), random.choice(
-        [True, False]), random.choice([True, False]), random.choice([True, False])]
+def main():
+    get = Trust("copy_cat")
+    opponents = get.opponents_list
 
-    for test_data in test_list:
-        print(opponent, game.battle(test_data))
+    for opponent in opponents:
+        game = Trust(opponent)
+        test_list = [random.choice([True, False]), random.choice([True, False]), random.choice(
+            [True, False]), random.choice([True, False]), random.choice([True, False])]
+        for test_data in test_list:
+            print(opponent, game.battle(test_data))
+        print(game.final_score())
 
 
 if __name__ == '__main__':
-    opponents = ["copy_cat", "always_black",
-                 "always_coop", "coop_until_cheated", "sherlock"]
-    for opponent in opponents:
-        main(opponent)
+    main()
