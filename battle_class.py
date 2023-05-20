@@ -3,7 +3,7 @@ import random
 
 class Trust:
 
-    # Initialize: 輸入本回合對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock"]
+    # Initialize: 輸入本回合對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock", "whatever"]
     def __init__(self, opponent: str) -> None:
 
         # Check illegal inputs
