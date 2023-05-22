@@ -3,8 +3,26 @@ import random
 
 class Trust:
 
-    # Initialize: 輸入本回合對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock", "whatever"]
-    def __init__(self, opponent: str) -> None:
+    def __init__(self, opponent: str, score_list: dict = None) -> None:
+        """Initialize: New round of Trust Game.
+
+        Args:
+            opponent (str): 輸入本回合對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock", "whatever"]
+
+            score_list (dict, optional): 各情況分數表 -- 預設值：{ 'coop': 2, 'cheat': 3, 'opponent_cheat': -1, 'both_cheat': 0 }
+
+        Raises:
+            ValueError: 提供的對手不在清單中
+        """
+
+        # Get default score list
+        if score_list is None:
+            score_list = {
+                'coop': 2,
+                'cheat': 3,
+                'opponent_cheat': -1,
+                'both_cheat': 0,
+            }
 
         # Check illegal inputs
         self.opponents_list = ["copy_cat", "always_black",
@@ -19,12 +37,28 @@ class Trust:
         self.game_count = 1
         self.player_cheat = 0
         self.opponent = opponent
+        self.score_list = score_list
 
     # Add player and opponent's score and update cheat count
     def add_points(self, player: int, opponent: int, cheat: int = 0) -> None:
         self.player_score += player
         self.opponent_score += opponent
         self.player_cheat += cheat
+
+    # Judge player and opponent's move and adjust points accordingly
+    def judge_and_adjust_points(self, choice: bool, opponent_choice: bool) -> None:
+        # Get socre list
+        coop, cheat, opponent_cheat, both_cheat = set(self.score_list.values())
+
+        # Judging
+        if choice and opponent_choice:
+            self.add_points(coop, coop)
+        elif not choice and not opponent_choice:
+            self.add_points(both_cheat, both_cheat, 1)
+        elif choice:
+            self.add_points(opponent_cheat, cheat)
+        else:
+            self.add_points(cheat, opponent_cheat, 1)
 
     # Opponent algorithms (bool): 合作 - True; 欺騙 - False
     # Copy Cat: 第一局合作，後模仿玩家上一局選擇
@@ -56,23 +90,21 @@ class Trust:
     def whatever(self) -> bool:
         return random.choice([True, False])
 
-    # 主對戰程式：輸入玩家當局選擇（布林值）
-    # Return List = [回合數, 玩家當局選擇, 對手當局選擇, 玩家分數, 對手分數]
     def battle(self, choice: bool) -> list:
+        """主對戰程式
+
+        Args:
+            choice (bool): 玩家當局選擇（布林值）
+
+        Returns:
+            list: 回傳本回合結果 -- [回合數, 玩家當局選擇, 對手當局選擇, 玩家分數, 對手分數]
+        """
 
         # Get opponent's choice
         opponent = getattr(self, self.opponent)
         opponent_choice = opponent()
 
-        # Check results and add points accordingly
-        if choice and opponent_choice:
-            self.add_points(2, 2)
-        elif not choice and not opponent_choice:
-            self.add_points(0, 0, 1)
-        elif choice:
-            self.add_points(-1, 3)
-        else:
-            self.add_points(3, -1, 1)
+        self.judge_and_adjust_points(choice, opponent_choice)
 
         self.player_choice = choice
         self.game_count += 1
@@ -80,10 +112,15 @@ class Trust:
         return [self.game_count - 1, choice, opponent_choice, self.player_score, self.opponent_score]
 
     def final_score(self) -> list:
+        """回合結束後，提供分數
+
+        Returns:
+            list: 回傳玩家分、對手分與總分 -- [玩家分, 對手分, 總分]
+        """
         return [self.player_score, self.opponent_score, self.player_score + self.opponent_score]
 
 
-# Testing fuction
+# Testing
 def main():
     get = Trust("copy_cat")
     opponents = get.opponents_list
