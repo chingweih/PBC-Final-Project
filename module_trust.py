@@ -129,6 +129,7 @@ class Trust:
         Returns:
             list: 回傳玩家分、對手分與總分 -- [玩家分, 對手分, 總分]
         """
+
         return [self.player_score, self.opponent_score, self.player_score + self.opponent_score]
 
 
