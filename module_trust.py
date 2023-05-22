@@ -41,33 +41,6 @@ class Trust:
         self.opponent = opponent
         self.score_list = score_list
 
-    # Add player and opponent's score and update cheat count
-    def add_points(self, player: int, opponent: int, cheat: int = 0) -> None:
-        self.player_score += player
-        self.opponent_score += opponent
-        if cheat != 0:
-            self.player_cheat = True
-            self.player_cheat_count += cheat
-            if self.player_cheat_count > self.player_continous_cheat:
-                self.player_continous_cheat = self.player_cheat_count
-        else:
-            self.player_cheat_count = 0
-
-    # Judge player and opponent's move and adjust points accordingly
-    def judge_and_adjust_points(self, choice: bool, opponent_choice: bool) -> None:
-        # Get socre list
-        coop, cheat, opponent_cheat, both_cheat = set(self.score_list.values())
-
-        # Judging
-        if choice and opponent_choice:
-            self.add_points(coop, coop)
-        elif not choice and not opponent_choice:
-            self.add_points(both_cheat, both_cheat, 1)
-        elif choice:
-            self.add_points(opponent_cheat, cheat)
-        else:
-            self.add_points(cheat, opponent_cheat, 1)
-
     # Opponent algorithms (bool): 合作 - True; 欺騙 - False
     # Copy Cat: 第一局合作，後模仿玩家上一局選擇
     def copy_cat(self) -> bool:
@@ -101,6 +74,33 @@ class Trust:
     # Copy Kitten: 模仿咪 —— 合作，直到被連續欺騙兩次
     def copy_kitten(self) -> bool:
         return self.player_continous_cheat < 2
+
+    # Add player and opponent's score and update cheat count
+    def add_points(self, player: int, opponent: int, cheat: int = 0) -> None:
+        self.player_score += player
+        self.opponent_score += opponent
+        if cheat != 0:
+            self.player_cheat = True
+            self.player_cheat_count += cheat
+            if self.player_cheat_count > self.player_continous_cheat:
+                self.player_continous_cheat = self.player_cheat_count
+        else:
+            self.player_cheat_count = 0
+
+    # Judge player and opponent's move and adjust points accordingly
+    def judge_and_adjust_points(self, choice: bool, opponent_choice: bool) -> None:
+        # Get socre list
+        coop, cheat, opponent_cheat, both_cheat = set(self.score_list.values())
+
+        # Judging
+        if choice and opponent_choice:
+            self.add_points(coop, coop)
+        elif not choice and not opponent_choice:
+            self.add_points(both_cheat, both_cheat, 1)
+        elif choice:
+            self.add_points(opponent_cheat, cheat)
+        else:
+            self.add_points(cheat, opponent_cheat, 1)
 
     def battle(self, choice: bool) -> list:
         """主對戰程式
