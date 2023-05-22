@@ -7,7 +7,7 @@ class Trust:
         """Initialize: New round of Trust Game.
 
         Args:
-            opponent (str): 輸入本回合對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock", "whatever"]
+            opponent (str): 輸入本回合對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock", "copy_kitten"]
 
             score_list (dict, optional): 各情況分數表 -- 預設值：{ 'coop': 2, 'cheat': 3, 'opponent_cheat': -1, 'both_cheat': 0 }
 
@@ -26,7 +26,7 @@ class Trust:
 
         # Check illegal inputs
         self.opponents_list = ["copy_cat", "always_black",
-                               "always_coop", "coop_until_cheated", "sherlock", "whatever"]
+                               "always_coop", "coop_until_cheated", "sherlock", "copy_kitten"]
         if opponent not in self.opponents_list:
             raise ValueError('Opponent not in list.')
 
@@ -35,7 +35,9 @@ class Trust:
         self.player_score = 0
         self.opponent_score = 0
         self.game_count = 1
-        self.player_cheat = 0
+        self.player_cheat = False
+        self.player_cheat_count = 0
+        self.player_continous_cheat = 0
         self.opponent = opponent
         self.score_list = score_list
 
@@ -43,7 +45,13 @@ class Trust:
     def add_points(self, player: int, opponent: int, cheat: int = 0) -> None:
         self.player_score += player
         self.opponent_score += opponent
-        self.player_cheat += cheat
+        if cheat != 0:
+            self.player_cheat = True
+            self.player_cheat_count += cheat
+            if self.player_cheat_count > self.player_continous_cheat:
+                self.player_continous_cheat = self.player_cheat_count
+        else:
+            self.player_cheat_count = 0
 
     # Judge player and opponent's move and adjust points accordingly
     def judge_and_adjust_points(self, choice: bool, opponent_choice: bool) -> None:
@@ -75,7 +83,7 @@ class Trust:
 
     # Coop Until Cheated: 先合作，被欺騙過後騙到底
     def coop_until_cheated(self) -> bool:
-        return self.player_cheat < 1
+        return self.player_cheat == False
 
     # Sherlock: 一三四局合作、第二局欺騙後，如果玩家沒有欺騙過則欺騙，否則模仿玩家上一局選擇
     def sherlock(self) -> bool:
@@ -84,11 +92,15 @@ class Trust:
         elif self.game_count == 2:
             return False
         else:
-            return False if self.player_cheat == 0 else self.player_choice
+            return False if self.player_cheat == False else self.player_choice
 
     # Whatever: 隨機選擇
     def whatever(self) -> bool:
         return random.choice([True, False])
+
+    # Copy Kitten: 模仿咪 —— 合作，直到被連續欺騙兩次
+    def copy_kitten(self) -> bool:
+        return self.player_continous_cheat < 2
 
     def battle(self, choice: bool) -> list:
         """主對戰程式
