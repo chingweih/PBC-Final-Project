@@ -1,7 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from itertools import count, cycle
-class ImagePage1(tk.Label):
+class ImagePage2(tk.Label):
     def load(self, im):
         if isinstance(im, str):
             im = Image.open(im)
@@ -34,7 +34,7 @@ class ImagePage1(tk.Label):
             self.config(image=next(self.frames))
             self.after(self.delay, self.next_frame)
 root = tk.Tk()
-lbl = ImagePage1(root)
+lbl = ImagePage2(root)
 lbl.load("C:\\商管程報告\\Page02_intro-1.gif")#要換檔案位置
 lbl.pack()
 canvas = tk.Canvas(root, width=20, height=250)
