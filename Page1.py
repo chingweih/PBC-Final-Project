@@ -39,7 +39,7 @@ lbl = ImagePage1(root)
 
 lbl.load("C:\\商管程報告\\Page01_Opening.gif")#改成檔案位置
 lbl.pack()
-canvas = tk.Canvas(root, width=800, height=250)
+canvas = tk.Canvas(root, width=20, height=250)
 canvas.pack()
 quit_button = tk.Button(root, text = "Next", command = root.quit,width = 40,anchor='n', activebackground = "#33B5E5")#要改command
 quit_button.place(relx=0.0, rely=0.0, anchor='e')
