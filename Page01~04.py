@@ -9,8 +9,9 @@ from itertools import count, cycle
 # 對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock", "copy_kitten"]
 
 font = 'Hannotate TC'
+text_color = '#606153'
 bg_color = '#E8E9DC'
-asset_path = 'C:\\Users\\stpi\\Documents\\GitHub\\PBC-Final-Project\\assets'
+asset_path = '/Users/_lsy.310_com/Documents/GitHub/PBC-Final_Project/assets'
 opponent = {'copy_cat': '糕餅傑', 'always_black': '鬼畜傑', 'always_coop': '好好傑', 'coop_until_cheated': '鳳梨酥傑', 'sherlock': '福爾摩斯傑', 'copy_kitten': '玩具傑'}
 
 class Trust_App(tk.Tk):
@@ -38,6 +39,12 @@ class Trust_App(tk.Tk):
     def show_frame(self, nextF):
         frame = self.frames[nextF]
         frame.tkraise()
+        try:
+            if frame.has_bggif == True:
+                frame.gifLabel.load(frame.path, frame.loop)
+        except:
+            pass
+
 
 
 class GIFLabel(tk.Label):
@@ -55,7 +62,6 @@ class GIFLabel(tk.Label):
             except EOFError:
                 pass
 
-            # self.frames = cycle(frames)
             self.loc = 0
             self.delay = img.info['duration']
             self.next_frame(loop)
@@ -83,19 +89,25 @@ class Page01(tk.Frame):
         self.controller = controller
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
 
+        self.has_bggif = True
         self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
-        self.creatGIF('%s\\Frames\\Page01_Opening.gif' % asset_path)
+        try:  # macos
+            self.creatGIF('%s/Frames/Page01_Opening.gif' % asset_path)
+        except:  # windows
+            self.creatGIF('%s\\Frames\\Page01_Opening.gif' % asset_path)
 
-        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = '#606153', 
+
+        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, 
             bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
         self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
 
 
     def creatGIF(self, path):
+        self.path = path
+        self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800)
         gifLabel_window = self.bgcanvas.create_window(0, 0, anchor = 'nw', window = self.gifLabel)
-        self.gifLabel.load(path, loop = False)
 
 
     def clickButton(self):
@@ -108,18 +120,24 @@ class Page02(tk.Frame):
         self.controller = controller
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
 
+        self.has_bggif = True
         self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
-        self.creatGIF('%s\\Frames\\Page02_intro-1.gif' % asset_path)
+        
+        try:
+            self.creatGIF('%s/Frames/Page02_intro-1.gif' % asset_path)
+        except:
+            self.creatGIF('%s\\Frames\\Page02_intro-1.gif' % asset_path)
 
-        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = '#606153', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
+        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
         self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
 
 
     def creatGIF(self, path):
+        self.path = path
+        self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800)
         gifLabel_window = self.bgcanvas.create_window(0, 0, anchor = 'nw', window = self.gifLabel)
-        self.gifLabel.load(path,loop = False)
 
 
     def clickButton(self):
@@ -130,13 +148,17 @@ class Page03(tk.Frame):
         tk.Frame.__init__(self, parent, width = 1280, height = 800, bg = bg_color)
         self.controller = controller
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
+
         self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
-        self.image = Image.open('%s\\Frames\\Page03_intro-2.jpeg' % asset_path).resize((1280,800))
+        try:
+            self.image = Image.open('%s/Frames/Page03_intro-2.jpeg' % asset_path).resize((1280,800))
+        except:
+            self.image = Image.open('%s\\Frames\\Page03_intro-2.jpeg' % asset_path).resize((1280,800))
         self._img = ImageTk.PhotoImage(self.image)
         self.bgcanvas.create_image(500, 350, image = self._img)
-        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = '#606153', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
-        self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
+        nextPage_B = tkmac.Button(self.bgcanvas, text = '繼續', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
+        self.after(4000, lambda: self.bgcanvas.create_window(950, 600, anchor = 'nw', window = nextPage_B))
 
 
     def clickButton(self):
@@ -151,10 +173,13 @@ class Page04(tk.Frame):
         self.rowconfigure(index = 3, weight = 1)
         self.columnconfigure(index = 0, weight = 1)
         self.columnconfigure(index = 5, weight = 1)
-        
+
         self.Button_img = []
-        for character in ['好好傑', '鬼畜傑','玩具傑','福爾摩斯傑','糕餅傑','鳳梨酥傑']:  # opponent.values()
-            image = Image.open('%s\\角色(png)\\%s.png' % (asset_path, character)).resize((320, 380))
+        for character in opponent.values():  # opponent.values()
+            try:
+                image = Image.open('%s/角色(png)/%s.png' % (asset_path, character)).resize((320, 380))
+            except:
+                image = Image.open('%s\\角色(png)\\%s.png' % (asset_path, character)).resize((320, 380))
             Button_img = ImageTk.PhotoImage(image)
             self.Button_img.append(Button_img)
 
@@ -181,7 +206,10 @@ class Page04_always_coop(tk.Frame):
 
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
 
-        image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_好好傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        try:
+            image = Image.open('%s/Frames/Page04-1~6_玩家介紹/Page04_好好傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        except:
+            image = Image.open('%s\\Frames/Page04-1~6_玩家介紹\\Page04_好好傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
         # Resize the image using resize() method
         self.bg_img = ImageTk.PhotoImage(image)
         
@@ -195,10 +223,13 @@ class Page04_always_coop(tk.Frame):
         bgcanvas.create_image(0, 0, image = self.bg_img, anchor = 'nw')
         bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
 
-        I_know_B = tkmac.Button(bgcanvas, text = '我知道了', font = self.my_font, fg = '#606153', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = self.clickButton)
+        I_know_B = tkmac.Button(bgcanvas, text = '我知道了', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = self.clickButton)
         I_know_B_window = bgcanvas.create_window(10, 10, anchor = 'nw', window = I_know_B)
         
-        image1 = Image.open('%s\\角色(png)\\好好傑.png' % (asset_path)).resize((640, 760))
+        try:
+            image1 = Image.open('%s/角色(png)/好好傑.png' % (asset_path)).resize((640, 760))
+        except:
+            image1 = Image.open('%s\\角色(png)\\好好傑.png' % (asset_path)).resize((640, 760))
         self.Label_img = ImageTk.PhotoImage(image1)    
         always_coop_B = tkmac.Button(bgcanvas, image = self.Label_img, bg = bg_color, bd = 0, borderless = False, width = 480, height = 550, command = self.clickButton)
         always_coop_B_window = bgcanvas.create_window(200, 350, anchor = 'w', window = always_coop_B)
@@ -214,18 +245,24 @@ class Page04_always_black(tk.Frame):
         self.controller = controller
 
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
-
-        image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_鬼畜傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        try:
+            image = Image.open('%s/Frames/Page04-1~6_玩家介紹/Page04_鬼畜傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        except:
+            image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_鬼畜傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        
         self.bg_img = ImageTk.PhotoImage(image)
- 
+    
         bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         bgcanvas.create_image(0, 0, image = self.bg_img, anchor = 'nw')
         bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
 
-        I_know_B = tkmac.Button(bgcanvas, text = '我知道了', font = self.my_font, fg = '#606153', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = self.clickButton)
+        I_know_B = tkmac.Button(bgcanvas, text = '我知道了', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = self.clickButton)
         I_know_B_window = bgcanvas.create_window(10, 10, anchor = 'nw', window = I_know_B)
 
-        image1 = Image.open('%s\\角色(png)\\鬼畜傑.png' % (asset_path)).resize((640, 760))
+        try:
+            image1 = Image.open('%s/角色(png)/鬼畜傑.png' % (asset_path)).resize((640, 760))
+        except:
+            image1 = Image.open('%s\\角色(png)\\鬼畜傑.png' % (asset_path)).resize((640, 760))
         self.Label_img = ImageTk.PhotoImage(image1)    
         always_black_B = tkmac.Button(bgcanvas, image = self.Label_img, bg = bg_color, bd = 0, borderless = False, width = 480, height = 550, command = self.clickButton)
         always_black_B_window = bgcanvas.create_window(200, 350, anchor = 'w', window = always_black_B)
@@ -241,9 +278,12 @@ class Page04_copy_kitten(tk.Frame):
 
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
 
-        image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_玩具傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        try:
+            image = Image.open('%s/Frames/Page04-1~6_玩家介紹/Page04_玩具傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        except:
+            image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_玩具傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
         self.bg_img = ImageTk.PhotoImage(image)
- 
+        
         bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         bgcanvas.create_image(0, 0, image = self.bg_img, anchor = 'nw')
         bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
@@ -262,14 +302,17 @@ class Page04_sherlock(tk.Frame):
 
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
 
-        image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_福爾摩斯傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        try:
+            image = Image.open('%s/Frames/Page04-1~6_玩家介紹/Page04_福爾摩斯傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        except:
+            image = Image.open('%s\\Frames/Page04-1~6_玩家介紹\\Page04_福爾摩斯傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
         self.bg_img = ImageTk.PhotoImage(image)
- 
+        
         bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         bgcanvas.create_image(0, 0, image = self.bg_img, anchor = 'nw')
         bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
 
-        I_know_B = tkmac.Button(bgcanvas, text = '我知道了', font = self.my_font, fg = '#606153', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = self.clickButton)
+        I_know_B = tkmac.Button(bgcanvas, text = '我知道了', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = self.clickButton)
         I_know_B_window = bgcanvas.create_window(10, 10, anchor = 'nw', window = I_know_B)
 
     def clickButton(self):
@@ -283,14 +326,17 @@ class Page04_copy_cat(tk.Frame):
 
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
 
-        image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_糕餅傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        try:
+            image = Image.open('%s/Frames/Page04-1~6_玩家介紹/Page04_糕餅傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        except:
+            image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_糕餅傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
         self.bg_img = ImageTk.PhotoImage(image)
- 
+
         bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         bgcanvas.create_image(0, 0, image = self.bg_img, anchor = 'nw')
         bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
 
-        I_know_B = tkmac.Button(bgcanvas, text = '我知道了', font = self.my_font, fg = '#606153', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = self.clickButton)
+        I_know_B = tkmac.Button(bgcanvas, text = '我知道了', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = self.clickButton)
         I_know_B_window = bgcanvas.create_window(10, 10, anchor = 'nw', window = I_know_B)
 
     def clickButton(self):
@@ -304,18 +350,22 @@ class Page04_coop_until_cheated(tk.Frame):
 
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
 
-        image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_鳳梨酥傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        try:
+            image = Image.open('%s/Frames/Page04-1~6_玩家介紹/Page04_鳳梨酥傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
+        except:
+            image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_鳳梨酥傑.jpeg' % asset_path).resize((1280, 750))  #(width, height)
         self.bg_img = ImageTk.PhotoImage(image)
- 
+        
         bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         bgcanvas.create_image(0, 0, image = self.bg_img, anchor = 'nw')
         bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
 
-        I_know_B = tkmac.Button(bgcanvas, text = '我知道了', font = self.my_font, fg = '#606153', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = self.clickButton)
+        I_know_B = tkmac.Button(bgcanvas, text = '我知道了', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = self.clickButton)
         I_know_B_window = bgcanvas.create_window(10, 10, anchor = 'nw', window = I_know_B)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
+
 
 """
 class Page04(tk.Frame):
