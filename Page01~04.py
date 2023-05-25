@@ -30,7 +30,7 @@ class Trust_App(tk.Tk):
         container.grid_columnconfigure(0, weight = 1)
 
         self.frames = {}
-        for F in (Page01,Page02,Page03, Page04, Page04_always_coop, Page04_always_black,Page04_copy_cat,Page04_copy_kitten,Page04_sherlock,Page04_coop_until_cheated):#,Page05
+        for F in (Page01,Page02,Page03, Page04, Page04_always_coop, Page04_always_black,Page04_copy_cat,Page04_copy_kitten,Page04_sherlock,Page04_coop_until_cheated,Page05,Page06):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row = 0, column = 0, sticky = "nsew")
@@ -197,7 +197,7 @@ class Page04(tk.Frame):
         nextPage_B.grid(column = 5, row =2, sticky = 's')
 
     def clickButton(self):
-        self.controller.show_frame(Page03)#記得改
+        self.controller.show_frame(Page05)#記得改
 
 class Page04_always_coop(tk.Frame):
 
@@ -350,6 +350,65 @@ class Page04_coop_until_cheated(tk.Frame):
     def clickButton(self):
         self.controller.show_frame(Page04)
 
+class Page05(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width = 1280, height = 800, bg = bg_color)
+        self.controller = controller
+        self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
+
+        self.has_bggif = True
+        self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
+        self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
+        
+        try:
+            self.creatGIF('%s/Frames/Page05.gif' % asset_path)
+        except:
+            self.creatGIF('%s\\Frames\\Page05.gif' % asset_path)
+
+        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
+        self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
+
+
+    def creatGIF(self, path):
+        self.path = path
+        self.loop = False
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800)
+        gifLabel_window = self.bgcanvas.create_window(0, 0, anchor = 'nw', window = self.gifLabel)
+
+
+    def clickButton(self):
+        self.controller.show_frame(Page06)
+
+class Page06(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width = 1280, height = 800, bg = bg_color)
+        self.controller = controller
+        self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
+
+        self.has_bggif = True
+        self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
+        self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
+        
+        try:
+            self.creatGIF('%s/Frames/Page06_intro-round1.gif' % asset_path)
+        except:
+            self.creatGIF('%s\\Frames\\Page06_intro-round1.gif' % asset_path)
+
+        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
+        self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
+
+
+    def creatGIF(self, path):
+        self.path = path
+        self.loop = False
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800)
+        gifLabel_window = self.bgcanvas.create_window(0, 0, anchor = 'nw', window = self.gifLabel)
+
+
+    def clickButton(self):
+        self.controller.show_frame(Page03)
+
 app = Trust_App('JayJay! Trust me')
 app.mainloop()
+
 
