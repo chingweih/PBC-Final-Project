@@ -52,10 +52,11 @@ class Trust_App(tk.Tk):
 class GIFLabel(tk.Label):
         def __init__(self, parent, width, height, path):
             tk.Label.__init__(self, parent, width = width, height = height, bg = bg_color)
-            try:
+            try:  # for windows
                 self.img = Image.open(path)
-            except:
+            except:  # for macos
                 self.img = Image.open(path.replace('\\', '/'))
+            
             self.frames = []
             try:
                 for i in count(1):
@@ -424,7 +425,7 @@ class Page05(tk.Frame):
 
 
     def creatGIF(self):
-        self.path = '%s/Frames/Page05.gif' % asset_path
+        self.path = '%s\\Frames\\Page05.gif' % asset_path
         self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
         gifLabel_window = self.bgcanvas.create_window(0, 0, anchor = 'nw', window = self.gifLabel)
@@ -449,7 +450,7 @@ class Page06(tk.Frame):
 
 
     def creatGIF(self):
-        self.path = '%s/Frames/Page06_intro-round1.gif' % asset_path
+        self.path = '%s\\Frames\\Page06_intro-round1.gif' % asset_path
         self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
         gifLabel_window = self.bgcanvas.create_window(0, 0, anchor = 'nw', window = self.gifLabel)
