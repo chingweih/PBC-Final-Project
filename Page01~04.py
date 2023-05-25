@@ -123,7 +123,8 @@ class Page02(tk.Frame):
         self.controller = controller
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
 
-        self.has_bggif = True
+
+
         self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
         self.creatGIF()
@@ -419,7 +420,6 @@ class Page05(tk.Frame):
         self.controller = controller
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
 
-        self.has_bggif = True
         self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
         self.creatGIF()
@@ -447,7 +447,6 @@ class Page06(tk.Frame):
         self.controller = controller
         self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
 
-        self.has_bggif = True
         self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
         self.creatGIF()
