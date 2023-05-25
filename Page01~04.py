@@ -5,7 +5,7 @@ import tkmacosx as tkmac
 from tkinter import ttk
 from PIL import Image, ImageTk
 from itertools import count, cycle
-
+# hiiiya
 # 對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock", "copy_kitten"]
 
 font = 'Hannotate TC'
