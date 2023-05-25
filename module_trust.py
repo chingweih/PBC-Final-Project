@@ -153,6 +153,7 @@ def main():
     get = Trust("copy_cat")
     opponents = get.OPPONENTS_LIST
 
+    # Test all opponent's response to a random player
     for opponent in opponents:
         game = Trust(opponent)
         test_list = [
@@ -165,7 +166,8 @@ def main():
         for test_data in test_list:
             print(opponent, game.battle(test_data))
         print(game.final_score())
-    
+
+    # Test the deconstructing of the returned list
     game_count, player_choice, opponent_choice, player_score, opponent_score = get.battle(True)
     print(game_count, player_choice, opponent_choice, player_score, opponent_score)
 
