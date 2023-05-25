@@ -27,10 +27,23 @@
 }
 ```
 
-範例：
+一般情況範例：
 
 ```python
 game = Trust("copy_cat")
+```
+
+或是需要更改配分表時：
+
+```python
+score_list = {
+  'coop': 5,
+  'cheat': 10,
+  'opponent_cheat': -5,
+  'both_cheat': 0,
+}
+
+game = Trust("always_black", score_list)
 ```
 
 ### 對戰
