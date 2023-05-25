@@ -184,7 +184,7 @@ class Page02(tk.Frame):
 
     def createButton(self):
         self.after(
-            12000,
+            5000,
             lambda: self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
             ),
@@ -842,7 +842,7 @@ class Page06(tk.Frame):
 
     def createButton(self):
         self.after(
-            22000,
+            10000,
             lambda: self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
             ),
