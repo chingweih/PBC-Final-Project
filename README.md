@@ -65,7 +65,9 @@ result = game.battle(True) # [1, True, True, 2, 2]
 
 ```python
 game_count, player_choice, opponent_choice, player_score, opponent_score = game.battle(True)
-print(game_count, player_choice, opponent_choice, player_score, opponent_score) # 1 True True 2 2
+
+print(game_count, player_choice, opponent_choice, player_score, opponent_score)
+# 1 True True 2 2
 ```
 
 每一次呼叫 Trust.battle 函數，就會開啟新的對戰，
@@ -89,5 +91,7 @@ score = game.final_score() # [10, 10, 20]
 
 ```python
 player_final, opponent_final, total = game.final_score()
-print(player_final, opponent_final, total) # 10, 10, 20
+
+print(player_final, opponent_final, total)
+# 10 10 20
 ```
