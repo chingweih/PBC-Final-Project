@@ -44,8 +44,6 @@ class Trust_App(tk.Tk):
         frame.tkraise()
         try:
             frame.gifLabel.load(frame.loop)
-        except FileNotFoundError:
-            frame.gifLabel.load(frame.loop)
         except:
             pass
 
