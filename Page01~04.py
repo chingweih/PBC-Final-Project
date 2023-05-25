@@ -59,10 +59,8 @@ class GIFLabel(tk.Label):
     def __init__(self, parent, width, height, path):
         tk.Label.__init__(self, parent, width=width,
                           height=height, bg=bg_color)
-        try:  # for windows
-            self.img = Image.open(path)
-        except:  # for macos
-            self.img = Image.open(path.replace('\\', '/'))
+
+        self.img = Image.open(path)
 
         self.frames = []
         try:
