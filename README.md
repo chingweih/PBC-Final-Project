@@ -39,3 +39,15 @@ result = game.battle(True) # [1, True, True, 2, 2]
 即如果要對戰五次，就呼叫五次函數。
 
 ### 取得最終成績
+
+在所有對戰都結束之後，可以呼叫 Trust.final_score 取得最終成績（清單，如下）
+
+```python
+[玩家分, 對手分, 總分]
+```
+
+範例：
+
+```python
+score = game.final_score() # [10, 10, 20]
+```
