@@ -1,4 +1,4 @@
-# PBC Final Project —— 信任遊戲
+# PBC Final Project —— 信任考驗
 
 ## Trust 模組
 
