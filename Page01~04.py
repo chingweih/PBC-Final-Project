@@ -6,6 +6,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 from itertools import count, cycle
 from module_trust import Trust
+from pathlib import Path
 
 # hiiiya
 # 對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock", "copy_kitten"]
@@ -14,8 +15,7 @@ font = 'Hannotate TC'
 bg_color = '#E8E9DC'
 actbg_color = '#9BAA9D'
 text_color = '#606153'
-# asset_path = 'C:\\Users\\stpi\\Documents\\GitHub\\PBC-Final-Project\\assets'
-asset_path = '/Users/_lsy.310_com/Documents/GitHub/PBC-Final_Project/assets'
+asset_path = Path('assets')
 opponent = {'copy_cat': '糕餅傑', 'always_black': '鬼畜傑', 'always_coop': '好好傑',
             'coop_until_cheated': '鳳梨酥傑', 'sherlock': '福爾摩斯傑', 'copy_kitten': '玩具傑'}
 
@@ -83,14 +83,11 @@ class GIFLabel(tk.Label):
             if self.frames:
                 self.config(image=next(self.frames))
                 self.after(self.delay, lambda: self.next_frame(loop))
-        else:
-            if self.frames:
-                self.loc += 1
-                if self.loc >= len(self.frames):
-                    pass
-                else:
-                    self.config(image=self.frames[self.loc])
-                    self.after(self.delay, lambda: self.next_frame(loop))
+        elif self.frames:
+            self.loc += 1
+            if self.loc < len(self.frames):
+                self.config(image=self.frames[self.loc])
+                self.after(self.delay, lambda: self.next_frame(loop))
 
 
 class Page01(tk.Frame):
@@ -112,7 +109,7 @@ class Page01(tk.Frame):
             500, 600, anchor='nw', window=self.nextPage_B))
 
     def creatGIF(self):
-        self.path = '%s\\Frames\\Page01_Opening.gif' % asset_path
+        self.path = asset_path / "Frames" / "Page01_Opening.gif"
         self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
         gifLabel_window = self.bgcanvas.create_window(
@@ -141,7 +138,7 @@ class Page02(tk.Frame):
             500, 600, anchor='nw', window=self.nextPage_B))
 
     def creatGIF(self):
-        self.path = '%s\\Frames\\Page02_intro-1.gif' % asset_path
+        self.path = asset_path / "Frames" / "Page02_intro-1.gif"
         self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
         gifLabel_window = self.bgcanvas.create_window(
@@ -159,12 +156,9 @@ class Page03(tk.Frame):
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0)
         self.bgcanvas.grid(column=0, row=0, sticky='nsew')
-        try:
-            self.image = Image.open(
-                '%s\\Frames\\Page03_intro-2.jpeg' % asset_path).resize((1280, 800))
-        except:
-            self.image = Image.open(
-                '%s/Frames/Page03_intro-2.jpeg' % asset_path).resize((1280, 800))
+        self.image = Image.open(
+            asset_path / "Frames" / "Page03_intro-2.jpeg").resize((1280, 800))
+
         self._img = ImageTk.PhotoImage(self.image)
         self.bgcanvas.create_image(500, 350, image=self._img)
         nextPage_B = tkmac.Button(self.bgcanvas, text='繼續', font=self.my_font, fg=text_color, activebackground=actbg_color, highlightcolor=text_color,
@@ -193,12 +187,8 @@ class Page04(tk.Frame):
         self.Button_img = []
 
         for character in ['好好傑', '鬼畜傑', '玩具傑', '福爾摩斯傑', '糕餅傑', '鳳梨酥傑']:  # opponent.values()
-            try:
-                image = Image.open('%s\\角色(png)\\%s.png' %
-                                   (asset_path, character)).resize((320, 380))
-            except:
-                image = Image.open('%s/角色(png)/%s.png' %
-                                   (asset_path, character)).resize((320, 380))
+            image = Image.open(
+                asset_path / "角色(png)" / f'{character}.png').resize((320, 380))
             Button_img = ImageTk.PhotoImage(image)
             self.Button_img.append(Button_img)
 
@@ -243,12 +233,8 @@ class Page04_always_coop(tk.Frame):
         self.controller = controller
 
         self.my_font = tkFont.Font(family=font, size=24, weight='bold')
-        try:
-            image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_好好傑.jpeg' %
-                               asset_path).resize((1280, 750))  # (width, height)
-        except:
-            image = Image.open(
-                '%s/Frames/Page04-1~6_玩家介紹/Page04_好好傑.jpeg' % asset_path).resize((1280, 750))
+        image = Image.open(
+            asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_好好傑.jpeg").resize((1280, 750))
         # Resize the image using resize() method
         self.bg_img = ImageTk.PhotoImage(image)
 
@@ -261,12 +247,8 @@ class Page04_always_coop(tk.Frame):
                                 focuscolor='', bg=bg_color, bd=0, borderless=True, width=240, height=60, command=self.clickButton)
         I_know_B_window = bgcanvas.create_window(
             10, 10, anchor='nw', window=I_know_B)
-        try:
-            image1 = Image.open('%s\\角色(png)\\好好傑.png' %
-                                (asset_path)).resize((640, 760))
-        except:
-            image1 = Image.open('%s/角色(png)/好好傑.png' %
-                                (asset_path)).resize((640, 760))
+        image1 = Image.open(asset_path / "角色(png)" /
+                            "好好傑.png").resize((640, 760))
         self.Label_img = ImageTk.PhotoImage(image1)
         always_coop_B = tkmac.Button(bgcanvas, image=self.Label_img, bg=bg_color,
                                      bd=0, borderless=True, width=480, height=550, command=self.clickButton)
@@ -286,12 +268,8 @@ class Page04_always_black(tk.Frame):
 
         self.my_font = tkFont.Font(family=font, size=24, weight='bold')
 
-        try:
-            image = Image.open('%s/Frames/Page04-1~6_玩家介紹/Page04_鬼畜傑.jpeg' %
-                               asset_path).resize((1280, 750))  # (width, height)
-        except:
-            image = Image.open('%s\\Frames\\Page04-1~6_玩家介紹\\Page04_鬼畜傑.jpeg' %
-                               asset_path).resize((1280, 750))  # (width, height)
+        image = Image.open(asset_path / "Frames" / "Page04-1~6_玩家介紹" /
+                           "Page04_鬼畜傑.jpeg").resize((1280, 750))  # (width, height)
 
         self.bg_img = ImageTk.PhotoImage(image)
 
@@ -305,12 +283,8 @@ class Page04_always_black(tk.Frame):
         I_know_B_window = bgcanvas.create_window(
             10, 10, anchor='nw', window=I_know_B)
 
-        try:
-            image1 = Image.open('%s/角色(png)/鬼畜傑.png' %
-                                (asset_path)).resize((640, 760))
-        except:
-            image1 = Image.open('%s\\角色(png)\\鬼畜傑.png' %
-                                (asset_path)).resize((640, 760))
+        image1 = Image.open(asset_path / "角色(png)" /
+                            "鬼畜傑.png").resize((640, 760))
         self.Label_img = ImageTk.PhotoImage(image1)
         always_black_B = tkmac.Button(bgcanvas, image=self.Label_img, bg=bg_color,
                                       bd=0, borderless=True, width=480, height=550, command=self.clickButton)
@@ -330,12 +304,8 @@ class Page04_copy_kitten(tk.Frame):
 
         self.my_font = tkFont.Font(family=font, size=24, weight='bold')
 
-        try:
-            image = Image.open(
-                '%s/Frames/Page04-1~6_玩家介紹/Page04_玩具傑.jpeg' % asset_path).resize((1280, 750))
-        except:
-            image = Image.open(
-                '%s\\Frames\\Page04-1~6_玩家介紹\\Page04_玩具傑.jpeg' % asset_path).resize((1280, 750))
+        image = Image.open(asset_path / "Frames" / "Page04-1~6_玩家介紹" /
+                           "Page04_玩具傑.jpeg").resize((1280, 750))
         self.bg_img = ImageTk.PhotoImage(image)
 
         bgcanvas = tk.Canvas(self, width=1280, height=800,
@@ -348,12 +318,8 @@ class Page04_copy_kitten(tk.Frame):
         I_know_B_window = bgcanvas.create_window(
             10, 10, anchor='nw', window=I_know_B)
 
-        try:
-            image1 = Image.open('%s\\角色(png)\\玩具傑.png' %
-                                (asset_path)).resize((640, 760))
-        except:
-            image1 = Image.open('%s/角色(png)/玩具傑.png' %
-                                (asset_path)).resize((640, 760))
+        image1 = Image.open(asset_path / "角色(png)" /
+                            "玩具傑.png").resize((640, 760))
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(bgcanvas, image=self.Label_img, bg=bg_color, bd=0,
                                borderless=True, width=480, height=550, command=self.clickButton)
@@ -373,12 +339,8 @@ class Page04_sherlock(tk.Frame):
 
         self.my_font = tkFont.Font(family=font, size=24, weight='bold')
 
-        try:
-            image = Image.open(
-                '%s/Frames/Page04-1~6_玩家介紹/Page04_福爾摩斯傑.jpeg' % asset_path).resize((1280, 750))
-        except:
-            image = Image.open(
-                '%s\\Frames/Page04-1~6_玩家介紹\\Page04_福爾摩斯傑.jpeg' % asset_path).resize((1280, 750))
+        image = Image.open(
+            asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_福爾摩斯傑.jpeg").resize((1280, 750))
         self.bg_img = ImageTk.PhotoImage(image)
 
         bgcanvas = tk.Canvas(self, width=1280, height=800,
@@ -390,12 +352,8 @@ class Page04_sherlock(tk.Frame):
                                 focuscolor='', bg=bg_color, bd=0, borderless=True, width=240, height=60, command=self.clickButton)
         I_know_B_window = bgcanvas.create_window(
             10, 10, anchor='nw', window=I_know_B)
-        try:
-            image1 = Image.open('%s\\角色(png)\\福爾摩斯傑.png' %
-                                (asset_path)).resize((640, 760))
-        except:
-            image1 = Image.open('%s/角色(png)/福爾摩斯傑.png' %
-                                (asset_path)).resize((640, 760))
+        image1 = Image.open(asset_path / "角色(png)" /
+                            "福爾摩斯傑.png").resize((640, 760))
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(bgcanvas, image=self.Label_img, bg=bg_color, bd=0,
                                borderless=True, width=480, height=550, command=self.clickButton)
@@ -415,12 +373,8 @@ class Page04_copy_cat(tk.Frame):
 
         self.my_font = tkFont.Font(family=font, size=24, weight='bold')
 
-        try:
-            image = Image.open(
-                '%s/Frames/Page04-1~6_玩家介紹/Page04_糕餅傑.jpeg' % asset_path).resize((1280, 750))
-        except:
-            image = Image.open(
-                '%s\\Frames\\Page04-1~6_玩家介紹\\Page04_糕餅傑.jpeg' % asset_path).resize((1280, 750))
+        image = Image.open(
+            asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_糕餅傑.jpeg").resize((1280, 750))
         self.bg_img = ImageTk.PhotoImage(image)
 
         bgcanvas = tk.Canvas(self, width=1280, height=800,
@@ -432,12 +386,9 @@ class Page04_copy_cat(tk.Frame):
                                 focuscolor='', bg=bg_color, bd=0, borderless=True, width=240, height=60, command=self.clickButton)
         I_know_B_window = bgcanvas.create_window(
             10, 10, anchor='nw', window=I_know_B)
-        try:
-            image1 = Image.open('%s\\角色(png)\\糕餅傑.png' %
-                                (asset_path)).resize((640, 760))
-        except:
-            image1 = Image.open('%s/角色(png)/糕餅傑.png' %
-                                (asset_path)).resize((640, 760))
+
+        image1 = Image.open(asset_path / "角色(png)" /
+                            "糕餅傑.png").resize((640, 760))
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(bgcanvas, image=self.Label_img, bg=bg_color, bd=0,
                                borderless=True, width=480, height=550, command=self.clickButton)
@@ -457,12 +408,8 @@ class Page04_coop_until_cheated(tk.Frame):
 
         self.my_font = tkFont.Font(family=font, size=24, weight='bold')
 
-        try:
-            image = Image.open(
-                '%s/Frames/Page04-1~6_玩家介紹/Page04_鳳梨酥傑.jpeg' % asset_path).resize((1280, 750))
-        except:
-            image = Image.open(
-                '%s\\Frames\\Page04-1~6_玩家介紹\\Page04_鳳梨酥傑.jpeg' % asset_path).resize((1280, 750))
+        image = Image.open(
+            asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_鳳梨酥傑.jpeg").resize((1280, 750))
         self.bg_img = ImageTk.PhotoImage(image)
 
         bgcanvas = tk.Canvas(self, width=1280, height=800,
@@ -474,12 +421,8 @@ class Page04_coop_until_cheated(tk.Frame):
                                 focuscolor='', bg=bg_color, bd=0, borderless=True, width=240, height=60, command=self.clickButton)
         I_know_B_window = bgcanvas.create_window(
             10, 10, anchor='nw', window=I_know_B)
-        try:
-            image1 = Image.open('%s\\角色(png)\\鳳梨酥傑.png' %
-                                (asset_path)).resize((640, 760))
-        except:
-            image1 = Image.open('%s/角色(png)/鳳梨酥傑.png' %
-                                (asset_path)).resize((640, 760))
+        image1 = Image.open(asset_path / "角色(png)" /
+                            '鳳梨酥傑.png').resize((640, 760))
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(bgcanvas, image=self.Label_img, bg=bg_color, bd=0,
                                borderless=True, width=480, height=550, command=self.clickButton)
@@ -508,7 +451,7 @@ class Page05(tk.Frame):
         self.after(8000, lambda: self.clickButton())
 
     def creatGIF(self):
-        self.path = '%s\\Frames\\Page05.gif' % asset_path
+        self.path = asset_path / "Frames" / "Page05.gif"
         self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
         gifLabel_window = self.bgcanvas.create_window(
@@ -537,7 +480,7 @@ class Page06(tk.Frame):
             500, 600, anchor='nw', window=self.nextPage_B))
 
     def creatGIF(self):
-        self.path = '%s\\Frames\\Page06_intro-round1.gif' % asset_path
+        self.path = asset_path / "Frames" / "Page06_intro-round1.gif"
         self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
         gifLabel_window = self.bgcanvas.create_window(
