@@ -32,11 +32,7 @@ class Trust_App(tk.Tk):
         container.grid_columnconfigure(0, weight = 1)
 
         self.frames = {}
-<<<<<<< HEAD
-        for F in (Page01, Page02, Page03, Page04, Page04_always_coop, Page04_always_black, Page04_copy_cat, Page04_copy_kitten, Page04_sherlock, Page04_coop_until_cheated):#,Page05
-=======
         for F in (Page01,Page02,Page03, Page04, Page04_always_coop, Page04_always_black,Page04_copy_cat,Page04_copy_kitten,Page04_sherlock,Page04_coop_until_cheated,Page05,Page06):
->>>>>>> d3da38465f08b136149474f12a1c8d460ac33cf7
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row = 0, column = 0, sticky = "nsew")
