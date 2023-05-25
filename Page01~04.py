@@ -67,7 +67,7 @@ class GIFLabel(tk.Label):
 
         def load(self, loop: bool):
             self.loc = 0
-            self.delay = self.img.info['duration']
+            self.delay = self.img.info['duration'] - 20
             self.next_frame(loop)
 
 
@@ -417,20 +417,16 @@ class Page05(tk.Frame):
         self.has_bggif = True
         self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
-        
-        try:
-            self.creatGIF('%s/Frames/Page05.gif' % asset_path)
-        except:
-            self.creatGIF('%s\\Frames\\Page05.gif' % asset_path)
+        self.creatGIF()
 
         nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
         self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
 
 
-    def creatGIF(self, path):
-        self.path = path
+    def creatGIF(self):
+        self.path = '%s/Frames/Page05.gif' % asset_path
         self.loop = False
-        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800)
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
         gifLabel_window = self.bgcanvas.create_window(0, 0, anchor = 'nw', window = self.gifLabel)
 
 
@@ -446,20 +442,16 @@ class Page06(tk.Frame):
         self.has_bggif = True
         self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
-        
-        try:
-            self.creatGIF('%s/Frames/Page06_intro-round1.gif' % asset_path)
-        except:
-            self.creatGIF('%s\\Frames\\Page06_intro-round1.gif' % asset_path)
+        self.creatGIF()
 
         nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
         self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
 
 
-    def creatGIF(self, path):
-        self.path = path
+    def creatGIF(self):
+        self.path = '%s/Frames/Page06_intro-round1.gif' % asset_path
         self.loop = False
-        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800)
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
         gifLabel_window = self.bgcanvas.create_window(0, 0, anchor = 'nw', window = self.gifLabel)
 
 
