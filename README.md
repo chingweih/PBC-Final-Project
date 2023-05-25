@@ -2,7 +2,7 @@
 
 ## Trust 模組
 
-### 開啟新回合
+### 開啟新回合 — Trust(opponent, [score_list])
 
 宣告一個變數，存放 Trust 物件，並提供這局對戰的人物（字串，以下清單其中一個）
 ```python
@@ -46,7 +46,7 @@ score_list = {
 game = Trust("always_black", score_list)
 ```
 
-### 對戰
+### 對戰 — Trust.battle(choice) -> list
 
 使用上面定義好的物件，可以呼叫 Trust.battle 函數，傳入本次玩家選擇（True/False），並得到回傳的本局結果（清單，如下）
 
@@ -63,7 +63,7 @@ result = game.battle(True) # [1, True, True, 2, 2]
 每一次呼叫 Trust.battle 函數，就會開啟新的對戰，
 即如果要對戰五次，就呼叫五次函數。
 
-### 取得最終成績
+### 取得最終成績 — Trust.final_score() -> list
 
 在所有對戰都結束之後，可以呼叫 Trust.final_score 取得最終成績（清單，如下）
 
