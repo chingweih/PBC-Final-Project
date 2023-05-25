@@ -24,7 +24,7 @@ class Trust:
             }
 
         # Check illegal inputs
-        self.opponents_list = [
+        self.OPPONENTS_LIST = [
             "copy_cat",
             "always_black",
             "always_coop",
@@ -32,7 +32,7 @@ class Trust:
             "sherlock",
             "copy_kitten",
         ]
-        if opponent not in self.opponents_list:
+        if opponent not in self.OPPONENTS_LIST:
             raise ValueError("Opponent not in list.")
 
         # Initialize variables
@@ -43,8 +43,8 @@ class Trust:
         self.player_cheat = False
         self.player_cheat_count = 0
         self.player_continous_cheat = 0
-        self.opponent = opponent
-        self.score_list = score_list
+        self.OPPONENT = opponent
+        self.SCORE_LIST = score_list
 
     # Opponent algorithms (bool): 合作 - True; 欺騙 - False
     # Copy Cat: 第一局合作，後模仿玩家上一局選擇
@@ -95,17 +95,17 @@ class Trust:
     # Judge player and opponent's move and adjust points accordingly
     def judge_and_adjust_points(self, choice: bool, opponent_choice: bool) -> None:
         # Get socre list
-        coop, cheat, opponent_cheat, both_cheat = set(self.score_list.values())
+        COOP, CHEAT, OPPONENT_CHEAT, BOTH_CHEAT = set(self.SCORE_LIST.values())
 
         # Judging
         if choice and opponent_choice:
-            self.add_points(coop, coop)
+            self.add_points(COOP, COOP)
         elif not choice and not opponent_choice:
-            self.add_points(both_cheat, both_cheat, 1)
+            self.add_points(BOTH_CHEAT, BOTH_CHEAT, 1)
         elif choice:
-            self.add_points(opponent_cheat, cheat)
+            self.add_points(OPPONENT_CHEAT, CHEAT)
         else:
-            self.add_points(cheat, opponent_cheat, 1)
+            self.add_points(CHEAT, OPPONENT_CHEAT, 1)
 
     def battle(self, choice: bool) -> list:
         """主對戰程式
@@ -118,7 +118,7 @@ class Trust:
         """
 
         # Get opponent's choice
-        opponent = getattr(self, self.opponent)
+        opponent = getattr(self, self.OPPONENT)
         opponent_choice = opponent()
 
         self.judge_and_adjust_points(choice, opponent_choice)
@@ -151,7 +151,7 @@ class Trust:
 # Testing
 def main():
     get = Trust("copy_cat")
-    opponents = get.opponents_list
+    opponents = get.OPPONENTS_LIST
 
     for opponent in opponents:
         game = Trust(opponent)
