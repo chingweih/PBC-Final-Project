@@ -95,7 +95,7 @@ class Trust:
     # Judge player and opponent's move and adjust points accordingly
     def judge_and_adjust_points(self, choice: bool, opponent_choice: bool) -> None:
         # Get socre list
-        COOP, CHEAT, OPPONENT_CHEAT, BOTH_CHEAT = set(self.SCORE_LIST.values())
+        COOP, CHEAT, OPPONENT_CHEAT, BOTH_CHEAT = list(self.SCORE_LIST.values())
 
         # Judging
         if choice and opponent_choice:
@@ -165,11 +165,17 @@ def main():
         ]
         for test_data in test_list:
             print(opponent, game.battle(test_data))
-        print(game.final_score())
+        print(game.final_score(), '\n----------\n', sep='\n')
 
-    # Test the deconstructing of the returned list
-    game_count, player_choice, opponent_choice, player_score, opponent_score = get.battle(True)
-    print(game_count, player_choice, opponent_choice, player_score, opponent_score)
+    # Test the deconstructing of the returned list and every combination of scores
+    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(True)
+    print(player_choice, opponent_choice, player_score, opponent_score)
+    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(False)
+    print(player_choice, opponent_choice, player_score, opponent_score)
+    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(False)
+    print(player_choice, opponent_choice, player_score, opponent_score)
+    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(True)
+    print(player_choice, opponent_choice, player_score, opponent_score)
 
 
 if __name__ == "__main__":
