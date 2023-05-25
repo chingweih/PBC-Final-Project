@@ -61,7 +61,7 @@ game = Trust("always_black", score_list)
 result = game.battle(True) # [1, True, True, 2, 2]
 ```
 
-也可以直接解構清單變成單獨的函數：
+也可以直接解構清單變成單獨的變數：
 
 ```python
 game_count, player_choice, opponent_choice, player_score, opponent_score = game.battle(True)
