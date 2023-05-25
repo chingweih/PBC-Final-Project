@@ -5,13 +5,14 @@
 ### 開啟新回合 — `Trust(opponent, [score_list])`
 
 宣告一個變數，存放 Trust 物件，並提供這局對戰的人物（字串，以下清單其中一個）
+
 ```python
 [
-  "copy_cat", 
-  "always_black", 
-  "always_coop", 
-  "coop_until_cheated", 
-  "sherlock", 
+  "copy_cat",
+  "always_black",
+  "always_coop",
+  "coop_until_cheated",
+  "sherlock",
   "copy_kitten"
 ]
 ```
@@ -60,6 +61,13 @@ game = Trust("always_black", score_list)
 result = game.battle(True) # [1, True, True, 2, 2]
 ```
 
+也可以直接解構清單變成單獨的函數：
+
+```python
+game_count, player_choice, opponent_choice, player_score, opponent_score = game.battle(True)
+print(game_count, player_choice, opponent_choice, player_score, opponent_score) # 1 True True 2 2
+```
+
 每一次呼叫 Trust.battle 函數，就會開啟新的對戰，
 即如果要對戰五次，就呼叫五次函數。
 
@@ -75,4 +83,11 @@ result = game.battle(True) # [1, True, True, 2, 2]
 
 ```python
 score = game.final_score() # [10, 10, 20]
+```
+
+同樣可以解構清單：
+
+```python
+player_final, opponent_final, total = game.final_score()
+print(player_final, opponent_final, total) # 10, 10, 20
 ```
