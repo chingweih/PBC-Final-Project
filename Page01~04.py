@@ -43,6 +43,10 @@ class Trust_App(tk.Tk):
         frame = self.frames[nextF]
         frame.tkraise()
         try:
+            frame.createButton()
+        except:
+            pass
+        try:
             frame.gifLabel.load(frame.loop)
         except:
             pass
@@ -96,10 +100,11 @@ class Page01(tk.Frame):
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
         self.creatGIF()
 
-        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = '#606153', activebackground = actbg_color, highlightcolor = text_color, 
+        self.nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = '#606153', activebackground = actbg_color, highlightcolor = text_color, 
             focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
-        self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
-
+    
+    def createButton(self):
+        self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
 
     def creatGIF(self):
         self.path = '%s\\Frames\\Page01_Opening.gif' % asset_path
@@ -123,10 +128,11 @@ class Page02(tk.Frame):
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
         self.creatGIF()
 
-        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
+        self.nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
             focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
-        self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
 
+    def createButton(self):
+        self.after(12000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
 
     def creatGIF(self):
         self.path = '%s\\Frames\\Page02_intro-1.gif' % asset_path
@@ -209,7 +215,7 @@ class Page04(tk.Frame):
         copy_cat.grid(column = 2, row = 1, sticky = 'nsew')
         coop_until_cheated.grid(column = 2, row = 2, sticky = 'nsew')
         nextPage_B = tkmac.Button(self, text = '我都看完了\n準備挑戰',font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
-            bg = bg_color, bd = 0, borderless = True, width = 240, height = 100, command = lambda: self.clickButton())
+            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 100, command = lambda: self.clickButton())
         nextPage_B.grid(column = 5, row =2, sticky = 's')
 
     def clickButton(self):
@@ -418,8 +424,11 @@ class Page05(tk.Frame):
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
         self.creatGIF()
 
-        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
-        self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
+        # self.nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
+        #     focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
+        
+    def createButton(self):
+        self.after(8000, lambda: self.clickButton())
 
 
     def creatGIF(self):
@@ -443,8 +452,11 @@ class Page06(tk.Frame):
         self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
         self.creatGIF()
 
-        nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
-        self.after(4000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = nextPage_B))
+        self.nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
+            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
+        
+    def createButton(self):
+        self.after(22000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
 
 
     def creatGIF(self):
