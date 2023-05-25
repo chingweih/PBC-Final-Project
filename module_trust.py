@@ -165,6 +165,9 @@ def main():
         for test_data in test_list:
             print(opponent, game.battle(test_data))
         print(game.final_score())
+    
+    game_count, player_choice, opponent_choice, player_score, opponent_score = get.battle(True)
+    print(game_count, player_choice, opponent_choice, player_score, opponent_score)
 
 
 if __name__ == "__main__":
