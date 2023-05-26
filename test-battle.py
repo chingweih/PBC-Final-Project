@@ -70,7 +70,6 @@ class Trust_App(tk.Tk):
 
     def show_frame(self, nextF):
         frame = self.frames[nextF]
-        # frame.grid(row=0, column=0, sticky="nsew")
         frame.tkraise()
         try:
             frame.createButton()
