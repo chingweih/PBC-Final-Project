@@ -250,12 +250,13 @@ class Page04(tk.Frame):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
         self.rowconfigure(index=0, weight=1)
-        self.rowconfigure(index=1, weight=1)
-        self.rowconfigure(index=2, weight=1)
-        self.rowconfigure(index=3, weight=1)
-        self.rowconfigure(index=4, weight=1)
-        self.columnconfigure(index=4, weight=1)
-        self.columnconfigure(index=5, weight=1)
+        self.rowconfigure(index=5, weight=1)
+        self.columnconfigure(index=0, weight=1)
+        self.columnconfigure(index=1, weight=2)
+        self.columnconfigure(index=2, weight=2)
+        self.columnconfigure(index=3, weight=2)
+        self.columnconfigure(index=4, weight=4)
+        self.columnconfigure(index=5, weight=2)
 
         self.my_font = tkFont.Font(family=font, size=24, weight="bold")
         self.my_font1 = tkFont.Font(family=font, size=40, weight="bold")
@@ -269,8 +270,9 @@ class Page04(tk.Frame):
             "糕餅傑",
             "鳳梨酥傑",
         ]:  # opponent.values()
-            image = Image.open(asset_path / "角色(png)" / f"{character}.png").resize(
-                (320, 380)
+            image = Image.open(asset_path / "角色(png)" / f"{character}.png").crop(
+                [300, 100, 950, 1100]).resize(
+                (195, 320)
             )
             Button_img = ImageTk.PhotoImage(image)
             self.Button_img.append(Button_img)
@@ -371,21 +373,21 @@ class Page04(tk.Frame):
         )
         words1 = tk.Label(
             self,
-            text="想了解各種小傑嗎？ \n要的話就點開各張照片吧！",
+            text="想了解各種小傑嗎？ \n點開各張照片取得更多訊息！",
             font=self.my_font,
             bg=bg_color,
             bd=0,
             fg=text_color,
         )
 
-        words.grid(column=3, row=1, columnspan=5, rowspan=1)
-        words1.grid(column=3, row=2, columnspan=5, rowspan=1, sticky="n")
-        always_coop_B.grid(column=0, row=1, sticky="nsew")
-        always_black_B.grid(column=0, row=2, sticky="nsew")
-        copy_kitten.grid(column=1, row=1, sticky="nsew")
-        sherlock.grid(column=1, row=2, sticky="nsew")
-        copy_cat.grid(column=2, row=1, sticky="nsew")
-        coop_until_cheated.grid(column=2, row=2, sticky="nsew")
+        words.grid(column=4, row=1, sticky="s" )
+        words1.grid(column=4, row=2, columnspan=1, rowspan=1, sticky="s")
+        always_coop_B.grid(column=1, row=1, rowspan=2, sticky="nsew")
+        always_black_B.grid(column=1, row=3, rowspan=2, sticky="nsew")
+        copy_kitten.grid(column=2, row=1, rowspan=2, sticky="nsew")
+        sherlock.grid(column=2, row=3, rowspan=2, sticky="nsew")
+        copy_cat.grid(column=3, row=1, rowspan=2, sticky="nsew")
+        coop_until_cheated.grid(column=3, row=3, rowspan=2, sticky="nsew")
         nextPage_B = tkmac.Button(
             self,
             text="我都看完了\n準備挑戰",
@@ -402,7 +404,7 @@ class Page04(tk.Frame):
             cursor="hand",
             command=lambda: self.clickButton(),
         )
-        nextPage_B.grid(column=5, row=2, sticky="s")
+        nextPage_B.grid(column=4, row=4, sticky="se")
 
     def clickButton(self):
         self.controller.show_frame(Page05)  # 記得改
@@ -423,7 +425,7 @@ class Page04_always_coop(tk.Frame):
         bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
         )
-        bgcanvas.create_image(0, 0, image=self.bg_img, anchor="nw")
+        bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
         I_know_B = tkmac.Button(
@@ -437,15 +439,16 @@ class Page04_always_coop(tk.Frame):
             bg=bg_color,
             bd=0,
             borderless=True,
-            width=240,
+            width=200,
             height=60,
             cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
-            10, 10, anchor="nw", window=I_know_B)
+            20, 20, anchor="nw", window=I_know_B)
         image1 = Image.open(asset_path / "角色(png)" /
-                            "好好傑.png").resize((640, 760))
+                            "好好傑.png").crop(
+                [300, 100, 1000, 1100]).resize((390, 600))
         self.Label_img = ImageTk.PhotoImage(image1)
         always_coop_B = tkmac.Button(
             bgcanvas,
@@ -457,12 +460,12 @@ class Page04_always_coop(tk.Frame):
             focuscolor="",
             borderless=True,
             width=480,
-            height=550,
+            height=560,
             cursor="hand",
             command=self.clickButton,
         )
         always_coop_B_window = bgcanvas.create_window(
-            200, 350, anchor="w", window=always_coop_B
+            140, 380, anchor="w", window=always_coop_B
         )
 
     def clickButton(self):
@@ -496,7 +499,7 @@ class Page04_always_black(tk.Frame):
         bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
         )
-        bgcanvas.create_image(0, 0, image=self.bg_img, anchor="nw")
+        bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
         I_know_B = tkmac.Button(
@@ -510,16 +513,17 @@ class Page04_always_black(tk.Frame):
             bg=bg_color,
             bd=0,
             borderless=True,
-            width=240,
+            width=200,
             height=60,
             cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
-            10, 10, anchor="nw", window=I_know_B)
+            20, 20, anchor="nw", window=I_know_B)
 
         image1 = Image.open(asset_path / "角色(png)" /
-                            "鬼畜傑.png").resize((640, 760))
+                            "鬼畜傑.png").crop(
+                [300, 100, 1000, 1100]).resize((390, 600))
         self.Label_img = ImageTk.PhotoImage(image1)
         always_black_B = tkmac.Button(
             bgcanvas,
@@ -531,12 +535,12 @@ class Page04_always_black(tk.Frame):
             focuscolor="",
             borderless=True,
             width=480,
-            height=550,
+            height=560,
             cursor="hand",
             command=self.clickButton,
         )
         always_black_B_window = bgcanvas.create_window(
-            200, 350, anchor="w", window=always_black_B
+            140, 380, anchor="w", window=always_black_B
         )
 
     def clickButton(self):
@@ -567,7 +571,7 @@ class Page04_copy_kitten(tk.Frame):
         bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
         )
-        bgcanvas.create_image(0, 0, image=self.bg_img, anchor="nw")
+        bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
         I_know_B = tkmac.Button(
@@ -581,16 +585,17 @@ class Page04_copy_kitten(tk.Frame):
             bg=bg_color,
             bd=0,
             borderless=True,
-            width=240,
+            width=200,
             height=60,
             cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
-            10, 10, anchor="nw", window=I_know_B)
+            20, 20, anchor="nw", window=I_know_B)
 
         image1 = Image.open(asset_path / "角色(png)" /
-                            "玩具傑.png").resize((640, 760))
+                            "玩具傑.png").crop(
+                [300, 100, 1000, 1100]).resize((390, 600))
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(
             bgcanvas,
@@ -602,12 +607,12 @@ class Page04_copy_kitten(tk.Frame):
             focuscolor="",
             borderless=True,
             width=480,
-            height=550,
+            height=560,
             cursor="hand",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
-            200, 350, anchor="w", window=picture)
+            140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -637,7 +642,7 @@ class Page04_sherlock(tk.Frame):
         bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
         )
-        bgcanvas.create_image(0, 0, image=self.bg_img, anchor="nw")
+        bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
         I_know_B = tkmac.Button(
@@ -651,15 +656,16 @@ class Page04_sherlock(tk.Frame):
             bg=bg_color,
             bd=0,
             borderless=True,
-            width=240,
+            width=200,
             height=60,
             cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
-            10, 10, anchor="nw", window=I_know_B)
+            20, 20, anchor="nw", window=I_know_B)
         image1 = Image.open(asset_path / "角色(png)" /
-                            "福爾摩斯傑.png").resize((640, 760))
+                            "福爾摩斯傑.png").crop(
+                [300, 100, 1000, 1100]).resize((390, 600))
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(
             bgcanvas,
@@ -671,12 +677,12 @@ class Page04_sherlock(tk.Frame):
             focuscolor="",
             borderless=True,
             width=480,
-            height=550,
+            height=560,
             cursor="hand",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
-            200, 350, anchor="w", window=picture)
+            140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -707,7 +713,7 @@ class Page04_copy_cat(tk.Frame):
         bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
         )
-        bgcanvas.create_image(0, 0, image=self.bg_img, anchor="nw")
+        bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
         I_know_B = tkmac.Button(
@@ -721,16 +727,17 @@ class Page04_copy_cat(tk.Frame):
             bg=bg_color,
             bd=0,
             borderless=True,
-            width=240,
+            width=200,
             height=60,
             cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
-            10, 10, anchor="nw", window=I_know_B)
+            20, 20, anchor="nw", window=I_know_B)
 
         image1 = Image.open(asset_path / "角色(png)" /
-                            "糕餅傑.png").resize((640, 760))
+                            "糕餅傑.png").crop(
+                [300, 100, 1000, 1100]).resize((390, 600))
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(
             bgcanvas,
@@ -742,12 +749,12 @@ class Page04_copy_cat(tk.Frame):
             focuscolor="",
             borderless=True,
             width=480,
-            height=550,
+            height=560,
             cursor="hand",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
-            200, 350, anchor="w", window=picture)
+            140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -777,7 +784,7 @@ class Page04_coop_until_cheated(tk.Frame):
         bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
         )
-        bgcanvas.create_image(0, 0, image=self.bg_img, anchor="nw")
+        bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
         I_know_B = tkmac.Button(
@@ -791,15 +798,16 @@ class Page04_coop_until_cheated(tk.Frame):
             bg=bg_color,
             bd=0,
             borderless=True,
-            width=240,
+            width=200,
             height=60,
             cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
-            10, 10, anchor="nw", window=I_know_B)
+            20, 20, anchor="nw", window=I_know_B)
         image1 = Image.open(asset_path / "角色(png)" /
-                            "鳳梨酥傑.png").resize((640, 760))
+                            "鳳梨酥傑.png").crop(
+                [300, 100, 1000, 1100]).resize((390, 600))
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(
             bgcanvas,
@@ -811,12 +819,12 @@ class Page04_coop_until_cheated(tk.Frame):
             focuscolor="",
             borderless=True,
             width=480,
-            height=550,
+            height=560,
             cursor="hand",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
-            200, 350, anchor="w", window=picture)
+            140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
