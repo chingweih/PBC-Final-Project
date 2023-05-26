@@ -130,6 +130,7 @@ class Page01(tk.Frame):
             borderless=True,
             width=240,
             height=60,
+            cursor="hand",
             command=lambda: self.clickButton(),
         )
 
@@ -178,6 +179,7 @@ class Page02(tk.Frame):
             borderless=True,
             width=240,
             height=60,
+            cursor="hand",
             command=lambda: self.clickButton(),
         )
 
@@ -211,11 +213,11 @@ class Page03(tk.Frame):
         )
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.image = Image.open(asset_path / "Frames" / "Page03_intro-2.jpeg").resize(
-            (1150, 648)
+            (1265, 712)
         )
 
         self._img = ImageTk.PhotoImage(self.image)
-        self.bgcanvas.create_image(0, 0, anchor = "nw", image=self._img)
+        self.bgcanvas.create_image(0, -20, anchor = "nw", image=self._img)
         nextPage_B = tkmac.Button(
             self.bgcanvas,
             text="繼續",
@@ -229,12 +231,13 @@ class Page03(tk.Frame):
             borderless=True,
             width=240,
             height=60,
+            cursor="hand",
             command=lambda: self.clickButton(),
         )
         self.after(
             4000,
             lambda: self.bgcanvas.create_window(
-                950, 650, anchor="nw", window=nextPage_B
+                950, 660, anchor="nw", window=nextPage_B
             ),
         )
 
@@ -284,6 +287,7 @@ class Page04(tk.Frame):
             focuscolor="",
             width=240,
             height=300,
+            cursor="hand",
             command=lambda: controller.show_frame(Page04_always_coop),
         )
         always_black_B = tkmac.Button(
@@ -298,6 +302,7 @@ class Page04(tk.Frame):
             focuscolor="",
             width=240,
             height=300,
+            cursor="hand",
             command=lambda: controller.show_frame(Page04_always_black),
         )
         copy_kitten = tkmac.Button(
@@ -312,6 +317,7 @@ class Page04(tk.Frame):
             focuscolor="",
             width=240,
             height=300,
+            cursor="hand",
             command=lambda: controller.show_frame(Page04_copy_kitten),
         )
         sherlock = tkmac.Button(
@@ -326,6 +332,7 @@ class Page04(tk.Frame):
             focuscolor="",
             width=240,
             height=300,
+            cursor="hand",
             command=lambda: controller.show_frame(Page04_sherlock),
         )
         copy_cat = tkmac.Button(
@@ -340,6 +347,7 @@ class Page04(tk.Frame):
             focuscolor="",
             width=240,
             height=300,
+            cursor="hand",
             command=lambda: controller.show_frame(Page04_copy_cat),
         )
         coop_until_cheated = tkmac.Button(
@@ -354,6 +362,7 @@ class Page04(tk.Frame):
             bd=0,
             width=240,
             height=300,
+            cursor="hand",
             command=lambda: controller.show_frame(Page04_coop_until_cheated),
         )
 
@@ -390,6 +399,7 @@ class Page04(tk.Frame):
             borderless=True,
             width=240,
             height=100,
+            cursor="hand",
             command=lambda: self.clickButton(),
         )
         nextPage_B.grid(column=5, row=2, sticky="s")
@@ -429,6 +439,7 @@ class Page04_always_coop(tk.Frame):
             borderless=True,
             width=240,
             height=60,
+            cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -447,6 +458,7 @@ class Page04_always_coop(tk.Frame):
             borderless=True,
             width=480,
             height=550,
+            cursor="hand",
             command=self.clickButton,
         )
         always_coop_B_window = bgcanvas.create_window(
@@ -500,6 +512,7 @@ class Page04_always_black(tk.Frame):
             borderless=True,
             width=240,
             height=60,
+            cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -519,6 +532,7 @@ class Page04_always_black(tk.Frame):
             borderless=True,
             width=480,
             height=550,
+            cursor="hand",
             command=self.clickButton,
         )
         always_black_B_window = bgcanvas.create_window(
@@ -569,6 +583,7 @@ class Page04_copy_kitten(tk.Frame):
             borderless=True,
             width=240,
             height=60,
+            cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -588,6 +603,7 @@ class Page04_copy_kitten(tk.Frame):
             borderless=True,
             width=480,
             height=550,
+            cursor="hand",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
@@ -637,6 +653,7 @@ class Page04_sherlock(tk.Frame):
             borderless=True,
             width=240,
             height=60,
+            cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -655,6 +672,7 @@ class Page04_sherlock(tk.Frame):
             borderless=True,
             width=480,
             height=550,
+            cursor="hand",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
@@ -673,6 +691,7 @@ class Page04_copy_cat(tk.Frame):
             height=800,
             bg=bg_color,
             bd=0,
+            cursor="hand",
             highlightthickness=0,
         )
 
@@ -704,6 +723,7 @@ class Page04_copy_cat(tk.Frame):
             borderless=True,
             width=240,
             height=60,
+            cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -723,6 +743,7 @@ class Page04_copy_cat(tk.Frame):
             borderless=True,
             width=480,
             height=550,
+            cursor="hand",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
@@ -772,6 +793,7 @@ class Page04_coop_until_cheated(tk.Frame):
             borderless=True,
             width=240,
             height=60,
+            cursor="hand",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -790,6 +812,7 @@ class Page04_coop_until_cheated(tk.Frame):
             borderless=True,
             width=480,
             height=550,
+            cursor="hand",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
@@ -854,6 +877,7 @@ class Page06(tk.Frame):
             borderless=True,
             width=240,
             height=60,
+            cursor="hand",
             command=lambda: self.clickButton(),
         )
 
