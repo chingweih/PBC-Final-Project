@@ -64,10 +64,13 @@ class Trust_App(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame(Page07)
+        self.show_frame(Page01)
+
+
 
     def show_frame(self, nextF):
         frame = self.frames[nextF]
+        # frame.grid(row=0, column=0, sticky="nsew")
         frame.tkraise()
         try:
             frame.createButton()
@@ -881,7 +884,7 @@ class Page06(tk.Frame):
         )
 
     def clickButton(self):
-        self.controller.show_frame(Page03)
+        self.controller.show_frame(Page07)
 
 
 class Page07(tk.Frame):
