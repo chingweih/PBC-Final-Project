@@ -102,10 +102,10 @@ class Trust_App(tk.Tk):
     def show_frame(self, nextF):
         frame = self.frames[nextF]
         frame.tkraise()
-        try:
+        create_btn = getattr(frame, "createButton", None)
+        if callable(create_btn):
             frame.createButton()
-        except:
-            pass
+
         try:
             frame.gifLabel.load(frame.loop)
         except:
