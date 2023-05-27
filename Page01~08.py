@@ -17,14 +17,7 @@ bg_color = "#E8E9DC"
 actbg_color = "#9BAA9D"
 text_color = "#606153"
 asset_path = Path(__file__).parent.joinpath("assets")
-opponent = {
-    "copy_cat": "糕餅傑",
-    "always_black": "鬼畜傑",
-    "always_coop": "好好傑",
-    "coop_until_cheated": "鳳梨酥傑",
-    "sherlock": "福爾摩斯傑",
-    "copy_kitten": "玩具傑",
-}
+opponent = Trust("copy_cat").OPPONENT_GLOSSARY
 
 
 class Trust_App(tk.Tk):

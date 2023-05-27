@@ -24,14 +24,17 @@ class Trust:
             }
 
         # Check illegal inputs
-        self.OPPONENTS_LIST = [
-            "copy_cat",
-            "always_black",
-            "always_coop",
-            "coop_until_cheated",
-            "sherlock",
-            "copy_kitten",
-        ]
+
+        self.OPPONENT_GLOSSARY = {
+            "copy_cat": "糕餅傑",
+            "always_black": "鬼畜傑",
+            "always_coop": "好好傑",
+            "coop_until_cheated": "鳳梨酥傑",
+            "sherlock": "福爾摩斯傑",
+            "copy_kitten": "玩具傑",
+        }
+
+        self.OPPONENTS_LIST = list(self.OPPONENT_GLOSSARY.keys())
         if opponent not in self.OPPONENTS_LIST:
             raise ValueError("Opponent not in list.")
 
@@ -146,7 +149,6 @@ class Trust:
             self.opponent_score,
             self.player_score + self.opponent_score,
         ]
-
 
 # Testing
 def main():
