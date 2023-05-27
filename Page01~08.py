@@ -220,11 +220,11 @@ class Page03(tk.Frame):
         )
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.image = Image.open(asset_path / "Frames" / "Page03_intro-2.jpeg").resize(
-            (1265, 712)
+            (1152, 648)
         )
 
         self._img = ImageTk.PhotoImage(self.image)
-        self.bgcanvas.create_image(0, -20, anchor = "nw", image=self._img)
+        self.bgcanvas.create_image(50, -20, anchor = "nw", image=self._img)
         nextPage_B = tkmac.Button(
             self.bgcanvas,
             text="繼續",
@@ -244,7 +244,7 @@ class Page03(tk.Frame):
         self.after(
             4000,
             lambda: self.bgcanvas.create_window(
-                950, 660, anchor="nw", window=nextPage_B
+                960, 620, anchor="nw", window=nextPage_B
             ),
         )
 
