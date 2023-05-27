@@ -19,6 +19,7 @@ text_color = "#606153"
 asset_path = Path(__file__).parent.joinpath("assets")
 opponent = Trust("copy_cat").OPPONENT_GLOSSARY
 
+
 class StyleSheet:
     def __init__(self) -> None:
         self.my_font = tkFont.Font(family=font, size=24, weight="bold")
@@ -40,7 +41,7 @@ class StyleSheet:
             cursor="hand1",
             command=command,
         )
-    
+
     def img_btn(self, parent, image, width, height, command):
         return tkmac.Button(
             parent,
@@ -155,7 +156,9 @@ class Page01(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "進入遊戲", 240, 60, self.clickButton)
+        self.nextPage_B = StyleSheet().text_btn(
+            self.bgcanvas, "進入遊戲", 240, 60, self.clickButton
+        )
 
     def createButton(self):
         self.after(
@@ -189,7 +192,9 @@ class Page02(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "進入遊戲", 240, 60, self.clickButton)
+        self.nextPage_B = StyleSheet().text_btn(
+            self.bgcanvas, "進入遊戲", 240, 60, self.clickButton
+        )
 
     def createButton(self):
         self.after(
@@ -226,7 +231,9 @@ class Page03(tk.Frame):
 
         self._img = ImageTk.PhotoImage(self.image)
         self.bgcanvas.create_image(50, -20, anchor="nw", image=self._img)
-        nextPage_B = StyleSheet().text_btn(self.bgcanvas, "繼續", 240, 60, self.clickButton)
+        nextPage_B = StyleSheet().text_btn(
+            self.bgcanvas, "繼續", 240, 60, self.clickButton
+        )
 
         self.after(
             4000,
@@ -272,13 +279,48 @@ class Page04(tk.Frame):
             Button_img = ImageTk.PhotoImage(image)
             self.Button_img.append(Button_img)
 
-        always_coop_B = StyleSheet().img_btn(self, self.Button_img[0], 240, 300, lambda: controller.show_frame(Page04_always_coop))
-        always_black_B =StyleSheet().img_btn(self, self.Button_img[1], 240, 300, lambda: controller.show_frame(Page04_always_black))
-        copy_kitten = StyleSheet().img_btn(self, self.Button_img[2], 240, 300, lambda: controller.show_frame(Page04_copy_kitten))
-        sherlock = StyleSheet().img_btn(self, self.Button_img[3], 240, 300, lambda: controller.show_frame(Page04_sherlock))
-        copy_cat = StyleSheet().img_btn(self, self.Button_img[4], 240, 300, lambda: controller.show_frame(Page04_copy_cat))
-        coop_until_cheated = StyleSheet().img_btn(self, self.Button_img[5], 240, 300, lambda: controller.show_frame(Page04_coop_until_cheated))
-
+        always_coop_B = StyleSheet().img_btn(
+            self,
+            self.Button_img[0],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_always_coop),
+        )
+        always_black_B = StyleSheet().img_btn(
+            self,
+            self.Button_img[1],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_always_black),
+        )
+        copy_kitten = StyleSheet().img_btn(
+            self,
+            self.Button_img[2],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_copy_kitten),
+        )
+        sherlock = StyleSheet().img_btn(
+            self,
+            self.Button_img[3],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_sherlock),
+        )
+        copy_cat = StyleSheet().img_btn(
+            self,
+            self.Button_img[4],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_copy_cat),
+        )
+        coop_until_cheated = StyleSheet().img_btn(
+            self,
+            self.Button_img[5],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_coop_until_cheated),
+        )
 
         words = tk.Label(
             self, text="各種小傑介紹", font=self.my_font1, bg=bg_color, bd=0, fg=text_color
@@ -300,7 +342,9 @@ class Page04(tk.Frame):
         sherlock.grid(column=2, row=3, rowspan=2, sticky="nsew")
         copy_cat.grid(column=3, row=1, rowspan=2, sticky="nsew")
         coop_until_cheated.grid(column=3, row=3, rowspan=2, sticky="nsew")
-        nextPage_B = StyleSheet().text_btn(self, "我都看完了\n準備挑戰", 240, 100, self.clickButton)
+        nextPage_B = StyleSheet().text_btn(
+            self, "我都看完了\n準備挑戰", 240, 100, self.clickButton
+        )
         nextPage_B.grid(column=4, row=4, sticky="se")
 
     def clickButton(self):
@@ -334,7 +378,9 @@ class Page04_always_coop(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        always_coop_B = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
+        always_coop_B = StyleSheet().img_btn(
+            bgcanvas, self.Label_img, 480, 560, self.clickButton
+        )
         always_coop_B_window = bgcanvas.create_window(
             140, 380, anchor="w", window=always_coop_B
         )
@@ -383,7 +429,9 @@ class Page04_always_black(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        always_black_B = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
+        always_black_B = StyleSheet().img_btn(
+            bgcanvas, self.Label_img, 480, 560, self.clickButton
+        )
         always_black_B_window = bgcanvas.create_window(
             140, 380, anchor="w", window=always_black_B
         )
@@ -429,7 +477,9 @@ class Page04_copy_kitten(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        picture = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
+        picture = StyleSheet().img_btn(
+            bgcanvas, self.Label_img, 480, 560, self.clickButton
+        )
         picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
@@ -471,7 +521,9 @@ class Page04_sherlock(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        picture = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
+        picture = StyleSheet().img_btn(
+            bgcanvas, self.Label_img, 480, 560, self.clickButton
+        )
         picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
@@ -515,7 +567,9 @@ class Page04_copy_cat(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        picture = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
+        picture = StyleSheet().img_btn(
+            bgcanvas, self.Label_img, 480, 560, self.clickButton
+        )
         picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
@@ -557,7 +611,9 @@ class Page04_coop_until_cheated(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        picture = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
+        picture = StyleSheet().img_btn(
+            bgcanvas, self.Label_img, 480, 560, self.clickButton
+        )
         picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
@@ -606,7 +662,9 @@ class Page06(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "進入遊戲", 240, 60, self.clickButton)
+        self.nextPage_B = StyleSheet().text_btn(
+            self.bgcanvas, "進入遊戲", 240, 60, self.clickButton
+        )
 
     def createButton(self):
         self.after(
@@ -693,9 +751,13 @@ class Page07(tk.Frame):
         self.bgcanvas.create_window(
             640, 120, width=100, height=50, window=self.game_count
         )
-        self.trust_B = StyleSheet().img_btn(self.bgcanvas, self.cardt_img, 250, 350, self.clickTrust)
+        self.trust_B = StyleSheet().img_btn(
+            self.bgcanvas, self.cardt_img, 250, 350, self.clickTrust
+        )
 
-        self.cheat_B = StyleSheet().img_btn(self.bgcanvas, self.cardc_img, 250, 350, self.clickCheat)
+        self.cheat_B = StyleSheet().img_btn(
+            self.bgcanvas, self.cardc_img, 250, 350, self.clickCheat
+        )
 
         self.bgcanvas.create_window(300, 300, anchor="nw", window=self.trust_B)
         self.bgcanvas.create_window(650, 300, anchor="nw", window=self.cheat_B)
@@ -733,7 +795,9 @@ class Page08_tt(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "下一回合", 240, 60, self.clickButton)
+        self.nextPage_B = StyleSheet().text_btn(
+            self.bgcanvas, "下一回合", 240, 60, self.clickButton
+        )
 
         image2 = (
             Image.open(asset_path / "角色(png)" / "Battle .png")
@@ -780,7 +844,9 @@ class Page08_tc(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "下一回合", 240, 60, self.clickButton)
+        self.nextPage_B = StyleSheet().text_btn(
+            self.bgcanvas, "下一回合", 240, 60, self.clickButton
+        )
 
         image2 = (
             Image.open(asset_path / "角色(png)" / "Battle .png")
@@ -827,7 +893,9 @@ class Page08_ct(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "下一回合", 240, 60, self.clickButton)
+        self.nextPage_B = StyleSheet().text_btn(
+            self.bgcanvas, "下一回合", 240, 60, self.clickButton
+        )
 
         image2 = (
             Image.open(asset_path / "角色(png)" / "Battle .png")
@@ -874,7 +942,9 @@ class Page08_cc(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "下一回合", 240, 60, self.clickButton)
+        self.nextPage_B = StyleSheet().text_btn(
+            self.bgcanvas, "下一回合", 240, 60, self.clickButton
+        )
 
         image2 = (
             Image.open(asset_path / "角色(png)" / "Battle .png")
