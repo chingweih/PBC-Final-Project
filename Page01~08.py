@@ -16,7 +16,7 @@ font = "Hannotate TC"
 bg_color = "#E8E9DC"
 actbg_color = "#9BAA9D"
 text_color = "#606153"
-asset_path = Path("assets")
+asset_path = Path(__file__).parent.joinpath("assets")
 opponent = {
     "copy_cat": "糕餅傑",
     "always_black": "鬼畜傑",
@@ -955,23 +955,19 @@ class Page07(tk.Frame):
         print(self.controller.play.OPPONENT)  # 測試用，記得刪
 
     def clickTrust(self):
-        result = self.controller.play.battle(True)  # [回合數, 玩家當局選擇, 對手當局選擇, 玩家分數, 對手分數]
-        self.controller.game_count = result[0]
-        if result[2] is True:
-            self.controller.show_frame(Page08_tt)
-        else:  # opponent: False
-            self.controller.show_frame(Page08_tc)
-        # 更新回合數
-        self.game_count.config(text = str((self.controller.game_count) + 1))
+        self.switch_frame_by_choice(True, Page08_tt, Page08_tc)
 
     def clickCheat(self):
-        result = self.controller.play.battle(False)
+        self.switch_frame_by_choice(False, Page08_ct, Page08_cc)
+
+    def switch_frame_by_choice(self, choice, opponent_coop, opponent_cheat):
+        result = self.controller.play.battle(choice)
         self.controller.game_count = result[0]
         if result[2] is True:
-            self.controller.show_frame(Page08_ct)
-        else:  # opponent: False
-            self.controller.show_frame(Page08_cc)
-        self.game_count.config(text = str(self.controller.game_count + 1))
+            self.controller.show_frame(opponent_coop)
+        else:
+            self.controller.show_frame(opponent_cheat)
+        self.game_count.config(text=str(self.controller.game_count + 1))
 
 class Page08_tt(tk.Frame):
     def __init__(self, parent, controller):

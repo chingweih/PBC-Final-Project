@@ -78,7 +78,7 @@ class Trust:
 
     # Copy Kitten: 模仿咪 —— 合作，直到被連續欺騙兩次
     def copy_kitten(self) -> bool:
-        return self.player_continous_cheat < 2
+        return True if self.player_continous_cheat < 2 else self.player_choice
 
     # Add player and opponent's score and update cheat count
     def add_points(self, player: int, opponent: int, cheat: int = 0) -> None:
