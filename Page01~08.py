@@ -51,7 +51,7 @@ class Trust_App(tk.Tk):
             Page08_cc,
             Page08_ct,
             Page08_tt,
-            Page08_tc
+            Page08_tc,
         ):
             frame = F(container, self)
             self.frames[F] = frame
@@ -74,8 +74,7 @@ class Trust_App(tk.Tk):
 
 class GIFLabel(tk.Label):
     def __init__(self, parent, width, height, path):
-        tk.Label.__init__(self, parent, width=width,
-                          height=height, bg=bg_color)
+        tk.Label.__init__(self, parent, width=width, height=height, bg=bg_color)
 
         self.img = Image.open(path)
 
@@ -217,7 +216,7 @@ class Page03(tk.Frame):
         )
 
         self._img = ImageTk.PhotoImage(self.image)
-        self.bgcanvas.create_image(50, -20, anchor = "nw", image=self._img)
+        self.bgcanvas.create_image(50, -20, anchor="nw", image=self._img)
         nextPage_B = tkmac.Button(
             self.bgcanvas,
             text="繼續",
@@ -270,9 +269,10 @@ class Page04(tk.Frame):
             "糕餅傑",
             "鳳梨酥傑",
         ]:  # opponent.values()
-            image = Image.open(asset_path / "角色(png)" / f"{character}.png").crop(
-                [300, 100, 950, 1100]).resize(
-                (195, 320)
+            image = (
+                Image.open(asset_path / "角色(png)" / f"{character}.png")
+                .crop([300, 100, 950, 1100])
+                .resize((195, 320))
             )
             Button_img = ImageTk.PhotoImage(image)
             self.Button_img.append(Button_img)
@@ -380,7 +380,7 @@ class Page04(tk.Frame):
             fg=text_color,
         )
 
-        words.grid(column=4, row=1, sticky="s" )
+        words.grid(column=4, row=1, sticky="s")
         words1.grid(column=4, row=2, columnspan=1, rowspan=1, sticky="s")
         always_coop_B.grid(column=1, row=1, rowspan=2, sticky="nsew")
         always_black_B.grid(column=1, row=3, rowspan=2, sticky="nsew")
@@ -444,11 +444,12 @@ class Page04_always_coop(tk.Frame):
             cursor="hand1",
             command=self.clickButton,
         )
-        I_know_B_window = bgcanvas.create_window(
-            20, 20, anchor="nw", window=I_know_B)
-        image1 = Image.open(asset_path / "角色(png)" /
-                            "好好傑.png").crop(
-                [300, 100, 1000, 1100]).resize((390, 600))
+        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
+        image1 = (
+            Image.open(asset_path / "角色(png)" / "好好傑.png")
+            .crop([300, 100, 1000, 1100])
+            .resize((390, 600))
+        )
         self.Label_img = ImageTk.PhotoImage(image1)
         always_coop_B = tkmac.Button(
             bgcanvas,
@@ -518,12 +519,13 @@ class Page04_always_black(tk.Frame):
             cursor="hand1",
             command=self.clickButton,
         )
-        I_know_B_window = bgcanvas.create_window(
-            20, 20, anchor="nw", window=I_know_B)
+        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
 
-        image1 = Image.open(asset_path / "角色(png)" /
-                            "鬼畜傑.png").crop(
-                [300, 100, 1000, 1100]).resize((390, 600))
+        image1 = (
+            Image.open(asset_path / "角色(png)" / "鬼畜傑.png")
+            .crop([300, 100, 1000, 1100])
+            .resize((390, 600))
+        )
         self.Label_img = ImageTk.PhotoImage(image1)
         always_black_B = tkmac.Button(
             bgcanvas,
@@ -590,12 +592,13 @@ class Page04_copy_kitten(tk.Frame):
             cursor="hand1",
             command=self.clickButton,
         )
-        I_know_B_window = bgcanvas.create_window(
-            20, 20, anchor="nw", window=I_know_B)
+        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
 
-        image1 = Image.open(asset_path / "角色(png)" /
-                            "玩具傑.png").crop(
-                [300, 100, 1000, 1100]).resize((390, 600))
+        image1 = (
+            Image.open(asset_path / "角色(png)" / "玩具傑.png")
+            .crop([300, 100, 1000, 1100])
+            .resize((390, 600))
+        )
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(
             bgcanvas,
@@ -611,8 +614,7 @@ class Page04_copy_kitten(tk.Frame):
             cursor="hand1",
             command=self.clickButton,
         )
-        picture_window = bgcanvas.create_window(
-            140, 380, anchor="w", window=picture)
+        picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -661,11 +663,12 @@ class Page04_sherlock(tk.Frame):
             cursor="hand1",
             command=self.clickButton,
         )
-        I_know_B_window = bgcanvas.create_window(
-            20, 20, anchor="nw", window=I_know_B)
-        image1 = Image.open(asset_path / "角色(png)" /
-                            "福爾摩斯傑.png").crop(
-                [300, 100, 1000, 1100]).resize((390, 600))
+        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
+        image1 = (
+            Image.open(asset_path / "角色(png)" / "福爾摩斯傑.png")
+            .crop([300, 100, 1000, 1100])
+            .resize((390, 600))
+        )
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(
             bgcanvas,
@@ -681,8 +684,7 @@ class Page04_sherlock(tk.Frame):
             cursor="hand1",
             command=self.clickButton,
         )
-        picture_window = bgcanvas.create_window(
-            140, 380, anchor="w", window=picture)
+        picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -732,12 +734,13 @@ class Page04_copy_cat(tk.Frame):
             cursor="hand1",
             command=self.clickButton,
         )
-        I_know_B_window = bgcanvas.create_window(
-            20, 20, anchor="nw", window=I_know_B)
+        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
 
-        image1 = Image.open(asset_path / "角色(png)" /
-                            "糕餅傑.png").crop(
-                [300, 100, 1000, 1100]).resize((390, 600))
+        image1 = (
+            Image.open(asset_path / "角色(png)" / "糕餅傑.png")
+            .crop([300, 100, 1000, 1100])
+            .resize((390, 600))
+        )
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(
             bgcanvas,
@@ -753,8 +756,7 @@ class Page04_copy_cat(tk.Frame):
             cursor="hand1",
             command=self.clickButton,
         )
-        picture_window = bgcanvas.create_window(
-            140, 380, anchor="w", window=picture)
+        picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -803,11 +805,12 @@ class Page04_coop_until_cheated(tk.Frame):
             cursor="hand1",
             command=self.clickButton,
         )
-        I_know_B_window = bgcanvas.create_window(
-            20, 20, anchor="nw", window=I_know_B)
-        image1 = Image.open(asset_path / "角色(png)" /
-                            "鳳梨酥傑.png").crop(
-                [300, 100, 1000, 1100]).resize((390, 600))
+        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
+        image1 = (
+            Image.open(asset_path / "角色(png)" / "鳳梨酥傑.png")
+            .crop([300, 100, 1000, 1100])
+            .resize((390, 600))
+        )
         self.Label_img = ImageTk.PhotoImage(image1)
         picture = tkmac.Button(
             bgcanvas,
@@ -823,8 +826,7 @@ class Page04_coop_until_cheated(tk.Frame):
             cursor="hand1",
             command=self.clickButton,
         )
-        picture_window = bgcanvas.create_window(
-            140, 380, anchor="w", window=picture)
+        picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -908,42 +910,107 @@ class Page06(tk.Frame):
     def clickButton(self):
         self.controller.show_frame(Page07)
 
+
 class Page07(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, width = 1280, height = 800, bg = bg_color)
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font1 = tkFont.Font(family = font, size = 50, weight = 'bold')
-        self.my_font2 = tkFont.Font(family = font, size = 60, weight = 'bold')
+        self.my_font1 = tkFont.Font(family=font, size=50, weight="bold")
+        self.my_font2 = tkFont.Font(family=font, size=60, weight="bold")
         self.choose_opponent()
 
-        image1 = Image.open(asset_path / 'Frames' / 'Page07_round1.jpeg').resize((1280, 800))
-        image2 = Image.open(asset_path / '角色(png)' / 'Battle .png').crop([500,0,1300,1200]).resize((250, 450))
-        image3 = Image.open(asset_path / 'Card' / 'front-trust.png').crop([500,200,1300,1400]).resize((250, 350))
-        image4 = Image.open(asset_path / 'Card' / 'front-cheat.png').crop([500,200,1300,1400]).resize((250, 350))
+        image1 = Image.open(asset_path / "Frames" / "Page07_round1.jpeg").resize(
+            (1280, 800)
+        )
+        image2 = (
+            Image.open(asset_path / "角色(png)" / "Battle .png")
+            .crop([500, 0, 1300, 1200])
+            .resize((250, 450))
+        )
+        image3 = (
+            Image.open(asset_path / "Card" / "front-trust.png")
+            .crop([500, 200, 1300, 1400])
+            .resize((250, 350))
+        )
+        image4 = (
+            Image.open(asset_path / "Card" / "front-cheat.png")
+            .crop([500, 200, 1300, 1400])
+            .resize((250, 350))
+        )
 
         self.bg_img = ImageTk.PhotoImage(image1)
         self.Jay = ImageTk.PhotoImage(image2)
         self.cardt_img = ImageTk.PhotoImage(image3)
         self.cardc_img = ImageTk.PhotoImage(image4)
-        
-        self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
-        self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
-        self.bgcanvas.create_image(0, 0, image = self.bg_img, anchor = 'nw')
-        self.Jay_Label = tk.Label(self.bgcanvas, bg = bg_color, width = 600, height = 600, image = self.Jay)
-        self.bgcanvas.create_window(950, 200, width = 250, height = 500, anchor = 'nw', window = self.Jay_Label)
-        self.text = tk.Label(self.bgcanvas, bg = bg_color, fg = text_color, width = 100, height = 50, text = '回合', font = self.my_font1)
-        self.bgcanvas.create_window(640, 50, width = 150, height = 80, window = self.text)
-        self.game_count = tk.Label(self.bgcanvas, bg = bg_color, fg = text_color, width = 100, height = 50, text = self.controller.game_count, font = self.my_font2)
-        self.bgcanvas.create_window(640, 120, width = 100, height = 50, window = self.game_count)
-        self.trust_B = tkmac.Button(self.bgcanvas, image = self.cardt_img, bg = bg_color, bd = 0, borderless = True, activebackground = bg_color, highlightthickness = 3, 
-            highlightcolor = bg_color, focuscolor = '', width = 250, height = 350, cursor="hand1", command = self.clickTrust)
-        self.cheat_B = tkmac.Button(self.bgcanvas, image = self.cardc_img, bg = bg_color, bd = 0, borderless = True, activebackground = bg_color, highlightthickness = 3, 
-            highlightcolor = bg_color, focuscolor = '', width = 250, height = 350, cursor="hand1", command = self.clickCheat)
-        self.bgcanvas.create_window(300, 300, anchor = 'nw', window = self.trust_B)
-        self.bgcanvas.create_window(650, 300, anchor = 'nw', window = self.cheat_B)
+
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
+        self.bgcanvas.create_image(0, 0, image=self.bg_img, anchor="nw")
+        self.Jay_Label = tk.Label(
+            self.bgcanvas, bg=bg_color, width=600, height=600, image=self.Jay
+        )
+        self.bgcanvas.create_window(
+            950, 200, width=250, height=500, anchor="nw", window=self.Jay_Label
+        )
+        self.text = tk.Label(
+            self.bgcanvas,
+            bg=bg_color,
+            fg=text_color,
+            width=100,
+            height=50,
+            text="回合",
+            font=self.my_font1,
+        )
+        self.bgcanvas.create_window(640, 50, width=150, height=80, window=self.text)
+        self.game_count = tk.Label(
+            self.bgcanvas,
+            bg=bg_color,
+            fg=text_color,
+            width=100,
+            height=50,
+            text=self.controller.game_count,
+            font=self.my_font2,
+        )
+        self.bgcanvas.create_window(
+            640, 120, width=100, height=50, window=self.game_count
+        )
+        self.trust_B = tkmac.Button(
+            self.bgcanvas,
+            image=self.cardt_img,
+            bg=bg_color,
+            bd=0,
+            borderless=True,
+            activebackground=bg_color,
+            highlightthickness=3,
+            highlightcolor=bg_color,
+            focuscolor="",
+            width=250,
+            height=350,
+            cursor="hand1",
+            command=self.clickTrust,
+        )
+        self.cheat_B = tkmac.Button(
+            self.bgcanvas,
+            image=self.cardc_img,
+            bg=bg_color,
+            bd=0,
+            borderless=True,
+            activebackground=bg_color,
+            highlightthickness=3,
+            highlightcolor=bg_color,
+            focuscolor="",
+            width=250,
+            height=350,
+            cursor="hand1",
+            command=self.clickCheat,
+        )
+        self.bgcanvas.create_window(300, 300, anchor="nw", window=self.trust_B)
+        self.bgcanvas.create_window(650, 300, anchor="nw", window=self.cheat_B)
 
     def choose_opponent(self):  # 隨機選擇對手、初始回合數：1
-        self.controller.game_count = '1'
+        self.controller.game_count = "1"
         self.controller.play = Trust(random.choice(tuple(opponent.keys())))
         print(self.controller.play.OPPONENT)  # 測試用，記得刪
 
@@ -962,66 +1029,126 @@ class Page07(tk.Frame):
             self.controller.show_frame(opponent_cheat)
         self.game_count.config(text=str(self.controller.game_count + 1))
 
+
 class Page08_tt(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, width = 1280, height = 800, bg = bg_color)
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
+        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
-        self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
-        self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(self.bgcanvas, text = '下一回合', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
-            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand1", command = lambda: self.clickButton())
+        self.nextPage_B = tkmac.Button(
+            self.bgcanvas,
+            text="下一回合",
+            font=self.my_font,
+            fg=text_color,
+            activebackground=actbg_color,
+            highlightcolor=text_color,
+            focuscolor="",
+            bg=bg_color,
+            bd=0,
+            borderless=True,
+            width=240,
+            height=60,
+            cursor="hand1",
+            command=lambda: self.clickButton(),
+        )
 
-        image2 = Image.open(asset_path / "角色(png)" / "Battle .png").crop([500,0,1300,1200]).resize((250, 450))
+        image2 = (
+            Image.open(asset_path / "角色(png)" / "Battle .png")
+            .crop([500, 0, 1300, 1200])
+            .resize((250, 450))
+        )
         self.Jay = ImageTk.PhotoImage(image2)
-        self.Jay_Label = tk.Label(self.bgcanvas, bg = bg_color, width = 600, height = 600, image = self.Jay)
-        self.bgcanvas.create_window(950, 200, width = 300, height = 500, anchor = 'nw', window = self.Jay_Label)
-    
+        self.Jay_Label = tk.Label(
+            self.bgcanvas, bg=bg_color, width=600, height=600, image=self.Jay
+        )
+        self.bgcanvas.create_window(
+            950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
+        )
+
     def createButton(self):
-        self.after(3000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
+        self.after(
+            3000,
+            lambda: self.bgcanvas.create_window(
+                500, 600, anchor="nw", window=self.nextPage_B
+            ),
+        )
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-trust+trust.gif"
         self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
-        gifLabel_window = self.bgcanvas.create_window(0, -50, anchor = 'nw', window = self.gifLabel)
-
+        gifLabel_window = self.bgcanvas.create_window(
+            0, -50, anchor="nw", window=self.gifLabel
+        )
 
     def clickButton(self):
         self.controller.show_frame(Page07)
-    
 
 
 class Page08_tc(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, width = 1280, height = 800, bg = bg_color)
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
+        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
-        self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
-        self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(self.bgcanvas, text = '下一回合', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
-            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand1", command = lambda: self.clickButton())
-        
-        image2 = Image.open(asset_path / "角色(png)" / "Battle .png").crop([500,0,1300,1200]).resize((250, 450))
+        self.nextPage_B = tkmac.Button(
+            self.bgcanvas,
+            text="下一回合",
+            font=self.my_font,
+            fg=text_color,
+            activebackground=actbg_color,
+            highlightcolor=text_color,
+            focuscolor="",
+            bg=bg_color,
+            bd=0,
+            borderless=True,
+            width=240,
+            height=60,
+            cursor="hand1",
+            command=lambda: self.clickButton(),
+        )
+
+        image2 = (
+            Image.open(asset_path / "角色(png)" / "Battle .png")
+            .crop([500, 0, 1300, 1200])
+            .resize((250, 450))
+        )
         self.Jay = ImageTk.PhotoImage(image2)
-        self.Jay_Label = tk.Label(self.bgcanvas, bg = bg_color, width = 600, height = 600, image = self.Jay)
-        self.bgcanvas.create_window(950, 200, width = 300, height = 500, anchor = 'nw', window = self.Jay_Label)
-    
+        self.Jay_Label = tk.Label(
+            self.bgcanvas, bg=bg_color, width=600, height=600, image=self.Jay
+        )
+        self.bgcanvas.create_window(
+            950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
+        )
+
     def createButton(self):
-        self.after(3000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
+        self.after(
+            3000,
+            lambda: self.bgcanvas.create_window(
+                500, 600, anchor="nw", window=self.nextPage_B
+            ),
+        )
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-trust+cheat.gif"
         self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
-        gifLabel_window = self.bgcanvas.create_window(0, -50, anchor = 'nw', window = self.gifLabel)
-
+        gifLabel_window = self.bgcanvas.create_window(
+            0, -50, anchor="nw", window=self.gifLabel
+        )
 
     def clickButton(self):
         self.controller.show_frame(Page07)
@@ -1029,31 +1156,61 @@ class Page08_tc(tk.Frame):
 
 class Page08_ct(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, width = 1280, height = 800, bg = bg_color)
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
+        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
-        self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
-        self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(self.bgcanvas, text = '下一回合', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
-            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand1", command = lambda: self.clickButton())
+        self.nextPage_B = tkmac.Button(
+            self.bgcanvas,
+            text="下一回合",
+            font=self.my_font,
+            fg=text_color,
+            activebackground=actbg_color,
+            highlightcolor=text_color,
+            focuscolor="",
+            bg=bg_color,
+            bd=0,
+            borderless=True,
+            width=240,
+            height=60,
+            cursor="hand1",
+            command=lambda: self.clickButton(),
+        )
 
-        image2 = Image.open(asset_path / "角色(png)" / "Battle .png").crop([500,0,1300,1200]).resize((250, 450))
+        image2 = (
+            Image.open(asset_path / "角色(png)" / "Battle .png")
+            .crop([500, 0, 1300, 1200])
+            .resize((250, 450))
+        )
         self.Jay = ImageTk.PhotoImage(image2)
-        self.Jay_Label = tk.Label(self.bgcanvas, bg = bg_color, width = 600, height = 600, image = self.Jay)
-        self.bgcanvas.create_window(950, 200, width = 300, height = 500, anchor = 'nw', window = self.Jay_Label)
-    
+        self.Jay_Label = tk.Label(
+            self.bgcanvas, bg=bg_color, width=600, height=600, image=self.Jay
+        )
+        self.bgcanvas.create_window(
+            950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
+        )
+
     def createButton(self):
-        self.after(3000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
+        self.after(
+            3000,
+            lambda: self.bgcanvas.create_window(
+                500, 600, anchor="nw", window=self.nextPage_B
+            ),
+        )
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-cheat+trust.gif"
         self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
-        gifLabel_window = self.bgcanvas.create_window(0, -50, anchor = 'nw', window = self.gifLabel)
-
+        gifLabel_window = self.bgcanvas.create_window(
+            0, -50, anchor="nw", window=self.gifLabel
+        )
 
     def clickButton(self):
         self.controller.show_frame(Page07)
@@ -1061,31 +1218,61 @@ class Page08_ct(tk.Frame):
 
 class Page08_cc(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, width = 1280, height = 800, bg = bg_color)
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family = font, size = 24, weight = 'bold')
+        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
-        self.bgcanvas = tk.Canvas(self, width = 1280, height = 800, bg = bg_color, bd = 0, highlightthickness = 0)
-        self.bgcanvas.grid(column = 0, row = 0, sticky = 'nsew')
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(self.bgcanvas, text = '下一回合', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
-            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand1", command = lambda: self.clickButton())
+        self.nextPage_B = tkmac.Button(
+            self.bgcanvas,
+            text="下一回合",
+            font=self.my_font,
+            fg=text_color,
+            activebackground=actbg_color,
+            highlightcolor=text_color,
+            focuscolor="",
+            bg=bg_color,
+            bd=0,
+            borderless=True,
+            width=240,
+            height=60,
+            cursor="hand1",
+            command=lambda: self.clickButton(),
+        )
 
-        image2 = Image.open(asset_path / "角色(png)" / "Battle .png").crop([500,0,1300,1200]).resize((250, 450))
+        image2 = (
+            Image.open(asset_path / "角色(png)" / "Battle .png")
+            .crop([500, 0, 1300, 1200])
+            .resize((250, 450))
+        )
         self.Jay = ImageTk.PhotoImage(image2)
-        self.Jay_Label = tk.Label(self.bgcanvas, bg = bg_color, width = 600, height = 600, image = self.Jay)
-        self.bgcanvas.create_window(950, 200, width = 300, height = 500, anchor = 'nw', window = self.Jay_Label)
+        self.Jay_Label = tk.Label(
+            self.bgcanvas, bg=bg_color, width=600, height=600, image=self.Jay
+        )
+        self.bgcanvas.create_window(
+            950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
+        )
 
     def createButton(self):
-        self.after(3000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
+        self.after(
+            3000,
+            lambda: self.bgcanvas.create_window(
+                500, 600, anchor="nw", window=self.nextPage_B
+            ),
+        )
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-cheat+cheat.gif"
         self.loop = False
         self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
-        gifLabel_window = self.bgcanvas.create_window(0, -50, anchor = 'nw', window = self.gifLabel)
-
+        gifLabel_window = self.bgcanvas.create_window(
+            0, -50, anchor="nw", window=self.gifLabel
+        )
 
     def clickButton(self):
         self.controller.show_frame(Page07)
