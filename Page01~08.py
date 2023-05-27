@@ -37,7 +37,7 @@ class StyleSheet:
             parent,
             text=text,
             font=self.my_font,
-            fg="#606153",
+            fg=text_color,
             activebackground=actbg_color,
             highlightcolor=text_color,
             focuscolor="",
