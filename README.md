@@ -6,7 +6,7 @@ Python 3.6+
 
 使用以下指令安裝所需的模組：
 
-```bash
+```properties
 pip install -r requirements.txt
 ```
 
