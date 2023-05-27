@@ -41,7 +41,7 @@ jobs:
                       CMD_BUILD: >
                           pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" Page01\~08.py &&
                           cd dist/ &&
-                          zip -r9 Trust.app/
+                          zip -r9 Trust Trust.app/
                       OUT_FILE_NAME: Trust.zip
                       ASSET_MIME: application/zip
                     - os: windows-latest
