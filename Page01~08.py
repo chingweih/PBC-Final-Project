@@ -19,6 +19,28 @@ text_color = "#606153"
 asset_path = Path(__file__).parent.joinpath("assets")
 opponent = Trust("copy_cat").OPPONENT_GLOSSARY
 
+class StyleSheet:
+    def __init__(self) -> None:
+        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
+
+    def text_btn(self, parent, text, width, height, command):
+        return tkmac.Button(
+            parent,
+            text=text,
+            font=self.my_font,
+            fg="#606153",
+            activebackground=actbg_color,
+            highlightcolor=text_color,
+            focuscolor="",
+            bg=bg_color,
+            bd=0,
+            borderless=True,
+            width=width,
+            height=height,
+            cursor="hand1",
+            command=command,
+        )
+
 
 class Trust_App(tk.Tk):
     def __init__(self, name):
@@ -116,22 +138,7 @@ class Page01(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(
-            self.bgcanvas,
-            text="進入遊戲",
-            font=self.my_font,
-            fg="#606153",
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=240,
-            height=60,
-            cursor="hand1",
-            command=lambda: self.clickButton(),
-        )
+        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "進入遊戲", 240, 60, self.clickButton)
 
     def createButton(self):
         self.after(
@@ -165,22 +172,7 @@ class Page02(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(
-            self.bgcanvas,
-            text="進入遊戲",
-            font=self.my_font,
-            fg=text_color,
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=240,
-            height=60,
-            cursor="hand1",
-            command=lambda: self.clickButton(),
-        )
+        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "進入遊戲", 240, 60, self.clickButton)
 
     def createButton(self):
         self.after(
@@ -217,22 +209,8 @@ class Page03(tk.Frame):
 
         self._img = ImageTk.PhotoImage(self.image)
         self.bgcanvas.create_image(50, -20, anchor="nw", image=self._img)
-        nextPage_B = tkmac.Button(
-            self.bgcanvas,
-            text="繼續",
-            font=self.my_font,
-            fg=text_color,
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=240,
-            height=60,
-            cursor="hand1",
-            command=lambda: self.clickButton(),
-        )
+        nextPage_B = StyleSheet().text_btn(self.bgcanvas, "繼續", 240, 60, self.clickButton)
+
         self.after(
             4000,
             lambda: self.bgcanvas.create_window(
@@ -388,22 +366,7 @@ class Page04(tk.Frame):
         sherlock.grid(column=2, row=3, rowspan=2, sticky="nsew")
         copy_cat.grid(column=3, row=1, rowspan=2, sticky="nsew")
         coop_until_cheated.grid(column=3, row=3, rowspan=2, sticky="nsew")
-        nextPage_B = tkmac.Button(
-            self,
-            text="我都看完了\n準備挑戰",
-            font=self.my_font,
-            fg=text_color,
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=240,
-            height=100,
-            cursor="hand1",
-            command=lambda: self.clickButton(),
-        )
+        nextPage_B = StyleSheet().text_btn(self, "我都看完了\n準備挑戰", 240, 100, self.clickButton)
         nextPage_B.grid(column=4, row=4, sticky="se")
 
     def clickButton(self):
@@ -428,22 +391,8 @@ class Page04_always_coop(tk.Frame):
         bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
-        I_know_B = tkmac.Button(
-            bgcanvas,
-            text="我知道了",
-            font=self.my_font,
-            fg="#606153",
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=200,
-            height=60,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
+
         I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
         image1 = (
             Image.open(asset_path / "角色(png)" / "好好傑.png")
@@ -503,22 +452,8 @@ class Page04_always_black(tk.Frame):
         bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
-        I_know_B = tkmac.Button(
-            bgcanvas,
-            text="我知道了",
-            font=self.my_font,
-            fg="#606153",
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=200,
-            height=60,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
+
         I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
 
         image1 = (
@@ -576,22 +511,8 @@ class Page04_copy_kitten(tk.Frame):
         bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
-        I_know_B = tkmac.Button(
-            bgcanvas,
-            text="我知道了",
-            font=self.my_font,
-            fg="#606153",
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=200,
-            height=60,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
+
         I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
 
         image1 = (
@@ -647,22 +568,7 @@ class Page04_sherlock(tk.Frame):
         bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
-        I_know_B = tkmac.Button(
-            bgcanvas,
-            text="我知道了",
-            font=self.my_font,
-            fg="#606153",
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=200,
-            height=60,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
         I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
         image1 = (
             Image.open(asset_path / "角色(png)" / "福爾摩斯傑.png")
@@ -718,22 +624,7 @@ class Page04_copy_cat(tk.Frame):
         bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
-        I_know_B = tkmac.Button(
-            bgcanvas,
-            text="我知道了",
-            font=self.my_font,
-            fg="#606153",
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=200,
-            height=60,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
         I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
 
         image1 = (
@@ -789,22 +680,7 @@ class Page04_coop_until_cheated(tk.Frame):
         bgcanvas.create_image(0, 40, image=self.bg_img, anchor="nw")
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
-        I_know_B = tkmac.Button(
-            bgcanvas,
-            text="我知道了",
-            font=self.my_font,
-            fg="#606153",
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=200,
-            height=60,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
         I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
         image1 = (
             Image.open(asset_path / "角色(png)" / "鳳梨酥傑.png")
@@ -874,22 +750,7 @@ class Page06(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(
-            self.bgcanvas,
-            text="進入遊戲",
-            font=self.my_font,
-            fg=text_color,
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=240,
-            height=60,
-            cursor="hand1",
-            command=lambda: self.clickButton(),
-        )
+        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "進入遊戲", 240, 60, self.clickButton)
 
     def createButton(self):
         self.after(
@@ -1042,22 +903,7 @@ class Page08_tt(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(
-            self.bgcanvas,
-            text="下一回合",
-            font=self.my_font,
-            fg=text_color,
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=240,
-            height=60,
-            cursor="hand1",
-            command=lambda: self.clickButton(),
-        )
+        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "下一回合", 240, 60, self.clickButton)
 
         image2 = (
             Image.open(asset_path / "角色(png)" / "Battle .png")
@@ -1104,22 +950,7 @@ class Page08_tc(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(
-            self.bgcanvas,
-            text="下一回合",
-            font=self.my_font,
-            fg=text_color,
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=240,
-            height=60,
-            cursor="hand1",
-            command=lambda: self.clickButton(),
-        )
+        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "下一回合", 240, 60, self.clickButton)
 
         image2 = (
             Image.open(asset_path / "角色(png)" / "Battle .png")
@@ -1166,22 +997,7 @@ class Page08_ct(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(
-            self.bgcanvas,
-            text="下一回合",
-            font=self.my_font,
-            fg=text_color,
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=240,
-            height=60,
-            cursor="hand1",
-            command=lambda: self.clickButton(),
-        )
+        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "下一回合", 240, 60, self.clickButton)
 
         image2 = (
             Image.open(asset_path / "角色(png)" / "Battle .png")
@@ -1228,22 +1044,7 @@ class Page08_cc(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-        self.nextPage_B = tkmac.Button(
-            self.bgcanvas,
-            text="下一回合",
-            font=self.my_font,
-            fg=text_color,
-            activebackground=actbg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            width=240,
-            height=60,
-            cursor="hand1",
-            command=lambda: self.clickButton(),
-        )
+        self.nextPage_B = StyleSheet().text_btn(self.bgcanvas, "下一回合", 240, 60, self.clickButton)
 
         image2 = (
             Image.open(asset_path / "角色(png)" / "Battle .png")
