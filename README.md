@@ -10,6 +10,13 @@ Python 3.6+
 pip install -r requirements.txt
 ```
 
+創建執行檔：
+
+```properties
+pip install pyinstaller
+pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" app.py
+```
+
 ## Trust 模組
 
 ### 開啟新回合 — `Trust(opponent, [score_list])`
