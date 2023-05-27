@@ -6,6 +6,7 @@ from PIL import Image, ImageTk
 from itertools import count, cycle
 from module_trust import Trust
 from pathlib import Path
+import random
 
 
 # hiiiya
