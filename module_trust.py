@@ -150,6 +150,7 @@ class Trust:
             self.player_score + self.opponent_score,
         ]
 
+
 # Testing
 def main():
     get = Trust("copy_cat")
@@ -167,7 +168,7 @@ def main():
         ]
         for test_data in test_list:
             print(opponent, game.battle(test_data))
-        print(game.final_score(), '\n----------\n', sep='\n')
+        print(game.final_score(), "\n----------\n", sep="\n")
 
     # Test the deconstructing of the returned list and every combination of scores
     _, player_choice, opponent_choice, player_score, opponent_score = get.battle(True)
