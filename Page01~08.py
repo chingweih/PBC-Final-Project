@@ -40,6 +40,23 @@ class StyleSheet:
             cursor="hand1",
             command=command,
         )
+    
+    def img_btn(self, parent, image, width, height, command):
+        return tkmac.Button(
+            parent,
+            image=image,
+            bg=bg_color,
+            bd=0,
+            borderless=True,
+            activebackground=bg_color,
+            highlightthickness=3,
+            highlightcolor=bg_color,
+            focuscolor="",
+            width=width,
+            height=height,
+            cursor="hand1",
+            command=command,
+        )
 
 
 class Trust_App(tk.Tk):
@@ -255,96 +272,13 @@ class Page04(tk.Frame):
             Button_img = ImageTk.PhotoImage(image)
             self.Button_img.append(Button_img)
 
-        always_coop_B = tkmac.Button(
-            self,
-            image=self.Button_img[0],
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_always_coop),
-        )
-        always_black_B = tkmac.Button(
-            self,
-            image=self.Button_img[1],
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_always_black),
-        )
-        copy_kitten = tkmac.Button(
-            self,
-            image=self.Button_img[2],
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_copy_kitten),
-        )
-        sherlock = tkmac.Button(
-            self,
-            image=self.Button_img[3],
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_sherlock),
-        )
-        copy_cat = tkmac.Button(
-            self,
-            image=self.Button_img[4],
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_copy_cat),
-        )
-        coop_until_cheated = tkmac.Button(
-            self,
-            image=self.Button_img[5],
-            bg=bg_color,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            bd=0,
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_coop_until_cheated),
-        )
+        always_coop_B = StyleSheet().img_btn(self, self.Button_img[0], 240, 300, lambda: controller.show_frame(Page04_always_coop))
+        always_black_B =StyleSheet().img_btn(self, self.Button_img[1], 240, 300, lambda: controller.show_frame(Page04_always_black))
+        copy_kitten = StyleSheet().img_btn(self, self.Button_img[2], 240, 300, lambda: controller.show_frame(Page04_copy_kitten))
+        sherlock = StyleSheet().img_btn(self, self.Button_img[3], 240, 300, lambda: controller.show_frame(Page04_sherlock))
+        copy_cat = StyleSheet().img_btn(self, self.Button_img[4], 240, 300, lambda: controller.show_frame(Page04_copy_cat))
+        coop_until_cheated = StyleSheet().img_btn(self, self.Button_img[5], 240, 300, lambda: controller.show_frame(Page04_coop_until_cheated))
+
 
         words = tk.Label(
             self, text="各種小傑介紹", font=self.my_font1, bg=bg_color, bd=0, fg=text_color
@@ -400,20 +334,7 @@ class Page04_always_coop(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        always_coop_B = tkmac.Button(
-            bgcanvas,
-            image=self.Label_img,
-            bg=bg_color,
-            bd=0,
-            activebackground=bg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            borderless=True,
-            width=480,
-            height=560,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        always_coop_B = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
         always_coop_B_window = bgcanvas.create_window(
             140, 380, anchor="w", window=always_coop_B
         )
@@ -462,20 +383,7 @@ class Page04_always_black(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        always_black_B = tkmac.Button(
-            bgcanvas,
-            image=self.Label_img,
-            bg=bg_color,
-            bd=0,
-            activebackground=bg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            borderless=True,
-            width=480,
-            height=560,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        always_black_B = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
         always_black_B_window = bgcanvas.create_window(
             140, 380, anchor="w", window=always_black_B
         )
@@ -521,20 +429,7 @@ class Page04_copy_kitten(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        picture = tkmac.Button(
-            bgcanvas,
-            image=self.Label_img,
-            bg=bg_color,
-            bd=0,
-            activebackground=bg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            borderless=True,
-            width=480,
-            height=560,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        picture = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
         picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
@@ -576,20 +471,7 @@ class Page04_sherlock(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        picture = tkmac.Button(
-            bgcanvas,
-            image=self.Label_img,
-            bg=bg_color,
-            bd=0,
-            activebackground=bg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            borderless=True,
-            width=480,
-            height=560,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        picture = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
         picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
@@ -633,20 +515,7 @@ class Page04_copy_cat(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        picture = tkmac.Button(
-            bgcanvas,
-            image=self.Label_img,
-            bg=bg_color,
-            bd=0,
-            activebackground=bg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            borderless=True,
-            width=480,
-            height=560,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        picture = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
         picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
@@ -688,20 +557,7 @@ class Page04_coop_until_cheated(tk.Frame):
             .resize((390, 600))
         )
         self.Label_img = ImageTk.PhotoImage(image1)
-        picture = tkmac.Button(
-            bgcanvas,
-            image=self.Label_img,
-            bg=bg_color,
-            bd=0,
-            activebackground=bg_color,
-            highlightcolor=text_color,
-            focuscolor="",
-            borderless=True,
-            width=480,
-            height=560,
-            cursor="hand1",
-            command=self.clickButton,
-        )
+        picture = StyleSheet().img_btn(bgcanvas, self.Label_img, 480, 560, self.clickButton)
         picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
 
     def clickButton(self):
@@ -837,36 +693,10 @@ class Page07(tk.Frame):
         self.bgcanvas.create_window(
             640, 120, width=100, height=50, window=self.game_count
         )
-        self.trust_B = tkmac.Button(
-            self.bgcanvas,
-            image=self.cardt_img,
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=250,
-            height=350,
-            cursor="hand1",
-            command=self.clickTrust,
-        )
-        self.cheat_B = tkmac.Button(
-            self.bgcanvas,
-            image=self.cardc_img,
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=250,
-            height=350,
-            cursor="hand1",
-            command=self.clickCheat,
-        )
+        self.trust_B = StyleSheet().img_btn(self.bgcanvas, self.cardt_img, 250, 350, self.clickTrust)
+
+        self.cheat_B = StyleSheet().img_btn(self.bgcanvas, self.cardc_img, 250, 350, self.clickCheat)
+
         self.bgcanvas.create_window(300, 300, anchor="nw", window=self.trust_B)
         self.bgcanvas.create_window(650, 300, anchor="nw", window=self.cheat_B)
 
