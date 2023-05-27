@@ -10,11 +10,14 @@ Python 3.6+
 pip install -r requirements.txt
 ```
 
-創建執行檔：
+創建執行檔（或是直接到 [Release](https://github.com/chingweih/PBC-Final-Project/releases) 下載）：
 
 ```properties
-pip install pyinstaller
+# macOS
 pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" app.py
+
+# Windows
+pyinstaller --clean --onefile -w --add-data "assets;./assets" -n "Trust" app.py
 ```
 
 ## Trust 模組
