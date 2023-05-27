@@ -2,6 +2,16 @@ import random
 
 
 class Trust:
+
+    OPPONENT_GLOSSARY = {
+        "copy_cat": "糕餅傑",
+        "always_black": "鬼畜傑",
+        "always_coop": "好好傑",
+        "coop_until_cheated": "鳳梨酥傑",
+        "sherlock": "福爾摩斯傑",
+        "copy_kitten": "玩具傑",
+    }
+
     def __init__(self, opponent: str, score_list: dict = None) -> None:
         """Initialize: New round of Trust Game.
 
@@ -24,15 +34,6 @@ class Trust:
             }
 
         # Check illegal inputs
-
-        self.OPPONENT_GLOSSARY = {
-            "copy_cat": "糕餅傑",
-            "always_black": "鬼畜傑",
-            "always_coop": "好好傑",
-            "coop_until_cheated": "鳳梨酥傑",
-            "sherlock": "福爾摩斯傑",
-            "copy_kitten": "玩具傑",
-        }
 
         self.OPPONENTS_LIST = list(self.OPPONENT_GLOSSARY.keys())
         if opponent not in self.OPPONENTS_LIST:
@@ -154,6 +155,9 @@ class Trust:
 
 # Testing
 def main():
+
+    from pprint import pprint
+
     get = Trust("copy_cat")
     opponents = get.OPPONENTS_LIST
 
@@ -183,7 +187,10 @@ def main():
     print(player_choice, opponent_choice, player_score, opponent_score)
     _, player_choice, opponent_choice, player_score, opponent_score = get.battle(
         True)
-    print(player_choice, opponent_choice, player_score, opponent_score)
+    print(player_choice, opponent_choice,
+          player_score, opponent_score, end='\n\n')
+
+    pprint(Trust.OPPONENT_GLOSSARY)
 
 
 if __name__ == "__main__":

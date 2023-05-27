@@ -17,7 +17,7 @@ bg_color = "#E8E9DC"
 actbg_color = "#9BAA9D"
 text_color = "#606153"
 asset_path = Path(__file__).parent.joinpath("assets")
-opponent = Trust("copy_cat").OPPONENT_GLOSSARY
+opponent = Trust.OPPONENT_GLOSSARY
 
 
 class StyleSheet:
