@@ -236,14 +236,14 @@ class Page03(tk.Frame):
             bg=bg_color,
             bd=0,
             borderless=True,
-            width=240,
+            width=150,
             height=60,
             command=lambda: self.clickButton(),
         )
         self.after(
             4000,
             lambda: self.bgcanvas.create_window(
-                950, 600, anchor="nw", window=nextPage_B
+                1080, 600, anchor="nw", window=nextPage_B
             ),
         )
 
@@ -963,7 +963,7 @@ class Page08_tt(tk.Frame):
         self.bgcanvas.create_window(950, 200, width = 300, height = 500, anchor = 'nw', window = self.Jay_Label)
     
     def createButton(self):
-        self.after(3000, lambda: self.bgcanvas.create_window(500, 650, anchor = 'nw', window = self.nextPage_B))
+        self.after(3000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-trust+trust.gif"
@@ -996,7 +996,7 @@ class Page08_tc(tk.Frame):
         self.bgcanvas.create_window(950, 200, width = 300, height = 500, anchor = 'nw', window = self.Jay_Label)
     
     def createButton(self):
-        self.after(3000, lambda: self.bgcanvas.create_window(500, 650, anchor = 'nw', window = self.nextPage_B))
+        self.after(3000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-trust+cheat.gif"
@@ -1028,7 +1028,7 @@ class Page08_ct(tk.Frame):
         self.bgcanvas.create_window(950, 200, width = 300, height = 500, anchor = 'nw', window = self.Jay_Label)
     
     def createButton(self):
-        self.after(3000, lambda: self.bgcanvas.create_window(500, 650, anchor = 'nw', window = self.nextPage_B))
+        self.after(3000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-cheat+trust.gif"
@@ -1060,7 +1060,7 @@ class Page08_cc(tk.Frame):
         self.bgcanvas.create_window(950, 200, width = 300, height = 500, anchor = 'nw', window = self.Jay_Label)
 
     def createButton(self):
-        self.after(3000, lambda: self.bgcanvas.create_window(500, 650, anchor = 'nw', window = self.nextPage_B))
+        self.after(3000, lambda: self.bgcanvas.create_window(500, 600, anchor = 'nw', window = self.nextPage_B))
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-cheat+cheat.gif"
