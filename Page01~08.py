@@ -105,14 +105,14 @@ class Trust_App(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame(Page01)
+        self.show_frame(Page07)
 
     def show_frame(self, nextF):
         frame = self.frames[nextF]
         frame.tkraise()
-        create_btn = getattr(frame, "createButton", None)
-        if callable(create_btn):
-            frame.createButton()
+        show_btn = getattr(frame, "showButton", None)
+        if callable(show_btn):
+            frame.showButton()
 
         try:
             frame.gifLabel.load(frame.loop)
@@ -168,7 +168,7 @@ class Page01(tk.Frame):
             self.bgcanvas, "進入遊戲", 240, 60, self.clickButton
         )
 
-    def createButton(self):
+    def showButton(self):
         self.after(
             4000,
             lambda: self.bgcanvas.create_window(
@@ -203,7 +203,7 @@ class Page02(tk.Frame):
             self.bgcanvas, "進入遊戲", 240, 60, self.clickButton
         )
 
-    def createButton(self):
+    def showButton(self):
         self.after(
             5000,
             lambda: self.bgcanvas.create_window(
@@ -636,7 +636,7 @@ class Page05(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
 
-    def createButton(self):
+    def showButton(self):
         self.after(8000, lambda: self.clickButton())
 
     def creatGIF(self):
@@ -666,7 +666,7 @@ class Page06(tk.Frame):
             self.bgcanvas, "進入遊戲", 240, 60, self.clickButton
         )
 
-    def createButton(self):
+    def showButton(self):
         self.after(
             10000,
             lambda: self.bgcanvas.create_window(
@@ -766,7 +766,8 @@ class Page07(tk.Frame):
     def choose_opponent(self):  # 隨機選擇對手、初始回合數：1
         self.controller.game_count = "1"
         self.controller.play = Trust(random.choice(tuple(opponent.keys())))
-        print(self.controller.play.OPPONENT)  # 測試用，記得刪
+        self.controller.OPPONENT = self.controller.play.OPPONENT
+        print(self.controller.OPPONENT)  # 測試用，記得刪
 
     def clickTrust(self):
         self.switch_frame_by_choice(True, Page08_tt, Page08_tc)
@@ -812,13 +813,15 @@ class Page08_tt(tk.Frame):
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
 
-    def createButton(self):
-        self.after(
-            3000,
-            lambda: self.bgcanvas.create_window(
+    def showButton(self):
+        def createButton():
+            self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
-            ),
-        )
+            )
+
+        self.after(3000, createButton)
+        
+
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-trust+trust.gif"
@@ -830,6 +833,7 @@ class Page08_tt(tk.Frame):
 
     def clickButton(self):
         self.controller.show_frame(Page07)
+        delete_Button = self.bgcanvas.delete(self.Button_window)
 
 
 class Page08_tc(tk.Frame):
@@ -860,13 +864,13 @@ class Page08_tc(tk.Frame):
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
 
-    def createButton(self):
-        self.after(
-            3000,
-            lambda: self.bgcanvas.create_window(
+    def showButton(self):
+        def createButton():
+            self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
-            ),
-        )
+            )
+
+        self.after(3000, createButton)
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-trust+cheat.gif"
@@ -878,6 +882,7 @@ class Page08_tc(tk.Frame):
 
     def clickButton(self):
         self.controller.show_frame(Page07)
+        delete_Button = self.bgcanvas.delete(self.Button_window)
 
 
 class Page08_ct(tk.Frame):
@@ -908,13 +913,13 @@ class Page08_ct(tk.Frame):
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
 
-    def createButton(self):
-        self.after(
-            3000,
-            lambda: self.bgcanvas.create_window(
+    def showButton(self):
+        def createButton():
+            self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
-            ),
-        )
+            )
+
+        self.after(3000, createButton)
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-cheat+trust.gif"
@@ -926,6 +931,7 @@ class Page08_ct(tk.Frame):
 
     def clickButton(self):
         self.controller.show_frame(Page07)
+        delete_Button = self.bgcanvas.delete(self.Button_window)
 
 
 class Page08_cc(tk.Frame):
@@ -956,13 +962,13 @@ class Page08_cc(tk.Frame):
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
 
-    def createButton(self):
-        self.after(
-            3000,
-            lambda: self.bgcanvas.create_window(
+    def showButton(self):
+        def createButton():
+            self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
-            ),
-        )
+            )
+
+        self.after(3000, createButton)
 
     def creatGIF(self):
         self.path = asset_path / "Frames" / "Page08" / "Page08_round1-cheat+cheat.gif"
@@ -974,7 +980,17 @@ class Page08_cc(tk.Frame):
 
     def clickButton(self):
         self.controller.show_frame(Page07)
+        delete_Button = self.bgcanvas.delete(self.Button_window)
 
+
+class Page10(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
+        self.controller = controller
+        self.OPPONENT = controller.OPPONENT
+
+        self.bgcanvas = tk.Canvas(self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
 
 app = Trust_App("JayJay! Trust me")
 app.mainloop()
