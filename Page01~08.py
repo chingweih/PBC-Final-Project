@@ -53,6 +53,11 @@ class Trust_App(tk.Tk):
             Page04_coop_until_cheated,
             Page05,
             Page06,
+            Page07,
+            Page08_cc,
+            Page08_ct,
+            Page08_tt,
+            Page08_tc
         ):
             frame = F(container, self)
             self.frames[F] = frame
@@ -907,7 +912,7 @@ class Page06(tk.Frame):
         )
 
     def clickButton(self):
-        self.controller.show_frame(Page03)
+        self.controller.show_frame(Page07)
 
 class Page07(tk.Frame):
     def __init__(self, parent, controller):
