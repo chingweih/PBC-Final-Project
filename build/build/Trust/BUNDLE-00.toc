@@ -1,4 +1,0 @@
-([('Trust',
-   '/Users/chingwei/Downloads/學校/大學/111-2/01 MGT1006 商管程式設計/Final '
-   'Project/build/dist/Trust',
-   'EXECUTABLE')],)
