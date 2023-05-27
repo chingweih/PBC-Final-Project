@@ -5,8 +5,8 @@ import tkmacosx as tkmac
 import random
 from PIL import Image, ImageTk
 from itertools import count, cycle
-from module_trust import Trust
 from pathlib import Path
+from module_trust import Trust
 
 
 # hiiiya
