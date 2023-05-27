@@ -907,7 +907,7 @@ class Page06(tk.Frame):
         )
 
     def clickButton(self):
-        self.controller.show_frame(Page03)
+        self.controller.show_frame(Page07)
 
 class Page07(tk.Frame):
     def __init__(self, parent, controller):
