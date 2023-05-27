@@ -1,5 +1,15 @@
 # PBC Final Project —— 信任考驗
 
+## 開發環境
+
+Python 3.6+
+
+使用以下指令安裝所需的模組：
+
+```bash
+pip install -r requirements.txt
+```
+
 ## Trust 模組
 
 ### 開啟新回合 — `Trust(opponent, [score_list])`
