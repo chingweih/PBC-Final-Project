@@ -4,12 +4,12 @@ import random
 class Trust:
 
     OPPONENT_GLOSSARY = {
-        "copy_cat": "糕餅傑",
-        "always_black": "鬼畜傑",
-        "always_coop": "好好傑",
-        "coop_until_cheated": "鳳梨酥傑",
-        "sherlock": "福爾摩斯傑",
-        "copy_kitten": "玩具傑",
+        "copy_cat": "糕餅小傑",
+        "always_black": "鬼畜小傑",
+        "always_coop": "好好小傑",
+        "coop_until_cheated": "鳳梨酥小傑",
+        "sherlock": "福爾摩斯小傑",
+        "copy_kitten": "玩具小傑",
     }
 
     def __init__(self, opponent: str, score_list: dict = None) -> None:
