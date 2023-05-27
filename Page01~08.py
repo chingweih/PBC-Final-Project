@@ -53,6 +53,11 @@ class Trust_App(tk.Tk):
             Page04_coop_until_cheated,
             Page05,
             Page06,
+            Page07,
+            Page08_cc,
+            Page08_ct,
+            Page08_tt,
+            Page08_tc
         ):
             frame = F(container, self)
             self.frames[F] = frame
