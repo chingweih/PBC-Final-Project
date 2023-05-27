@@ -24,7 +24,7 @@ class StyleSheet:
     def __init__(self) -> None:
         self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
-    def text_btn(self, parent, text, width, height, command):
+    def text_btn(self, parent, text: str, width: int, height: int, command):
         return tkmac.Button(
             parent,
             text=text,
@@ -42,7 +42,7 @@ class StyleSheet:
             command=command,
         )
 
-    def img_btn(self, parent, image, width, height, command):
+    def img_btn(self, parent, image, width: int, height: int, command):
         return tkmac.Button(
             parent,
             image=image,
@@ -114,7 +114,8 @@ class Trust_App(tk.Tk):
 
 class GIFLabel(tk.Label):
     def __init__(self, parent, width, height, path):
-        tk.Label.__init__(self, parent, width=width, height=height, bg=bg_color)
+        tk.Label.__init__(self, parent, width=width,
+                          height=height, bg=bg_color)
 
         self.img = Image.open(path)
 
@@ -371,7 +372,8 @@ class Page04_always_coop(tk.Frame):
 
         I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
 
-        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
+        I_know_B_window = bgcanvas.create_window(
+            20, 20, anchor="nw", window=I_know_B)
         image1 = (
             Image.open(asset_path / "角色(png)" / "好好傑.png")
             .crop([300, 100, 1000, 1100])
@@ -421,7 +423,8 @@ class Page04_always_black(tk.Frame):
 
         I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
 
-        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
+        I_know_B_window = bgcanvas.create_window(
+            20, 20, anchor="nw", window=I_know_B)
 
         image1 = (
             Image.open(asset_path / "角色(png)" / "鬼畜傑.png")
@@ -469,7 +472,8 @@ class Page04_copy_kitten(tk.Frame):
 
         I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
 
-        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
+        I_know_B_window = bgcanvas.create_window(
+            20, 20, anchor="nw", window=I_know_B)
 
         image1 = (
             Image.open(asset_path / "角色(png)" / "玩具傑.png")
@@ -480,7 +484,8 @@ class Page04_copy_kitten(tk.Frame):
         picture = StyleSheet().img_btn(
             bgcanvas, self.Label_img, 480, 560, self.clickButton
         )
-        picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
+        picture_window = bgcanvas.create_window(
+            140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -514,7 +519,8 @@ class Page04_sherlock(tk.Frame):
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
         I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
-        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
+        I_know_B_window = bgcanvas.create_window(
+            20, 20, anchor="nw", window=I_know_B)
         image1 = (
             Image.open(asset_path / "角色(png)" / "福爾摩斯傑.png")
             .crop([300, 100, 1000, 1100])
@@ -524,7 +530,8 @@ class Page04_sherlock(tk.Frame):
         picture = StyleSheet().img_btn(
             bgcanvas, self.Label_img, 480, 560, self.clickButton
         )
-        picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
+        picture_window = bgcanvas.create_window(
+            140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -559,7 +566,8 @@ class Page04_copy_cat(tk.Frame):
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
         I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
-        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
+        I_know_B_window = bgcanvas.create_window(
+            20, 20, anchor="nw", window=I_know_B)
 
         image1 = (
             Image.open(asset_path / "角色(png)" / "糕餅傑.png")
@@ -570,7 +578,8 @@ class Page04_copy_cat(tk.Frame):
         picture = StyleSheet().img_btn(
             bgcanvas, self.Label_img, 480, 560, self.clickButton
         )
-        picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
+        picture_window = bgcanvas.create_window(
+            140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -604,7 +613,8 @@ class Page04_coop_until_cheated(tk.Frame):
         bgcanvas.grid(column=0, row=0, sticky="nsew")
 
         I_know_B = StyleSheet().text_btn(bgcanvas, "我知道了", 200, 60, self.clickButton)
-        I_know_B_window = bgcanvas.create_window(20, 20, anchor="nw", window=I_know_B)
+        I_know_B_window = bgcanvas.create_window(
+            20, 20, anchor="nw", window=I_know_B)
         image1 = (
             Image.open(asset_path / "角色(png)" / "鳳梨酥傑.png")
             .crop([300, 100, 1000, 1100])
@@ -614,7 +624,8 @@ class Page04_coop_until_cheated(tk.Frame):
         picture = StyleSheet().img_btn(
             bgcanvas, self.Label_img, 480, 560, self.clickButton
         )
-        picture_window = bgcanvas.create_window(140, 380, anchor="w", window=picture)
+        picture_window = bgcanvas.create_window(
+            140, 380, anchor="w", window=picture)
 
     def clickButton(self):
         self.controller.show_frame(Page04)
@@ -738,7 +749,8 @@ class Page07(tk.Frame):
             text="回合",
             font=self.my_font1,
         )
-        self.bgcanvas.create_window(640, 50, width=150, height=80, window=self.text)
+        self.bgcanvas.create_window(
+            640, 50, width=150, height=80, window=self.text)
         self.game_count = tk.Label(
             self.bgcanvas,
             bg=bg_color,
