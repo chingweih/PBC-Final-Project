@@ -2,12 +2,11 @@
 import tkinter as tk
 import tkinter.font as tkFont
 import tkmacosx as tkmac
-from tkinter import ttk
 from PIL import Image, ImageTk
 from itertools import count, cycle
 from module_trust import Trust
 from pathlib import Path
-import random
+
 
 # hiiiya
 # 對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock", "copy_kitten"]
@@ -132,7 +131,7 @@ class Page01(tk.Frame):
             borderless=True,
             width=240,
             height=60,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: self.clickButton(),
         )
 
@@ -181,7 +180,7 @@ class Page02(tk.Frame):
             borderless=True,
             width=240,
             height=60,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: self.clickButton(),
         )
 
@@ -233,7 +232,7 @@ class Page03(tk.Frame):
             borderless=True,
             width=240,
             height=60,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: self.clickButton(),
         )
         self.after(
@@ -291,7 +290,7 @@ class Page04(tk.Frame):
             focuscolor="",
             width=240,
             height=300,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: controller.show_frame(Page04_always_coop),
         )
         always_black_B = tkmac.Button(
@@ -306,7 +305,7 @@ class Page04(tk.Frame):
             focuscolor="",
             width=240,
             height=300,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: controller.show_frame(Page04_always_black),
         )
         copy_kitten = tkmac.Button(
@@ -321,7 +320,7 @@ class Page04(tk.Frame):
             focuscolor="",
             width=240,
             height=300,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: controller.show_frame(Page04_copy_kitten),
         )
         sherlock = tkmac.Button(
@@ -336,7 +335,7 @@ class Page04(tk.Frame):
             focuscolor="",
             width=240,
             height=300,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: controller.show_frame(Page04_sherlock),
         )
         copy_cat = tkmac.Button(
@@ -351,7 +350,7 @@ class Page04(tk.Frame):
             focuscolor="",
             width=240,
             height=300,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: controller.show_frame(Page04_copy_cat),
         )
         coop_until_cheated = tkmac.Button(
@@ -366,7 +365,7 @@ class Page04(tk.Frame):
             bd=0,
             width=240,
             height=300,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: controller.show_frame(Page04_coop_until_cheated),
         )
 
@@ -403,7 +402,7 @@ class Page04(tk.Frame):
             borderless=True,
             width=240,
             height=100,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: self.clickButton(),
         )
         nextPage_B.grid(column=4, row=4, sticky="se")
@@ -443,7 +442,7 @@ class Page04_always_coop(tk.Frame):
             borderless=True,
             width=200,
             height=60,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -463,7 +462,7 @@ class Page04_always_coop(tk.Frame):
             borderless=True,
             width=480,
             height=560,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         always_coop_B_window = bgcanvas.create_window(
@@ -517,7 +516,7 @@ class Page04_always_black(tk.Frame):
             borderless=True,
             width=200,
             height=60,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -538,7 +537,7 @@ class Page04_always_black(tk.Frame):
             borderless=True,
             width=480,
             height=560,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         always_black_B_window = bgcanvas.create_window(
@@ -589,7 +588,7 @@ class Page04_copy_kitten(tk.Frame):
             borderless=True,
             width=200,
             height=60,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -610,7 +609,7 @@ class Page04_copy_kitten(tk.Frame):
             borderless=True,
             width=480,
             height=560,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
@@ -660,7 +659,7 @@ class Page04_sherlock(tk.Frame):
             borderless=True,
             width=200,
             height=60,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -680,7 +679,7 @@ class Page04_sherlock(tk.Frame):
             borderless=True,
             width=480,
             height=560,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
@@ -699,7 +698,7 @@ class Page04_copy_cat(tk.Frame):
             height=800,
             bg=bg_color,
             bd=0,
-            cursor="hand",
+            cursor="hand1",
             highlightthickness=0,
         )
 
@@ -731,7 +730,7 @@ class Page04_copy_cat(tk.Frame):
             borderless=True,
             width=200,
             height=60,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -752,7 +751,7 @@ class Page04_copy_cat(tk.Frame):
             borderless=True,
             width=480,
             height=560,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
@@ -802,7 +801,7 @@ class Page04_coop_until_cheated(tk.Frame):
             borderless=True,
             width=200,
             height=60,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         I_know_B_window = bgcanvas.create_window(
@@ -822,7 +821,7 @@ class Page04_coop_until_cheated(tk.Frame):
             borderless=True,
             width=480,
             height=560,
-            cursor="hand",
+            cursor="hand1",
             command=self.clickButton,
         )
         picture_window = bgcanvas.create_window(
@@ -887,7 +886,7 @@ class Page06(tk.Frame):
             borderless=True,
             width=240,
             height=60,
-            cursor="hand",
+            cursor="hand1",
             command=lambda: self.clickButton(),
         )
 
@@ -938,9 +937,9 @@ class Page07(tk.Frame):
         self.game_count = tk.Label(self.bgcanvas, bg = bg_color, fg = text_color, width = 100, height = 50, text = self.controller.game_count, font = self.my_font2)
         self.bgcanvas.create_window(640, 120, width = 100, height = 50, window = self.game_count)
         self.trust_B = tkmac.Button(self.bgcanvas, image = self.cardt_img, bg = bg_color, bd = 0, borderless = True, activebackground = bg_color, highlightthickness = 3, 
-            highlightcolor = bg_color, focuscolor = '', width = 250, height = 350, cursor="hand", command = self.clickTrust)
+            highlightcolor = bg_color, focuscolor = '', width = 250, height = 350, cursor="hand1", command = self.clickTrust)
         self.cheat_B = tkmac.Button(self.bgcanvas, image = self.cardc_img, bg = bg_color, bd = 0, borderless = True, activebackground = bg_color, highlightthickness = 3, 
-            highlightcolor = bg_color, focuscolor = '', width = 250, height = 350, cursor="hand", command = self.clickCheat)
+            highlightcolor = bg_color, focuscolor = '', width = 250, height = 350, cursor="hand1", command = self.clickCheat)
         self.bgcanvas.create_window(300, 300, anchor = 'nw', window = self.trust_B)
         self.bgcanvas.create_window(650, 300, anchor = 'nw', window = self.cheat_B)
 
@@ -979,7 +978,7 @@ class Page08_tt(tk.Frame):
         self.creatGIF()
 
         self.nextPage_B = tkmac.Button(self.bgcanvas, text = '下一回合', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
-            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand", command = lambda: self.clickButton())
+            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand1", command = lambda: self.clickButton())
 
         image2 = Image.open(asset_path / "角色(png)" / "Battle .png").crop([500,0,1300,1200]).resize((250, 450))
         self.Jay = ImageTk.PhotoImage(image2)
@@ -1012,7 +1011,7 @@ class Page08_tc(tk.Frame):
         self.creatGIF()
 
         self.nextPage_B = tkmac.Button(self.bgcanvas, text = '下一回合', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
-            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand", command = lambda: self.clickButton())
+            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand1", command = lambda: self.clickButton())
         
         image2 = Image.open(asset_path / "角色(png)" / "Battle .png").crop([500,0,1300,1200]).resize((250, 450))
         self.Jay = ImageTk.PhotoImage(image2)
@@ -1044,7 +1043,7 @@ class Page08_ct(tk.Frame):
         self.creatGIF()
 
         self.nextPage_B = tkmac.Button(self.bgcanvas, text = '下一回合', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
-            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand", command = lambda: self.clickButton())
+            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand1", command = lambda: self.clickButton())
 
         image2 = Image.open(asset_path / "角色(png)" / "Battle .png").crop([500,0,1300,1200]).resize((250, 450))
         self.Jay = ImageTk.PhotoImage(image2)
@@ -1076,7 +1075,7 @@ class Page08_cc(tk.Frame):
         self.creatGIF()
 
         self.nextPage_B = tkmac.Button(self.bgcanvas, text = '下一回合', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color, 
-            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand", command = lambda: self.clickButton())
+            focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, cursor="hand1", command = lambda: self.clickButton())
 
         image2 = Image.open(asset_path / "角色(png)" / "Battle .png").crop([500,0,1300,1200]).resize((250, 450))
         self.Jay = ImageTk.PhotoImage(image2)
