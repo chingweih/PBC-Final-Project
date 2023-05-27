@@ -120,10 +120,7 @@ class Trust_App(tk.Tk):
 
         try:
             frame.gifLabel.load(frame.loop)
-            try:
-                frame.opponent_gifLabel.load(frame.loop)
-            except:
-                pass
+            frame.opponent_gifLabel.load(frame.loop)
         except:
             pass
 
