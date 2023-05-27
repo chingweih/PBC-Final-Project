@@ -14,10 +14,10 @@ pip install -r requirements.txt
 
 ```properties
 # macOS
-pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" app.py
+pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" path_to_app.py
 
 # Windows
-pyinstaller --clean --onefile -w --add-data "assets;./assets" -n "Trust" app.py
+pyinstaller --clean --onefile -w --add-data "assets;./assets" -n "Trust" path_to_app.py
 ```
 
 ## Trust 模組
