@@ -149,7 +149,6 @@ class Page01(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
@@ -185,7 +184,6 @@ class Page02(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
@@ -221,7 +219,6 @@ class Page03(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
         )
@@ -357,7 +354,6 @@ class Page04_always_coop(tk.Frame):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
 
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
         image = Image.open(
             asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_好好傑.jpeg"
         ).resize((1280, 750))
@@ -404,8 +400,6 @@ class Page04_always_black(tk.Frame):
         )
 
         self.controller = controller
-
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
         image = Image.open(
             asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_鬼畜傑.jpeg"
@@ -457,8 +451,6 @@ class Page04_copy_kitten(tk.Frame):
 
         self.controller = controller
 
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
-
         image = Image.open(
             asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_玩具傑.jpeg"
         ).resize((1280, 750))
@@ -505,8 +497,6 @@ class Page04_sherlock(tk.Frame):
 
         self.controller = controller
 
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
-
         image = Image.open(
             asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_福爾摩斯傑.jpeg"
         ).resize((1280, 750))
@@ -551,8 +541,6 @@ class Page04_copy_cat(tk.Frame):
         )
 
         self.controller = controller
-
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
         image = Image.open(
             asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_糕餅傑.jpeg"
@@ -599,8 +587,6 @@ class Page04_coop_until_cheated(tk.Frame):
 
         self.controller = controller
 
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
-
         image = Image.open(
             asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_鳳梨酥傑.jpeg"
         ).resize((1280, 750))
@@ -635,16 +621,12 @@ class Page05(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
         )
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.creatGIF()
-
-        # self.nextPage_B = tkmac.Button(self.bgcanvas, text = '進入遊戲', font = self.my_font, fg = text_color, activebackground = actbg_color, highlightcolor = text_color,
-        #     focuscolor = '', bg = bg_color, bd = 0, borderless = True, width = 240, height = 60, command = lambda: self.clickButton())
 
     def createButton(self):
         self.after(8000, lambda: self.clickButton())
@@ -665,7 +647,6 @@ class Page06(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
@@ -799,7 +780,6 @@ class Page08_tt(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
@@ -848,7 +828,6 @@ class Page08_tc(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
@@ -897,7 +876,6 @@ class Page08_ct(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
@@ -946,7 +924,6 @@ class Page08_cc(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.my_font = tkFont.Font(family=font, size=24, weight="bold")
 
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
