@@ -1,4 +1,5 @@
 import random
+from pprint import pprint
 
 
 class Trust:
@@ -155,8 +156,6 @@ class Trust:
 
 # Testing
 def main():
-
-    from pprint import pprint
 
     get = Trust("copy_cat")
     opponents = get.OPPONENTS_LIST
