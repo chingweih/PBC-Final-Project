@@ -2,10 +2,12 @@
 import tkinter as tk
 import tkinter.font as tkFont
 import tkmacosx as tkmac
+from tkinter import ttk
 from PIL import Image, ImageTk
 from itertools import count, cycle
 from module_trust import Trust
 from pathlib import Path
+import random
 
 # hiiiya
 # 對手 -- ["copy_cat", "always_black", "always_coop", "coop_until_cheated", "sherlock", "copy_kitten"]
