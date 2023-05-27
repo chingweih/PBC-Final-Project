@@ -1,5 +1,4 @@
 import random
-from pprint import pprint
 
 
 class Trust:
@@ -155,7 +154,10 @@ class Trust:
 
 
 # Testing
-def main():
+def main(format: str = "simple"):
+
+    from pprint import pprint
+    from tabulate import tabulate
 
     get = Trust("copy_cat")
     opponents = get.OPPONENTS_LIST
@@ -170,9 +172,23 @@ def main():
             random.choice([True, False]),
             random.choice([True, False]),
         ]
-        for test_data in test_list:
-            print(opponent, game.battle(test_data))
-        print(game.final_score(), "\n----------\n", sep="\n")
+
+        print(f'{opponent} - {Trust.OPPONENT_GLOSSARY[opponent]}')
+
+        result_list = [game.battle(test_data) for test_data in test_list]
+
+        if format == "pretty":
+            result_list.append(["-", "-", "Total"] + game.final_score()[:2])
+            result_list.append(["-", "-", "-", "Sum"] +
+                               game.final_score()[2:3])
+            headers = ['回合數', '玩家當局選擇', '對手當局選擇', '玩家分數', '對手分數']
+            print(tabulate(result_list, headers=headers, tablefmt='grid'))
+
+        elif format == "simple":
+            for result in result_list:
+                print(opponent, result)
+
+        print('\n----------\n')
 
     # Test the deconstructing of the returned list and every combination of scores
     _, player_choice, opponent_choice, player_score, opponent_score = get.battle(
@@ -189,8 +205,11 @@ def main():
     print(player_choice, opponent_choice,
           player_score, opponent_score, end='\n\n')
 
+    print('\n----------\n')
+
     pprint(Trust.OPPONENT_GLOSSARY)
 
 
 if __name__ == "__main__":
-    main()
+    # main()
+    main("pretty")
