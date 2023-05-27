@@ -79,7 +79,7 @@ class Trust:
     def whatever(self) -> bool:
         return random.choice([True, False])
 
-    # Copy Kitten: 模仿咪 —— 合作，直到被連續欺騙兩次
+    # Copy Kitten: 模仿咪 —— 合作，直到被連續欺騙兩次後開始模仿玩家上一回合動作
     def copy_kitten(self) -> bool:
         return True if self.player_continous_cheat < 2 else self.player_choice
 
@@ -98,7 +98,8 @@ class Trust:
     # Judge player and opponent's move and adjust points accordingly
     def judge_and_adjust_points(self, choice: bool, opponent_choice: bool) -> None:
         # Get socre list
-        COOP, CHEAT, OPPONENT_CHEAT, BOTH_CHEAT = list(self.SCORE_LIST.values())
+        COOP, CHEAT, OPPONENT_CHEAT, BOTH_CHEAT = list(
+            self.SCORE_LIST.values())
 
         # Judging
         if choice and opponent_choice:
@@ -171,13 +172,17 @@ def main():
         print(game.final_score(), "\n----------\n", sep="\n")
 
     # Test the deconstructing of the returned list and every combination of scores
-    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(True)
+    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(
+        True)
     print(player_choice, opponent_choice, player_score, opponent_score)
-    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(False)
+    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(
+        False)
     print(player_choice, opponent_choice, player_score, opponent_score)
-    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(False)
+    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(
+        False)
     print(player_choice, opponent_choice, player_score, opponent_score)
-    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(True)
+    _, player_choice, opponent_choice, player_score, opponent_score = get.battle(
+        True)
     print(player_choice, opponent_choice, player_score, opponent_score)
 
 
