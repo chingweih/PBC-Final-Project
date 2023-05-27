@@ -16,7 +16,7 @@ font = "Hannotate TC"
 bg_color = "#E8E9DC"
 actbg_color = "#9BAA9D"
 text_color = "#606153"
-asset_path = Path("assets")
+asset_path = Path(__file__).parent.joinpath("assets")
 opponent = {
     "copy_cat": "糕餅傑",
     "always_black": "鬼畜傑",
