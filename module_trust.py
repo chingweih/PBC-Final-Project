@@ -12,6 +12,15 @@ class Trust:
         "copy_kitten": "玩具小傑",
     }
 
+    OPPONENT_REQUIRED_SCORE = {
+        "copy_cat": 11,
+        "always_black": 0,
+        "always_coop": 15,
+        "coop_until_cheated": 11,
+        "sherlock": 11,
+        "copy_kitten": 13,
+    }
+
     def __init__(self, opponent: str, score_list: dict = None) -> None:
         """Initialize: New round of Trust Game.
 

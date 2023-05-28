@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import tkinter as tk
 import tkinter.font as tkFont
 import tkmacosx as tkmac
@@ -18,15 +17,24 @@ actbg_color = "#9BAA9D"
 text_color = "#606153"
 asset_path = Path(__file__).parent.joinpath("assets")
 opponent = Trust.OPPONENT_GLOSSARY
+required_score = Trust.OPPONENT_REQUIRED_SCORE
 
 # OPPONENT_GLOSSARY = {
-#     "copy_cat": "糕餅傑",
-#     "always_black": "鬼畜傑",
-#     "always_coop": "好好傑",
-#     "coop_until_cheated": "鳳梨酥傑",
-#     "sherlock": "福爾摩斯傑",
-#     "copy_kitten": "玩具傑",
-# }
+#         "copy_cat": "糕餅小傑",
+#         "always_black": "鬼畜小傑",
+#         "always_coop": "好好小傑",
+#         "coop_until_cheated": "鳳梨酥小傑",
+#         "sherlock": "福爾摩斯小傑",
+#         "copy_kitten": "玩具小傑",
+#     }
+# OPPONENT_REQUIRED_SCORE = {
+#         "copy_cat": 11,
+#         "always_black": 0,
+#         "always_coop": 15,
+#         "coop_until_cheated": 11,
+#         "sherlock": 11,
+#         "copy_kitten": 13,
+#     }
 
 
 class StyleSheet:
@@ -1035,11 +1043,11 @@ class Page08_cc(tk.Frame):
                 500, 600, anchor="nw", window=self.nextPage_B
             )
             self.Button_window_2 = self.bgcanvas.create_window(
-                1000, 600, anchor="nw", window=self.guess_now_B
+                1000, 640, anchor="nw", window=self.guess_now_B
             )
             self.guess_now_B.lift()
             self.restart_B_window = self.bgcanvas.create_window(
-                50, 600, anchor="nw", window=self.restart_B
+                50, 640, anchor="nw", window=self.restart_B
             )
         self.after(2000, createButton)
 
@@ -1241,7 +1249,7 @@ class Page14(tk.Frame):
         self.my_font1 = tkFont.Font(family=font, size=50, weight="bold")
         self.my_font2 = tkFont.Font(family=font, size=60, weight="bold")
 
-        self.final_opponent = self.controller.play.OPPONENT
+        self.final_opponent = self.controller.OPPONENT
         self.image1 = Image.open(asset_path / "Frames" / "Page07_round1.jpeg").resize(
             (1280, 800)
         )
@@ -1351,15 +1359,22 @@ class Page14(tk.Frame):
     def switch_frame_by_choice(self, choice, opponent_coop, opponent_cheat):
         # [回合數, 玩家當局選擇, 對手當局選擇, 玩家分數, 對手分數]
         result = self.controller.play.battle(choice)
-        final_score = self.controller.play.final_score()  # [玩家分, 對手分, 總分]
+        self.controller.final_score = self.controller.play.final_score()  # [玩家分, 對手分, 總分]
         self.controller.game_count = result[0]
         if result[2] is True:
             self.controller.show_frame(opponent_coop)
         else:
             self.controller.show_frame(opponent_cheat)
         self.game_count.config(text=f"{str(result[0] + 1)}/5")
-        self.text_player.config(text=str(final_score[0]))
-        self.text_opponent.config(text=str(final_score[1]))
+        self.text_player.config(text=str(self.controller.final_score[0]))
+        self.text_opponent.config(text=str(self.controller.final_score[1]))
+
+    @staticmethod
+    def judge_final_score(self):
+        if self.controller.final_score[0] == required_score[self.controller.play.OPPONENT]:
+            self.controller.show_frame(Page16_AC)
+        else:
+            self.controller.show_frame(Page16_WA)
 
 
 class Page15_tt(tk.Frame):
@@ -1406,7 +1421,7 @@ class Page15_tt(tk.Frame):
 
     def clickButton(self):
         if self.controller.game_count == 5:
-            self.controller.show_frame(Page01)
+            Page14.judge_final_score(self)
         else:
             self.controller.show_frame(Page14)
         delete_Button = self.bgcanvas.delete(self.Button_window)
@@ -1456,7 +1471,7 @@ class Page15_tc(tk.Frame):
 
     def clickButton(self):
         if self.controller.game_count == 5:
-            self.controller.show_frame(Page01)
+            Page14.judge_final_score(self)
         else:
             self.controller.show_frame(Page14)
         delete_Button = self.bgcanvas.delete(self.Button_window)
@@ -1505,7 +1520,7 @@ class Page15_ct(tk.Frame):
 
     def clickButton(self):
         if self.controller.game_count == 5:
-            self.controller.show_frame(Page01)
+            Page14.judge_final_score(self)
         else:
             self.controller.show_frame(Page14)
         delete_Button = self.bgcanvas.delete(self.Button_window)
@@ -1555,19 +1570,105 @@ class Page15_cc(tk.Frame):
 
     def clickButton(self):
         if self.controller.game_count == 5:
-            self.controller.show_frame(Page01)
+            Page14.judge_final_score(self)
         else:
             self.controller.show_frame(Page14)
         delete_Button = self.bgcanvas.delete(self.Button_window)
 
+
 class Page16_AC(tk.Frame):
     def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, width=128-, height=800, bg=bg_color)
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
+        self.my_font = tkFont.Font(family=font, size=24)
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
         )
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
+        self.createGIF()
+
+        self.text = tk.Label(
+            self.bgcanvas,
+            text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {required_score[self.controller.OPPONENT]} 分，\
+            \n恭喜你！得到與{opponent[self.controller.OPPONENT]}對戰可以拿到的最高分，\
+            \n看來你已足夠熟悉對手小傑的策略，並以此配置自己的決策\
+            \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
+            \n歡迎你再玩一次，體驗與其他小傑對戰～',
+            font=self.my_font,
+            bg=bg_color,
+            bd=0,
+            fg=text_color,
+        )
+        self.nextPage_B = StyleSheet().text_btn(
+            self.bgcanvas, "下一頁", 160, 60, self.clickButton)
+
+    def createGIF(self):
+        self.path = asset_path / "Frames" / "Page16" / "Page16_AC.gif"
+        self.loop = False
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
+        gifLabel_window = self.bgcanvas.create_window(
+            0, -40, anchor="nw", window=self.gifLabel
+        )
+
+    def showButton(self):
+        def createtext():
+            self.bgcanvas.create_window(685, 350, window=self.text)
+
+        def createButton():
+            self.bgcanvas.create_window(645, 650, window=self.nextPage_B)
+
+        self.after(3000, createtext)
+        self.after(3500, createButton)
+
+    def clickButton(self):
+        self.controller.show_frame(Page17)
+
+class Page16_WA(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
+        self.controller = controller
+        self.my_font = tkFont.Font(family=font, size=24)
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
+        self.createGIF()
+
+        self.text = tk.Label(
+            self.bgcanvas,
+            text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {self.controller.play.final_score()[0]} 分，\
+            \n非常可惜...你沒有拿到與他對戰可以拿到的最高分，\
+            \n不妨再思考看看，有沒有更好的方法呢？\
+            \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
+            \n歡迎你再玩一次，體驗與其他小傑對戰～',
+            font=self.my_font,
+            bg=bg_color,
+            bd=0,
+            fg=text_color,
+        )
+        self.nextPage_B = StyleSheet().text_btn(
+            self.bgcanvas, "下一頁", 160, 60, self.clickButton)
+
+    def createGIF(self):
+        self.path = asset_path / "Frames" / "Page16" / "Page16_WA.gif"
+        self.loop = False
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
+        gifLabel_window = self.bgcanvas.create_window(
+            0, -40, anchor="nw", window=self.gifLabel
+        )
+
+    def showButton(self):
+        def createtext():
+            self.bgcanvas.create_window(685, 350, window=self.text)
+
+        def createButton():
+            self.bgcanvas.create_window(645, 650, window=self.nextPage_B)
+
+        self.after(3000, createtext)
+        self.after(3500, createButton)
+
+    def clickButton(self):
+        self.controller.show_frame(Page17)
 
 
 
