@@ -68,6 +68,37 @@ class StyleSheet:
             command=command,
         )
 
+class GIFLabel(tk.Label):
+    def __init__(self, parent, width, height, path):
+        tk.Label.__init__(self, parent, width=width,
+                          height=height, bg=bg_color)
+
+        self.img = Image.open(path)
+
+        self.frames = []
+        try:
+            for i in count(1):
+                self.frames.append(ImageTk.PhotoImage(self.img.copy()))
+                self.img.seek(i)
+        except EOFError:
+            pass
+
+    def load(self, loop: bool):
+        self.loc = 0
+        self.delay = self.img.info["duration"] - 25
+        self.next_frame(loop)
+
+    def next_frame(self, loop):
+        if loop is True:
+            self.frames = cycle(self.frames)
+            if self.frames:
+                self.config(image=next(self.frames))
+                self.after(self.delay, lambda: self.next_frame(loop))
+        elif self.frames:
+            self.loc += 1
+            if self.loc < len(self.frames):
+                self.config(image=self.frames[self.loc])
+                self.after(self.delay, lambda: self.next_frame(loop))
 
 class Trust_App(tk.Tk):
     def __init__(self, name):
@@ -110,7 +141,9 @@ class Trust_App(tk.Tk):
             Page15_cc,
             Page15_ct,
             Page15_tt,
-            Page15_tc
+            Page15_tc,
+            Page16_AC,
+            Page16_WA,
         ):
             frame = F(container, self)
             self.frames[F] = frame
@@ -130,40 +163,6 @@ class Trust_App(tk.Tk):
             frame.opponent_gifLabel.load(frame.loop)
         except:
             pass
-
-
-class GIFLabel(tk.Label):
-    def __init__(self, parent, width, height, path):
-        tk.Label.__init__(self, parent, width=width,
-                          height=height, bg=bg_color)
-
-        self.img = Image.open(path)
-
-        self.frames = []
-        try:
-            for i in count(1):
-                self.frames.append(ImageTk.PhotoImage(self.img.copy()))
-                self.img.seek(i)
-        except EOFError:
-            pass
-
-    def load(self, loop: bool):
-        self.loc = 0
-        self.delay = self.img.info["duration"] - 25
-        self.next_frame(loop)
-
-    def next_frame(self, loop):
-        if loop is True:
-            self.frames = cycle(self.frames)
-            if self.frames:
-                self.config(image=next(self.frames))
-                self.after(self.delay, lambda: self.next_frame(loop))
-        elif self.frames:
-            self.loc += 1
-            if self.loc < len(self.frames):
-                self.config(image=self.frames[self.loc])
-                self.after(self.delay, lambda: self.next_frame(loop))
-
 
 class Page01(tk.Frame):
     def __init__(self, parent, controller):
@@ -1523,6 +1522,16 @@ class Page15_cc(tk.Frame):
         else:
             self.controller.show_frame(Page14)
         delete_Button = self.bgcanvas.delete(self.Button_window)
+
+class Page16_AC(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width=128-, height=800, bg=bg_color)
+        self.controller = controller
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
+
 
 
 app = Trust_App("JayJay! Trust me")
