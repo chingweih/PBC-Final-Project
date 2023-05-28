@@ -116,7 +116,7 @@ class Trust_App(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame(Page01)
+        self.show_frame(Page12)
 
     def show_frame(self, nextF):
         frame = self.frames[nextF]
@@ -1125,9 +1125,9 @@ class Page13(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.controller.currentPage = 12
     
     def showButton(self):
+        self.controller.currentPage = 12
         self.controller.show_frame(Page05)
         self.after(8000, lambda: self.clickButton())
 
