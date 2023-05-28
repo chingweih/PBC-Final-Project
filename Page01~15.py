@@ -694,6 +694,7 @@ class Page07(tk.Frame):
         self.controller = controller
         self.my_font1 = tkFont.Font(family=font, size=50, weight="bold")
         self.my_font2 = tkFont.Font(family=font, size=60, weight="bold")
+        self.round_count = 1
         self.choose_opponent()
 
         self.image1 = Image.open(asset_path / "Frames" / "Page07_round1.jpeg").resize(
@@ -782,8 +783,12 @@ class Page07(tk.Frame):
             self.controller.show_frame(opponent_coop)
         else:
             self.controller.show_frame(opponent_cheat)
-        self.game_count.config(text=str(result[0] + 1))
+        self.round_count += 1
+        self.game_count.config(text=str(self.round_count))
 
+    def restart(self):
+        self.round_count = 1
+        self.game_count.config(text="1")
 
 class Page08_tt(tk.Frame):
     def __init__(self, parent, controller):
@@ -816,16 +821,22 @@ class Page08_tt(tk.Frame):
         self.bgcanvas.create_window(
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
-
+        self.restart_B = StyleSheet().text_btn(
+            self.bgcanvas, "重新挑戰", 240, 60, self.restart
+        )
+        self.restart_B_window = None
     def showButton(self):
         def createButton():
             self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
             )
             self.Button_window_2 = self.bgcanvas.create_window(
-                500, 680, anchor="nw", window=self.guess_now_B
+                1000, 600, anchor="nw", window=self.guess_now_B
             )
-
+            self.guess_now_B.lift()
+            self.restart_B_window = self.bgcanvas.create_window(
+                50, 600, anchor="nw", window=self.restart_B
+            )
         self.after(2000, createButton)
 
     def createGIF(self):
@@ -840,7 +851,9 @@ class Page08_tt(tk.Frame):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
         delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
-
+        delete_restart_B = self.bgcanvas.delete(self.restart_B_window)
+    def restart(self):
+        self.controller.frames[Page07].restart()
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
 
@@ -877,15 +890,22 @@ class Page08_tc(tk.Frame):
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
 
+        self.restart_B = StyleSheet().text_btn(
+            self.bgcanvas, "重新挑戰", 240, 60, self.restart
+        )
+        self.restart_B_window = None
     def showButton(self):
         def createButton():
             self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
             )
             self.Button_window_2 = self.bgcanvas.create_window(
-                500, 680, anchor="nw", window=self.guess_now_B
+                1000, 600, anchor="nw", window=self.guess_now_B
             )
-
+            self.guess_now_B.lift()
+            self.restart_B_window = self.bgcanvas.create_window(
+                50, 600, anchor="nw", window=self.restart_B
+            )
         self.after(2000, createButton)
 
     def createGIF(self):
@@ -900,10 +920,11 @@ class Page08_tc(tk.Frame):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
         delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
-
+        delete_restart_B = self.bgcanvas.delete(self.restart_B_window)
+    def restart(self):
+        self.controller.frames[Page07].restart()
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
-
 
 class Page08_ct(tk.Frame):
     def __init__(self, parent, controller):
@@ -936,16 +957,22 @@ class Page08_ct(tk.Frame):
         self.bgcanvas.create_window(
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
-
+        self.restart_B = StyleSheet().text_btn(
+            self.bgcanvas, "重新挑戰", 240, 60, self.restart
+        )
+        self.restart_B_window = None
     def showButton(self):
         def createButton():
             self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
             )
             self.Button_window_2 = self.bgcanvas.create_window(
-                500, 680, anchor="nw", window=self.guess_now_B
+                1000, 600, anchor="nw", window=self.guess_now_B
             )
-
+            self.guess_now_B.lift()
+            self.restart_B_window = self.bgcanvas.create_window(
+                50, 600, anchor="nw", window=self.restart_B
+            )
         self.after(2000, createButton)
 
     def createGIF(self):
@@ -960,7 +987,9 @@ class Page08_ct(tk.Frame):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
         delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
-
+        delete_restart_B = self.bgcanvas.delete(self.restart_B_window)
+    def restart(self):
+        self.controller.frames[Page07].restart()
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
 
@@ -996,16 +1025,22 @@ class Page08_cc(tk.Frame):
         self.bgcanvas.create_window(
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
-
+        self.restart_B = StyleSheet().text_btn(
+            self.bgcanvas, "重新挑戰", 240, 60, self.restart
+        )
+        self.restart_B_window = None
     def showButton(self):
         def createButton():
             self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
             )
             self.Button_window_2 = self.bgcanvas.create_window(
-                500, 680, anchor="nw", window=self.guess_now_B
+                1000, 600, anchor="nw", window=self.guess_now_B
             )
-
+            self.guess_now_B.lift()
+            self.restart_B_window = self.bgcanvas.create_window(
+                50, 600, anchor="nw", window=self.restart_B
+            )
         self.after(2000, createButton)
 
     def createGIF(self):
@@ -1020,7 +1055,9 @@ class Page08_cc(tk.Frame):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
         delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
-
+        delete_restart_B = self.bgcanvas.delete(self.restart_B_window)
+    def restart(self):
+        self.controller.frames[Page07].restart()
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
 
