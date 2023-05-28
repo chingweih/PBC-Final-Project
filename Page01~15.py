@@ -702,7 +702,6 @@ class Page07(tk.Frame):
         self.controller = controller
         self.my_font1 = tkFont.Font(family=font, size=50, weight="bold")
         self.my_font2 = tkFont.Font(family=font, size=60, weight="bold")
-        self.round_count = 1
         self.choose_opponent()
 
         self.image1 = Image.open(asset_path / "Frames" / "Page07_round1.jpeg").resize(
@@ -791,12 +790,11 @@ class Page07(tk.Frame):
             self.controller.show_frame(opponent_coop)
         else:
             self.controller.show_frame(opponent_cheat)
-        self.round_count += 1
-        self.game_count.config(text=str(self.round_count))
-
+        self.game_count.config(text=str(result[0] + 1))
     def restart(self):
-        self.round_count = 1
         self.game_count.config(text="1")
+        self.controller.play = Trust(self.controller.OPPONENT)  # 將對手重置為之前選擇的對手
+        self.controller.show_frame(Page07)  # 返回初始遊戲頁面
 
 class Page08_tt(tk.Frame):
     def __init__(self, parent, controller):
