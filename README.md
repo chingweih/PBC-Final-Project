@@ -1,5 +1,9 @@
 # PBC Final Project —— 信任考驗
 
+[]: # (下載連結圖案)
+[]: # (https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.zip.svg)
+[]: # (https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.exe.svg)
+
 ## 開發與使用
 
 Python 3.6+
