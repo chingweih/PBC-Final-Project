@@ -1,5 +1,5 @@
-
 # -*- coding: utf-8 -*-
+
 import tkinter as tk
 import tkinter.font as tkFont
 import tkmacosx as tkmac
@@ -355,6 +355,7 @@ class Page04(tk.Frame):
         nextPage_B.grid(column=4, row=4, sticky="se")
 
     def clickButton(self):
+        self.controller.currentPage = 5
         self.controller.show_frame(Page05)  # 記得改
 
 
@@ -798,7 +799,11 @@ class Page08_tt(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "下一回合", 240, 60, self.clickButton
+            self.bgcanvas, "下一回合", 240, 60, self.clickNextButton
+        )
+
+        self.guess_now_B = StyleSheet().text_btn(
+            self.bgcanvas, "看透你了小節", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -819,6 +824,9 @@ class Page08_tt(tk.Frame):
             self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
             )
+            self.Button_window_2 = self.bgcanvas.create_window(
+                500, 680, anchor="nw", window=self.guess_now_B
+            )
 
         self.after(2000, createButton)
 
@@ -830,9 +838,12 @@ class Page08_tt(tk.Frame):
             0, -50, anchor="nw", window=self.gifLabel
         )
 
-    def clickButton(self):
+    def clickNextButton(self):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
+
+    def clickGuessButton(self):
+        self.controller.show_frame(Page09)
 
 
 class Page08_tc(tk.Frame):
@@ -847,7 +858,11 @@ class Page08_tc(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "下一回合", 240, 60, self.clickButton
+            self.bgcanvas, "下一回合", 240, 60, self.clickNextButton
+        )
+
+        self.guess_now_B = StyleSheet().text_btn(
+            self.bgcanvas, "看透你了小節", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -868,6 +883,9 @@ class Page08_tc(tk.Frame):
             self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
             )
+            self.Button_window_2 = self.bgcanvas.create_window(
+                500, 680, anchor="nw", window=self.guess_now_B
+            )
 
         self.after(2000, createButton)
 
@@ -879,9 +897,12 @@ class Page08_tc(tk.Frame):
             0, -50, anchor="nw", window=self.gifLabel
         )
 
-    def clickButton(self):
+    def clickNextButton(self):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
+
+    def clickGuessButton(self):
+        self.controller.show_frame(Page09)
 
 
 class Page08_ct(tk.Frame):
@@ -896,7 +917,11 @@ class Page08_ct(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "下一回合", 240, 60, self.clickButton
+            self.bgcanvas, "下一回合", 240, 60, self.clickNextButton
+        )
+
+        self.guess_now_B = StyleSheet().text_btn(
+            self.bgcanvas, "看透你了小節", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -917,6 +942,9 @@ class Page08_ct(tk.Frame):
             self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
             )
+            self.Button_window_2 = self.bgcanvas.create_window(
+                500, 680, anchor="nw", window=self.guess_now_B
+            )
 
         self.after(2000, createButton)
 
@@ -928,9 +956,12 @@ class Page08_ct(tk.Frame):
             0, -50, anchor="nw", window=self.gifLabel
         )
 
-    def clickButton(self):
+    def clickNextButton(self):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
+
+    def clickGuessButton(self):
+        self.controller.show_frame(Page09)
 
 
 class Page08_cc(tk.Frame):
@@ -945,7 +976,11 @@ class Page08_cc(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "下一回合", 240, 60, self.clickButton
+            self.bgcanvas, "下一回合", 240, 60, self.clickNextButton
+        )
+
+        self.guess_now_B = StyleSheet().text_btn(
+            self.bgcanvas, "看透你了小節", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -966,6 +1001,9 @@ class Page08_cc(tk.Frame):
             self.Button_window = self.bgcanvas.create_window(
                 500, 600, anchor="nw", window=self.nextPage_B
             )
+            self.Button_window_2 = self.bgcanvas.create_window(
+                500, 680, anchor="nw", window=self.guess_now_B
+            )
 
         self.after(2000, createButton)
 
@@ -977,9 +1015,12 @@ class Page08_cc(tk.Frame):
             0, -50, anchor="nw", window=self.gifLabel
         )
 
-    def clickButton(self):
+    def clickNextButton(self):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
+
+    def clickGuessButton(self):
+        self.controller.show_frame(Page09)
 
 
 class Page09(tk.Frame):
