@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 import tkinter as tk
 import tkinter.font as tkFont
@@ -7,7 +8,7 @@ from PIL import Image, ImageTk
 from itertools import count, cycle
 from pathlib import Path
 from module_trust import Trust
-
+Exit = int(0)
 
 # hiiiya
 
@@ -104,6 +105,12 @@ class Trust_App(tk.Tk):
             Page10_AC,
             Page10_WA,
             Page11,
+            Page13,
+            Page14,
+            Page15_cc,
+            Page15_ct,
+            Page15_tt,
+            Page15_tc
         ):
             frame = F(container, self)
             self.frames[F] = frame
@@ -118,9 +125,15 @@ class Trust_App(tk.Tk):
         if callable(show_btn):
             frame.showButton()
 
+
         try:
             frame.gifLabel.load(frame.loop)
             frame.opponent_gifLabel.load(frame.loop)
+        except:
+            pass
+        
+        try:
+            frame.create_score_board()
         except:
             pass
 
@@ -969,7 +982,7 @@ class Page08_cc(tk.Frame):
         gifLabel_window = self.bgcanvas.create_window(
             0, -50, anchor="nw", window=self.gifLabel
         )
-
+        
     def clickButton(self):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
@@ -1080,6 +1093,401 @@ class Page10_WA(tk.Frame):
 class Page11(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
+####
+#開始挑戰回合按鈕
+    def clickButton(self): 
+            #self.controller.show_frame(Page13)
+            final_opponent = self.controller.play.OPPONENT
+            self.controller.play = Trust(final_opponent)
+
+            self.controller.show_frame(Page13)
+            ##此部分寫在正式挑戰button
+####
+
+class Page13(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
+        self.controller = controller
+
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
+        self.creatGIF()
+    
+    def createButton(self):
+        self.after(8000, lambda: self.clickButton())
+
+    def creatGIF(self):
+        self.path = asset_path / "Frames" / "Page05.gif"
+        self.loop = False
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
+        gifLabel_window = self.bgcanvas.create_window(
+            0, 0, anchor="nw", window=self.gifLabel
+        )
+
+    def clickButton(self):
+        self.controller.show_frame(Page14)
+
+class Page14(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
+        self.controller = controller 
+        self.my_font1 = tkFont.Font(family=font, size=50, weight="bold")
+        self.my_font2 = tkFont.Font(family=font, size=60, weight="bold")
+        
+        final_opponent = self.controller.play.OPPONENT
+        print(self.controller.game_count)
+        final_opponent = Trust.OPPONENT_GLOSSARY[final_opponent] + ".png"
+        image1 = Image.open(asset_path / "Frames" / "Page07_round1.jpeg").resize(
+            (1280, 800)
+        )
+
+        
+        
+        image2 = (
+            Image.open(asset_path / "角色(png)" / final_opponent)
+            .crop([500, 0, 1300, 1200])
+            .resize((250, 450))
+        )
+        image3 = (
+            Image.open(asset_path / "Card" / "front-trust.png")
+            .crop([500, 200, 1300, 1400])
+            .resize((250, 350))
+        )
+        image4 = (
+            Image.open(asset_path / "Card" / "front-cheat.png")
+            .crop([500, 200, 1300, 1400])
+            .resize((250, 350))
+        )
+
+        self.bg_img = ImageTk.PhotoImage(image1)
+        self.Jay = ImageTk.PhotoImage(image2)
+        self.cardt_img = ImageTk.PhotoImage(image3)
+        self.cardc_img = ImageTk.PhotoImage(image4)
+
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
+        self.bgcanvas.create_image(0, 0, image=self.bg_img, anchor="nw")
+        self.Jay_Label = tk.Label(
+            self.bgcanvas, bg=bg_color, width=600, height=600, image=self.Jay
+        )
+        self.bgcanvas.create_window(
+            1025, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
+        )
+        self.text = tk.Label(
+            self.bgcanvas,
+            bg=bg_color,
+            fg=text_color,
+            width=100,
+            height=50,
+            text="挑戰回合",
+            font=self.my_font1,
+        )
+        self.bgcanvas.create_window(
+            640, 50, width=300, height=80, window=self.text)
+        self.game_count = tk.Label(
+            self.bgcanvas,
+            bg=bg_color,
+            fg=text_color,
+            width=700,
+            height=50,
+            text=self.controller.game_count+"/5",
+            
+            font=self.my_font2,
+        )
+        
+        self.bgcanvas.create_window(
+            640, 120, width=200, height=60, window=self.game_count
+        )
+        self.trust_B = StyleSheet().img_btn(
+            self.bgcanvas, self.cardt_img, 250, 350, self.clickTrust
+        )
+
+        self.cheat_B = StyleSheet().img_btn(
+            self.bgcanvas, self.cardc_img, 250, 350, self.clickCheat
+        )
+        self.bgcanvas.create_window(300, 300, anchor="nw", window=self.trust_B)
+        self.bgcanvas.create_window(650, 300, anchor="nw", window=self.cheat_B)
+
+ # 記分板
+    def create_score_board(self):   
+        self.text = tk.Label(
+            self.bgcanvas,
+            bg=text_color,
+            fg=bg_color,
+            width=100,
+            height=50,
+            text=self.controller.play.player_score,
+            font=self.my_font1,
+        )
+        self.bgcanvas.create_window(
+            100, 50, width=100, height=80, window=self.text)
+        
+        self.text = tk.Label(
+            self.bgcanvas,
+            bg=text_color,
+            fg=bg_color,
+            width=100,
+            height=50,
+            text=self.controller.play.opponent_score,
+            font=self.my_font1,
+        )
+        self.bgcanvas.create_window(
+            1150, 50, width=100, height=80, window=self.text)
+       
+    def choose_opponent(self):  # 隨機選擇對手、初始回合數：1
+        self.controller.game_count = "1"
+        self.controller.play = Trust(random.choice(tuple(opponent.keys())))
+        print(self.controller.play.OPPONENT)  # 測試用，記得刪
+
+    def clickTrust(self):
+        self.switch_frame_by_choice(True, Page15_tt, Page15_tc)
+
+    def clickCheat(self):
+        self.switch_frame_by_choice(False, Page15_ct, Page15_cc)
+
+    def switch_frame_by_choice(self, choice, opponent_coop, opponent_cheat):
+        result = self.controller.play.battle(choice)
+        self.controller.game_count = result[0]
+        if result[2] is True:
+            self.controller.show_frame(opponent_coop)
+        else:
+            self.controller.show_frame(opponent_cheat)
+        self.game_count.config(text=str(self.controller.game_count + 1)+"/5")
+        
+        global Exit
+        Exit = 1 if self.controller.game_count == 5 else 0  
+        
+        global flag_check_result
+        flag_check_result = 1 if self.controller.game_count == 4 else 0
+        
+
+
+class Page15_tt(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
+        self.controller = controller
+        final_opponent = Trust.OPPONENT_GLOSSARY[self.controller.play.OPPONENT] + ".png"
+
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
+        self.creatGIF()
+        self.createButton()
+
+        
+
+        self.nextPage_B = StyleSheet().text_btn(
+                self.bgcanvas, "Next", 240, 60, self.clickButton
+                )
+        
+        
+
+        image2 = (
+            Image.open(asset_path / "角色(png)" / final_opponent)
+            .crop([500, 0, 1300, 1200])
+            .resize((250, 450))
+        )
+        self.Jay = ImageTk.PhotoImage(image2)
+        self.Jay_Label = tk.Label(
+            self.bgcanvas, bg=bg_color, width=600, height=600, image=self.Jay
+        )
+        self.bgcanvas.create_window(
+            1025, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
+        )
+
+    def showButton(self):
+        self.after(
+            3000,
+            lambda: self.bgcanvas.create_window(
+                500, 600, anchor="nw", window=self.nextPage_B
+            ),
+        )
+        
+       
+
+    def creatGIF(self):
+        self.path = asset_path / "Frames" / "Page08" / "Page08_round1-trust+trust.gif"
+        self.loop = False
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
+        gifLabel_window = self.bgcanvas.create_window(
+            0, -50, anchor="nw", window=self.gifLabel
+        )
+
+    def clickButton(self):
+        if Exit == 1:
+            self.controller.show_frame(Page01)    
+        else:
+            self.controller.show_frame(Page14)
+
+
+class Page15_tc(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
+        self.controller = controller
+        final_opponent = Trust.OPPONENT_GLOSSARY[self.controller.play.OPPONENT] + ".png"
+
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
+        self.creatGIF()
+        self.createButton()
+
+        self.nextPage_B = StyleSheet().text_btn(
+                self.bgcanvas, "Next", 240, 60, self.clickButton
+                )
+
+
+        image2 = (
+            Image.open(asset_path / "角色(png)" / final_opponent)
+            .crop([500, 0, 1300, 1200])
+            .resize((250, 450))
+        )
+        self.Jay = ImageTk.PhotoImage(image2)
+        self.Jay_Label = tk.Label(
+            self.bgcanvas, bg=bg_color, width=600, height=600, image=self.Jay
+        )
+        self.bgcanvas.create_window(
+            1025, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
+        )
+
+    def showButton(self):
+        self.after(
+            3000,
+            lambda: self.bgcanvas.create_window(
+                500, 600, anchor="nw", window=self.nextPage_B
+            ),
+        )
+
+    def creatGIF(self):
+        self.path = asset_path / "Frames" / "Page08" / "Page08_round1-trust+cheat.gif"
+        self.loop = False
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
+        gifLabel_window = self.bgcanvas.create_window(
+            0, -50, anchor="nw", window=self.gifLabel
+        )
+
+    def clickButton(self):
+        if Exit == 1:
+            self.controller.show_frame(Page01)    
+        else:
+            self.controller.show_frame(Page14)
+
+
+class Page15_ct(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
+        self.controller = controller
+        final_opponent = Trust.OPPONENT_GLOSSARY[self.controller.play.OPPONENT] + ".png"
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
+        self.creatGIF()
+        self.createButton()
+        
+
+        self.nextPage_B = StyleSheet().text_btn(
+                self.bgcanvas, "Next", 240, 60, self.clickButton
+                )
+        
+        
+        image2 = (
+            Image.open(asset_path / "角色(png)" / final_opponent)
+            .crop([500, 0, 1300, 1200])
+            .resize((250, 450))
+        )
+        self.Jay = ImageTk.PhotoImage(image2)
+        self.Jay_Label = tk.Label(
+            self.bgcanvas, bg=bg_color, width=600, height=600, image=self.Jay
+        )
+        self.bgcanvas.create_window(
+            1025, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
+        )
+
+    def showButton(self):
+        self.after(
+            3000,
+            lambda: self.bgcanvas.create_window(
+                500, 600, anchor="nw", window=self.nextPage_B
+            ),
+        )
+    def creatGIF(self):
+        self.path = asset_path / "Frames" / "Page08" / "Page08_round1-cheat+trust.gif"
+        self.loop = False
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
+        gifLabel_window = self.bgcanvas.create_window(
+            0, -50, anchor="nw", window=self.gifLabel
+        )
+
+    def clickButton(self):
+        if Exit == 1:
+            self.controller.show_frame(Page01)    
+        else:
+            self.controller.show_frame(Page14)
+
+
+class Page15_cc(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
+        self.controller = controller
+        final_opponent = Trust.OPPONENT_GLOSSARY[self.controller.play.OPPONENT] + ".png"
+
+        self.bgcanvas = tk.Canvas(
+            self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
+        )
+        self.bgcanvas.grid(column=0, row=0, sticky="nsew")
+        self.creatGIF()
+        self.createButton()
+
+       
+
+        
+        self.nextPage_B = StyleSheet().text_btn(
+                self.bgcanvas, "Next", 240, 60, self.clickButton
+                )
+        
+        
+        image2 = (
+            Image.open(asset_path / "角色(png)" / final_opponent)
+            .crop([500, 0, 1300, 1200])
+            .resize((250, 450))
+        )
+        self.Jay = ImageTk.PhotoImage(image2)
+        self.Jay_Label = tk.Label(
+            self.bgcanvas, bg=bg_color, width=600, height=600, image=self.Jay
+        )
+        self.bgcanvas.create_window(
+            1025, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
+        )
+
+    def showButton(self):
+        self.after(
+            3000,
+            lambda: self.bgcanvas.create_window(
+                500, 600, anchor="nw", window=self.nextPage_B
+            ),
+        )
+    def creatGIF(self):
+        self.path = asset_path / "Frames" / "Page08" / "Page08_round1-cheat+cheat.gif"
+        self.loop = False
+        self.gifLabel = GIFLabel(self.bgcanvas, 1280, 800, self.path)
+        gifLabel_window = self.bgcanvas.create_window(
+            0, -50, anchor="nw", window=self.gifLabel
+        )
+
+
+    def clickButton(self):
+        if Exit == 1:
+            self.controller.show_frame(Page01)    
+        else:
+            self.controller.show_frame(Page14)
 
 app = Trust_App("JayJay! Trust me")
 app.mainloop()
+
