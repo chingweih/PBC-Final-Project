@@ -1,6 +1,10 @@
 # PBC Final Project —— 信任考驗
 
-## 開發環境
+<!-- 下載連結圖案
+https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.zip.svg
+https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.exe.svg -->
+
+## 開發與使用
 
 Python 3.6+
 
@@ -20,7 +24,7 @@ pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" path_to
 pyinstaller --clean --onefile -w --add-data "assets;./assets" -n "Trust" path_to_app.py
 ```
 
-## Trust 模組
+## 模組：Trust
 
 ### 開啟新回合 — `Trust(opponent, [score_list])`
 
