@@ -1273,7 +1273,7 @@ class Page14(tk.Frame):
         self.bgcanvas.create_window(300, 300, anchor="nw", window=self.trust_B)
         self.bgcanvas.create_window(650, 300, anchor="nw", window=self.cheat_B)
 
- # 記分板
+    # 記分板
     def create_score_board(self):
         self.text_player = tk.Label(
             self.bgcanvas,
