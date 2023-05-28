@@ -8,7 +8,7 @@ from PIL import Image, ImageTk
 from itertools import count, cycle
 from pathlib import Path
 from module_trust import Trust
-Exit = 0
+
 
 # hiiiya
 
@@ -1325,12 +1325,6 @@ class Page14(tk.Frame):
         self.text_player.config(text=str(final_score[0]))
         self.text_opponent.config(text=str(final_score[1]))
 
-        global Exit
-        Exit = 1 if result[0] == 5 else 0
-
-        global flag_check_result
-        flag_check_result = 1 if result[0] == 4 else 0
-
 
 class Page15_tt(tk.Frame):
     def __init__(self, parent, controller):
@@ -1358,6 +1352,8 @@ class Page15_tt(tk.Frame):
 
     def showButton(self):
         def createButton():
+            self.nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
+
             self.Button_window = self.bgcanvas.create_window(
                 550, 600, anchor="nw", window=self.nextPage_B
             )
@@ -1373,7 +1369,7 @@ class Page15_tt(tk.Frame):
         )
 
     def clickButton(self):
-        if Exit == 1:
+        if self.controller.game_count == 5:
             self.controller.show_frame(Page01)
         else:
             self.controller.show_frame(Page14)
@@ -1406,6 +1402,8 @@ class Page15_tc(tk.Frame):
 
     def showButton(self):
         def createButton():
+            self.nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
+
             self.Button_window = self.bgcanvas.create_window(
                 550, 600, anchor="nw", window=self.nextPage_B
             )
@@ -1421,7 +1419,7 @@ class Page15_tc(tk.Frame):
         )
 
     def clickButton(self):
-        if Exit == 1:
+        if self.controller.game_count == 5:
             self.controller.show_frame(Page01)
         else:
             self.controller.show_frame(Page14)
@@ -1453,6 +1451,8 @@ class Page15_ct(tk.Frame):
 
     def showButton(self):
         def createButton():
+            self.nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
+
             self.Button_window = self.bgcanvas.create_window(
                 550, 600, anchor="nw", window=self.nextPage_B
             )
@@ -1468,7 +1468,7 @@ class Page15_ct(tk.Frame):
         )
 
     def clickButton(self):
-        if Exit == 1:
+        if self.controller.game_count == 5:
             self.controller.show_frame(Page01)
         else:
             self.controller.show_frame(Page14)
@@ -1501,6 +1501,8 @@ class Page15_cc(tk.Frame):
 
     def showButton(self):
         def createButton():
+            self.nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
+
             self.Button_window = self.bgcanvas.create_window(
                 550, 600, anchor="nw", window=self.nextPage_B
             )
@@ -1516,7 +1518,7 @@ class Page15_cc(tk.Frame):
         )
 
     def clickButton(self):
-        if Exit == 1:
+        if self.controller.game_count == 5:
             self.controller.show_frame(Page01)
         else:
             self.controller.show_frame(Page14)
