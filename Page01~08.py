@@ -116,7 +116,7 @@ class Trust_App(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame(Page12)
+        self.show_frame(Page01)
 
     def show_frame(self, nextF):
         frame = self.frames[nextF]
@@ -288,7 +288,7 @@ class Page04(tk.Frame):
 
         always_coop_B = StyleSheet().img_btn(
             self,
-            self.Button_img[0],
+            self.Button_img[2],
             240,
             300,
             lambda: controller.show_frame(Page04_always_coop),
@@ -302,28 +302,28 @@ class Page04(tk.Frame):
         )
         copy_kitten = StyleSheet().img_btn(
             self,
-            self.Button_img[2],
+            self.Button_img[5],
             240,
             300,
             lambda: controller.show_frame(Page04_copy_kitten),
         )
         sherlock = StyleSheet().img_btn(
             self,
-            self.Button_img[3],
+            self.Button_img[4],
             240,
             300,
             lambda: controller.show_frame(Page04_sherlock),
         )
         copy_cat = StyleSheet().img_btn(
             self,
-            self.Button_img[4],
+            self.Button_img[0],
             240,
             300,
             lambda: controller.show_frame(Page04_copy_cat),
         )
         coop_until_cheated = StyleSheet().img_btn(
             self,
-            self.Button_img[5],
+            self.Button_img[3],
             240,
             300,
             lambda: controller.show_frame(Page04_coop_until_cheated),
@@ -631,7 +631,6 @@ class Page05(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        self.controller.currentPage = 5
 
         self.bgcanvas = tk.Canvas(
             self, width=1280, height=800, bg=bg_color, bd=0, highlightthickness=0
@@ -799,11 +798,11 @@ class Page08_tt(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "下一回合", 240, 60, self.clickNextButton
+            self.bgcanvas, "再一回合", 240, 60, self.clickNextButton
         )
 
         self.guess_now_B = StyleSheet().text_btn(
-            self.bgcanvas, "看透你了小傑", 240, 60, self.clickGuessButton
+            self.bgcanvas, "看透你了！小傑", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -841,6 +840,7 @@ class Page08_tt(tk.Frame):
     def clickNextButton(self):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
+        delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
 
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
@@ -858,11 +858,11 @@ class Page08_tc(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "下一回合", 240, 60, self.clickNextButton
+            self.bgcanvas, "再一回合", 240, 60, self.clickNextButton
         )
 
         self.guess_now_B = StyleSheet().text_btn(
-            self.bgcanvas, "看透你了小傑", 240, 60, self.clickGuessButton
+            self.bgcanvas, "看透你了！小傑", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -900,6 +900,7 @@ class Page08_tc(tk.Frame):
     def clickNextButton(self):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
+        delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
 
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
@@ -917,11 +918,11 @@ class Page08_ct(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "下一回合", 240, 60, self.clickNextButton
+            self.bgcanvas, "再一回合", 240, 60, self.clickNextButton
         )
 
         self.guess_now_B = StyleSheet().text_btn(
-            self.bgcanvas, "看透你了小傑", 240, 60, self.clickGuessButton
+            self.bgcanvas, "看透你了！小傑", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -959,6 +960,7 @@ class Page08_ct(tk.Frame):
     def clickNextButton(self):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
+        delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
 
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
@@ -976,11 +978,11 @@ class Page08_cc(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "下一回合", 240, 60, self.clickNextButton
+            self.bgcanvas, "再一回合", 240, 60, self.clickNextButton
         )
 
         self.guess_now_B = StyleSheet().text_btn(
-            self.bgcanvas, "看透你了小傑", 240, 60, self.clickGuessButton
+            self.bgcanvas, "看透你了！小傑", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -1018,6 +1020,7 @@ class Page08_cc(tk.Frame):
     def clickNextButton(self):
         self.controller.show_frame(Page07)
         delete_Button = self.bgcanvas.delete(self.Button_window)
+        delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
 
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
@@ -1185,7 +1188,7 @@ class Page13(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        
+
     def showButton(self):
         self.controller.currentPage = 12
         self.controller.show_frame(Page05)
