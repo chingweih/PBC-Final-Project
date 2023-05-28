@@ -356,7 +356,7 @@ class Page04(tk.Frame):
 
     def clickButton(self):
         self.controller.currentPage = 5
-        self.controller.show_frame(Page05)  # 記得改
+        self.controller.show_frame(Page05)
 
 
 class Page04_always_coop(tk.Frame):
@@ -803,7 +803,7 @@ class Page08_tt(tk.Frame):
         )
 
         self.guess_now_B = StyleSheet().text_btn(
-            self.bgcanvas, "看透你了小節", 240, 60, self.clickGuessButton
+            self.bgcanvas, "看透你了小傑", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -862,7 +862,7 @@ class Page08_tc(tk.Frame):
         )
 
         self.guess_now_B = StyleSheet().text_btn(
-            self.bgcanvas, "看透你了小節", 240, 60, self.clickGuessButton
+            self.bgcanvas, "看透你了小傑", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -921,7 +921,7 @@ class Page08_ct(tk.Frame):
         )
 
         self.guess_now_B = StyleSheet().text_btn(
-            self.bgcanvas, "看透你了小節", 240, 60, self.clickGuessButton
+            self.bgcanvas, "看透你了小傑", 240, 60, self.clickGuessButton
         )
 
         image2 = (
@@ -980,7 +980,7 @@ class Page08_cc(tk.Frame):
         )
 
         self.guess_now_B = StyleSheet().text_btn(
-            self.bgcanvas, "看透你了小節", 240, 60, self.clickGuessButton
+            self.bgcanvas, "看透你了小傑", 240, 60, self.clickGuessButton
         )
 
         image2 = (
