@@ -810,7 +810,7 @@ class Page08_tt(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "再一回合", 240, 60, self.clickNextButton
+            self.bgcanvas, "再一回合", 240, 60, lambda: self.clickButton("NEXT")
         )
 
         self.guess_now_B = StyleSheet().text_btn(
@@ -830,9 +830,9 @@ class Page08_tt(tk.Frame):
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
         self.restart_B = StyleSheet().text_btn(
-            self.bgcanvas, "重新挑戰", 240, 60, self.restart
+            self.bgcanvas, "重新挑戰", 240, 60, lambda: self.clickButton("RESTART")
         )
-        self.restart_B_window = None
+        # self.restart_B_window = None
     def showButton(self):
         def createButton():
             self.Button_window = self.bgcanvas.create_window(
@@ -855,14 +855,14 @@ class Page08_tt(tk.Frame):
             0, -50, anchor="nw", window=self.gifLabel
         )
 
-    def clickNextButton(self):
-        self.controller.show_frame(Page07)
+    def clickButton(self, state):
+        if state == "NEXT":
+            self.controller.show_frame(Page07)
+        else:
+            self.controller.frames[Page07].restart()
         delete_Button = self.bgcanvas.delete(self.Button_window)
         delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
         delete_restart_B = self.bgcanvas.delete(self.restart_B_window)
-
-    def restart(self):
-        self.controller.frames[Page07].restart()
 
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
@@ -880,7 +880,7 @@ class Page08_tc(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "再一回合", 240, 60, self.clickNextButton
+            self.bgcanvas, "再一回合", 240, 60, lambda: self.clickButton("NEXT")
         )
 
         self.guess_now_B = StyleSheet().text_btn(
@@ -901,9 +901,9 @@ class Page08_tc(tk.Frame):
         )
 
         self.restart_B = StyleSheet().text_btn(
-            self.bgcanvas, "重新挑戰", 240, 60, self.restart
+            self.bgcanvas, "重新挑戰", 240, 60, lambda: self.clickButton("RESTART")
         )
-        self.restart_B_window = None
+        # self.restart_B_window = None
 
     def showButton(self):
         def createButton():
@@ -927,14 +927,14 @@ class Page08_tc(tk.Frame):
             0, -50, anchor="nw", window=self.gifLabel
         )
 
-    def clickNextButton(self):
-        self.controller.show_frame(Page07)
+    def clickButton(self, state):
+        if state == "NEXT":
+            self.controller.show_frame(Page07)
+        else:
+            self.controller.frames[Page07].restart()
         delete_Button = self.bgcanvas.delete(self.Button_window)
         delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
         delete_restart_B = self.bgcanvas.delete(self.restart_B_window)
-
-    def restart(self):
-        self.controller.frames[Page07].restart()
 
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
@@ -951,7 +951,7 @@ class Page08_ct(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "再一回合", 240, 60, self.clickNextButton
+            self.bgcanvas, "再一回合", 240, 60, lambda: self.clickButton("NEXT")
         )
 
         self.guess_now_B = StyleSheet().text_btn(
@@ -971,9 +971,9 @@ class Page08_ct(tk.Frame):
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
         self.restart_B = StyleSheet().text_btn(
-            self.bgcanvas, "重新挑戰", 240, 60, self.restart
+            self.bgcanvas, "重新挑戰", 240, 60, lambda: self.clickButton("RESTART")
         )
-        self.restart_B_window = None
+        # self.restart_B_window = None
 
     def showButton(self):
         def createButton():
@@ -997,8 +997,11 @@ class Page08_ct(tk.Frame):
             0, -50, anchor="nw", window=self.gifLabel
         )
 
-    def clickNextButton(self):
-        self.controller.show_frame(Page07)
+    def clickButton(self, state):
+        if state == "NEXT":
+            self.controller.show_frame(Page07)
+        else:
+            self.controller.frames[Page07].restart()
         delete_Button = self.bgcanvas.delete(self.Button_window)
         delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
         delete_restart_B = self.bgcanvas.delete(self.restart_B_window)
@@ -1022,7 +1025,7 @@ class Page08_cc(tk.Frame):
         self.createGIF()
 
         self.nextPage_B = StyleSheet().text_btn(
-            self.bgcanvas, "再一回合", 240, 60, self.clickNextButton
+            self.bgcanvas, "再一回合", 240, 60, lambda: self.clickButton("NEXT")
         )
 
         self.guess_now_B = StyleSheet().text_btn(
@@ -1042,9 +1045,10 @@ class Page08_cc(tk.Frame):
             950, 200, width=300, height=500, anchor="nw", window=self.Jay_Label
         )
         self.restart_B = StyleSheet().text_btn(
-            self.bgcanvas, "重新挑戰", 240, 60, self.restart
+            self.bgcanvas, "重新挑戰", 240, 60, lambda: self.clickButton("RESTART")
         )
-        self.restart_B_window = None
+        # self.restart_B_window = None
+
     def showButton(self):
         def createButton():
             self.Button_window = self.bgcanvas.create_window(
@@ -1067,8 +1071,11 @@ class Page08_cc(tk.Frame):
             0, -50, anchor="nw", window=self.gifLabel
         )
 
-    def clickNextButton(self):
-        self.controller.show_frame(Page07)
+    def clickButton(self, state):
+        if state == "NEXT":
+            self.controller.show_frame(Page07)
+        else:
+            self.controller.frames[Page07].restart()
         delete_Button = self.bgcanvas.delete(self.Button_window)
         delete_Button_2 = self.bgcanvas.delete(self.Button_window_2)
         delete_restart_B = self.bgcanvas.delete(self.restart_B_window)
@@ -1372,8 +1379,10 @@ class Page14(tk.Frame):
         self.controller.final_score = self.controller.play.final_score()  # [玩家分, 對手分, 總分]
         self.controller.game_count = result[0]
         if result[2] is True:
+            self.controller.frames[opponent_coop].nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
             self.controller.show_frame(opponent_coop)
         else:
+            self.controller.frames[opponent_cheat].nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
             self.controller.show_frame(opponent_cheat)
         self.game_count.config(text=f"{str(result[0] + 1)}/5")
         self.text_player.config(text=str(self.controller.final_score[0]))
@@ -1413,8 +1422,6 @@ class Page15_tt(tk.Frame):
 
     def showButton(self):
         def createButton():
-            self.nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
-
             self.Button_window = self.bgcanvas.create_window(
                 550, 600, anchor="nw", window=self.nextPage_B
             )
@@ -1463,8 +1470,6 @@ class Page15_tc(tk.Frame):
 
     def showButton(self):
         def createButton():
-            self.nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
-
             self.Button_window = self.bgcanvas.create_window(
                 550, 600, anchor="nw", window=self.nextPage_B
             )
@@ -1512,8 +1517,6 @@ class Page15_ct(tk.Frame):
 
     def showButton(self):
         def createButton():
-            self.nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
-
             self.Button_window = self.bgcanvas.create_window(
                 550, 600, anchor="nw", window=self.nextPage_B
             )
@@ -1562,8 +1565,6 @@ class Page15_cc(tk.Frame):
 
     def showButton(self):
         def createButton():
-            self.nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
-
             self.Button_window = self.bgcanvas.create_window(
                 550, 600, anchor="nw", window=self.nextPage_B
             )
