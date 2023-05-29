@@ -1598,18 +1598,6 @@ class Page16_AC(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.createGIF()
 
-        self.text = tk.Label(
-            self.bgcanvas,
-            text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {required_score[self.controller.OPPONENT]} 分，\
-            \n恭喜你！得到與{opponent[self.controller.OPPONENT]}對戰可以拿到的最高分，\
-            \n看來你已足夠熟悉對手小傑的策略，並以此配置自己的決策\
-            \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
-            \n歡迎你再玩一次，體驗與其他小傑對戰～',
-            font=self.my_font,
-            bg=bg_color,
-            bd=0,
-            fg=text_color,
-        )
         # self.nextPage_B = StyleSheet().text_btn(
         #     self.bgcanvas, "再玩一次", 240, 60, self.clickButton)
 
@@ -1623,6 +1611,18 @@ class Page16_AC(tk.Frame):
 
     def showButton(self):
         def createtext():
+            self.text = tk.Label(
+            self.bgcanvas,
+            text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {required_score[self.controller.OPPONENT]} 分，\
+            \n恭喜你！得到與{opponent[self.controller.OPPONENT]}對戰可以拿到的最高分，\
+            \n看來你已足夠熟悉對手小傑的策略，並以此配置自己的決策\
+            \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
+            \n歡迎你再玩一次，體驗與其他小傑對戰～',
+            font=self.my_font,
+            bg=bg_color,
+            bd=0,
+            fg=text_color,
+        )
             self.bgcanvas.create_window(685, 350, window=self.text)
 
         # def createButton():
@@ -1645,18 +1645,6 @@ class Page16_WA(tk.Frame):
         self.bgcanvas.grid(column=0, row=0, sticky="nsew")
         self.createGIF()
 
-        self.text = tk.Label(
-            self.bgcanvas,
-            text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {self.controller.play.final_score()[0]} 分，\
-            \n非常可惜...你沒有拿到與他對戰可以拿到的最高分，\
-            \n不妨再思考看看，有沒有更好的方法呢？\
-            \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
-            \n歡迎你再玩一次，體驗與其他小傑對戰～',
-            font=self.my_font,
-            bg=bg_color,
-            bd=0,
-            fg=text_color,
-        )
         # self.nextPage_B = StyleSheet().text_btn(
         #     self.bgcanvas, "再玩一次", 240, 60, self.clickButton)
 
@@ -1670,6 +1658,18 @@ class Page16_WA(tk.Frame):
 
     def showButton(self):
         def createtext():
+            self.text = tk.Label(
+            self.bgcanvas,
+            text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {self.controller.final_score[0]} 分，\
+            \n非常可惜...你沒有拿到與他對戰可以拿到的最高分，\
+            \n不妨再思考看看，有沒有更好的方法呢？\
+            \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
+            \n歡迎你再玩一次，體驗與其他小傑對戰～',
+            font=self.my_font,
+            bg=bg_color,
+            bd=0,
+            fg=text_color,
+        )
             self.bgcanvas.create_window(685, 350, window=self.text)
 
         # def createButton():
