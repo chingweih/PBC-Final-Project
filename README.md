@@ -2,11 +2,11 @@
 
 Windows
 
-[![Windows 下載](https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.exe.svg)](https://github.com/chingweih/pbc-final-project/release/latest/download/Trust.exe)
+[![Windows 下載](https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.exe.svg)](https://github.com/chingweih/pbc-final-project/releases/latest/download/Trust.exe)
 
 macOS
 
-[![macOS 下載](https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.zip.svg)](https://github.com/chingweih/pbc-final-project/release/latest/download/Trust.zip)
+[![macOS 下載](https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.zip.svg)](https://github.com/chingweih/pbc-final-project/releases/latest/download/Trust.zip)
 
 ---
 
