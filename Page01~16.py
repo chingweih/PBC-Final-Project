@@ -157,7 +157,7 @@ class Trust_App(tk.Tk):
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
         
-        self.show_frame(Page01)
+        self.show_frame(Page09)
 
     def show_frame(self, nextF):
         
@@ -1156,95 +1156,47 @@ class Page09(tk.Frame):
             Button_img = ImageTk.PhotoImage(image)
             self.Button_img.append(Button_img)
 
-        always_coop_B = tkmac.Button(
+        always_coop_B = StyleSheet().img_btn(
             self,
-            image=self.Button_img[0],
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_always_coop),
+            self.Button_img[0],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_always_coop)
         )
-        always_black_B = tkmac.Button(
+        always_black_B = StyleSheet().img_btn(
             self,
-            image=self.Button_img[1],
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_always_black),
+            self.Button_img[1],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_always_black),
         )
-        copy_kitten = tkmac.Button(
+        copy_kitten = StyleSheet().img_btn(
             self,
-            image=self.Button_img[2],
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_copy_kitten),
+            self.Button_img[2],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_copy_kitten),
         )
-        sherlock = tkmac.Button(
+        sherlock = StyleSheet().img_btn(
             self,
-            image=self.Button_img[3],
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_sherlock),
+            self.Button_img[3],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_sherlock),
         )
-        copy_cat = tkmac.Button(
+        copy_cat = StyleSheet().img_btn(
             self,
-            image=self.Button_img[4],
-            bg=bg_color,
-            bd=0,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_copy_cat),
+            self.Button_img[4],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_copy_cat),
         )
-        coop_until_cheated = tkmac.Button(
+        coop_until_cheated = StyleSheet().img_btn(
             self,
-            image=self.Button_img[5],
-            bg=bg_color,
-            borderless=True,
-            activebackground=bg_color,
-            highlightthickness=3,
-            highlightcolor=bg_color,
-            focuscolor="",
-            bd=0,
-            width=240,
-            height=300,
-            cursor="hand1",
-            command=lambda: controller.show_frame(Page04_coop_until_cheated),
+            self.Button_img[5],
+            240,
+            300,
+            lambda: controller.show_frame(Page04_coop_until_cheated),
         )
 
         words = tk.Label(
