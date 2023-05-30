@@ -1,8 +1,14 @@
-# PBC Final Project —— 信任考驗
+# PBC Final Project —— 傑哥是你？！
 
-<!-- 下載連結圖案
-https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.zip.svg
-https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.exe.svg -->
+Windows
+
+[![Windows 下載](https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.exe.svg)](https://github.com/chingweih/pbc-final-project/release/latest/download/Trust.exe)
+
+macOS
+
+[![macOS 下載](https://img.shields.io/github/downloads/chingweih/PBC-Final-Project/latest/Trust.zip.svg)](https://github.com/chingweih/pbc-final-project/release/latest/download/Trust.zip)
+
+---
 
 ## 開發與使用
 
