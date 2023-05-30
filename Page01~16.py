@@ -1221,32 +1221,32 @@ class Page09(tk.Frame):
         coop_until_cheated.grid(column=4, row=3, columnspan=2, rowspan=2, sticky="nsew")
         
         guess_always_coop = StyleSheet().text_btn(
-            self, "好好小傑", 195, 60, self.clickAlwaysCoop
+            self, "好好小傑", 180, 60, self.clickAlwaysCoop
         )
         guess_always_coop.grid(column=6, row=3, columnspan=2, sticky="se")
         
         guess_copy_kitten = StyleSheet().text_btn(
-            self, "玩具小傑", 195, 60, self.clickCopyKitten
+            self, "玩具小傑", 180, 60, self.clickCopyKitten
         )
         guess_copy_kitten.grid(column=8, row=3, columnspan=2, sticky="se")
         
         guess_copy_cat = StyleSheet().text_btn(
-            self, "糕餅小傑", 195, 60, self.clickCopyCat
+            self, "糕餅小傑", 180, 60, self.clickCopyCat
         )
         guess_copy_cat.grid(column=10, row=3, columnspan=2, sticky="se")
         
         guess_always_black = StyleSheet().text_btn(
-            self, "鬼畜小傑", 195, 60, self.clickAlwaysBlack
+            self, "鬼畜小傑", 180, 60, self.clickAlwaysBlack
         )
         guess_always_black.grid(column=6, row=4, columnspan=2, sticky="se")
         
         guess_sherlock= StyleSheet().text_btn(
-            self, "福爾摩斯傑", 195, 60, self.clickSherlock
+            self, "福爾摩斯傑", 180, 60, self.clickSherlock
         )
         guess_sherlock.grid(column=8, row=4, columnspan=2, sticky="se")
         
         guess_coop_until_cheated = StyleSheet().text_btn(
-            self, "鳳梨酥傑", 195, 60, self.clickCoopUntilCheated
+            self, "鳳梨酥傑", 180, 60, self.clickCoopUntilCheated
         )
         guess_coop_until_cheated.grid(column=10, row=4, columnspan=2, sticky="se")
         self.controller.currentPage = 9
