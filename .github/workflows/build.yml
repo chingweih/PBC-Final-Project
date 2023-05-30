@@ -21,6 +21,9 @@ jobs:
               with:
                   tag_name: ${{ github.ref }}
                   release_name: Release ${{ github.ref }}
+                  body: |
+                      - Windows: Trust.exe
+                      - macOS: Trust.zip
                   draft: false
                   prerelease: false
             - name: Output Release URL File
@@ -43,14 +46,14 @@ jobs:
                     - os: macos-latest
                       TARGET: macos
                       CMD_BUILD: >
-                          pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" "Page01~16.py" &&
+                          pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" -i assets/icons/icon.icns "Page01~16.py" &&
                           cd dist/ &&
                           zip -r9 "Trust" Trust.app/
                       OUT_FILE_NAME: Trust.zip
                       ASSET_MIME: application/zip
                     - os: windows-latest
                       TARGET: windows
-                      CMD_BUILD: pyinstaller --clean --onefile -w --add-data "assets;./assets" -n "Trust" "Page01~16.py"
+                      CMD_BUILD: pyinstaller --clean --onefile -w --add-data "assets;./assets" -n "Trust" -i assets/icons/icon.ico "Page01~16.py"
                       OUT_FILE_NAME: Trust.exe
                       ASSET_MIME: application/vnd.microsoft.portable-executable
         steps:

@@ -18,10 +18,10 @@ pip install -r requirements.txt
 
 ```properties
 # macOS
-pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" path_to_app.py
+pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" -i assets/icons/icon.icns path_to_app.py
 
 # Windows
-pyinstaller --clean --onefile -w --add-data "assets;./assets" -n "Trust" path_to_app.py
+pyinstaller --clean --onefile -w --add-data "assets;./assets" -n "Trust" -i assets/icons/icon.ico path_to_app.py
 ```
 
 ## 模組：Trust
