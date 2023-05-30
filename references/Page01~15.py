@@ -76,6 +76,7 @@ class StyleSheet:
             command=command,
         )
 
+
 class GIFLabel(tk.Label):
     def __init__(self, parent, width, height, path):
         tk.Label.__init__(self, parent, width=width,
@@ -107,6 +108,7 @@ class GIFLabel(tk.Label):
             if self.loc < len(self.frames):
                 self.config(image=self.frames[self.loc])
                 self.after(self.delay, lambda: self.next_frame(loop))
+
 
 class Trust_App(tk.Tk):
     def __init__(self, name):
@@ -171,6 +173,7 @@ class Trust_App(tk.Tk):
             frame.opponent_gifLabel.load(frame.loop)
         except:
             pass
+
 
 class Page01(tk.Frame):
     def __init__(self, parent, controller):
@@ -798,6 +801,7 @@ class Page07(tk.Frame):
         self.controller.play = Trust(self.controller.OPPONENT)  # 將對手重置為之前選擇的對手
         self.controller.show_frame(Page07)  # 返回初始遊戲頁面
 
+
 class Page08_tt(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
@@ -833,6 +837,7 @@ class Page08_tt(tk.Frame):
             self.bgcanvas, "重新挑戰", 240, 60, lambda: self.clickButton("RESTART")
         )
         # self.restart_B_window = None
+
     def showButton(self):
         def createButton():
             self.Button_window = self.bgcanvas.create_window(
@@ -938,6 +943,7 @@ class Page08_tc(tk.Frame):
 
     def clickGuessButton(self):
         self.controller.show_frame(Page09)
+
 
 class Page08_ct(tk.Frame):
     def __init__(self, parent, controller):
@@ -1376,13 +1382,16 @@ class Page14(tk.Frame):
     def switch_frame_by_choice(self, choice, opponent_coop, opponent_cheat):
         # [回合數, 玩家當局選擇, 對手當局選擇, 玩家分數, 對手分數]
         result = self.controller.play.battle(choice)
-        self.controller.final_score = self.controller.play.final_score()  # [玩家分, 對手分, 總分]
+        # [玩家分, 對手分, 總分]
+        self.controller.final_score = self.controller.play.final_score()
         self.controller.game_count = result[0]
         if result[2] is True:
-            self.controller.frames[opponent_coop].nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
+            self.controller.frames[opponent_coop].nextPage_B.config(
+                text="查看結果") if self.controller.game_count == 5 else ""
             self.controller.show_frame(opponent_coop)
         else:
-            self.controller.frames[opponent_cheat].nextPage_B.config(text="查看結果") if self.controller.game_count == 5 else ""
+            self.controller.frames[opponent_cheat].nextPage_B.config(
+                text="查看結果") if self.controller.game_count == 5 else ""
             self.controller.show_frame(opponent_cheat)
         self.game_count.config(text=f"{str(result[0] + 1)}/5")
         self.text_player.config(text=str(self.controller.final_score[0]))
@@ -1613,17 +1622,17 @@ class Page16_AC(tk.Frame):
     def showButton(self):
         def createtext():
             self.text = tk.Label(
-            self.bgcanvas,
-            text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {required_score[self.controller.OPPONENT]} 分，\
+                self.bgcanvas,
+                text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {required_score[self.controller.OPPONENT]} 分，\
             \n恭喜你！得到與{opponent[self.controller.OPPONENT]}對戰可以拿到的最高分，\
             \n看來你已足夠熟悉對手小傑的策略，並以此配置自己的決策\
             \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
             \n歡迎你再玩一次，體驗與其他小傑對戰～',
-            font=self.my_font,
-            bg=bg_color,
-            bd=0,
-            fg=text_color,
-        )
+                font=self.my_font,
+                bg=bg_color,
+                bd=0,
+                fg=text_color,
+            )
             self.bgcanvas.create_window(685, 350, window=self.text)
 
         # def createButton():
@@ -1634,6 +1643,7 @@ class Page16_AC(tk.Frame):
 
     # def clickButton(self):
     #     self.controller.show_frame(Page01)
+
 
 class Page16_WA(tk.Frame):
     def __init__(self, parent, controller):
@@ -1660,17 +1670,17 @@ class Page16_WA(tk.Frame):
     def showButton(self):
         def createtext():
             self.text = tk.Label(
-            self.bgcanvas,
-            text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {self.controller.final_score[0]} 分，\
+                self.bgcanvas,
+                text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {self.controller.final_score[0]} 分，\
             \n非常可惜...你沒有拿到與他對戰可以拿到的最高分，\
             \n不妨再思考看看，有沒有更好的方法呢？\
             \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
             \n歡迎你再玩一次，體驗與其他小傑對戰～',
-            font=self.my_font,
-            bg=bg_color,
-            bd=0,
-            fg=text_color,
-        )
+                font=self.my_font,
+                bg=bg_color,
+                bd=0,
+                fg=text_color,
+            )
             self.bgcanvas.create_window(685, 350, window=self.text)
 
         # def createButton():
@@ -1681,7 +1691,6 @@ class Page16_WA(tk.Frame):
 
     # def clickButton(self):
     #     self.controller.show_frame(Page01)
-
 
 
 app = Trust_App("JayJay! Trust me")
