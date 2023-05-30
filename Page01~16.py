@@ -114,6 +114,9 @@ class Trust_App(tk.Tk):
         self.geometry("1280x800")
         self.configure(bg=bg_color)
         self.title(name)
+        icon = Image.open(asset_path / "Card" / "back.png").crop([400, 240, 800, 800])
+        icon = ImageTk.PhotoImage(icon)
+        self.iconphoto(True, icon)
 
         # creating a container
         container = tk.Frame(self)
