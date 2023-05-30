@@ -1224,34 +1224,34 @@ class Page09(tk.Frame):
         coop_until_cheated.grid(column=4, row=3, columnspan=2, rowspan=2, sticky="nsew")
         
         guess_always_coop = StyleSheet().text_btn(
-            self, "好好小傑", 180, 60, lambda: self.clickButton("always_coop")
+            self, "好好小傑", 170, 60, lambda: self.clickButton("always_coop")
         )
-        guess_always_coop.grid(column=6, row=3, columnspan=2, sticky="se")
+        guess_always_coop.grid(column=6, row=3, columnspan=2, sticky="sw")
         
         guess_copy_kitten = StyleSheet().text_btn(
-            self, "玩具小傑", 180, 60, lambda: self.clickButton("copy_kitten")
+            self, "玩具小傑", 170, 60, lambda: self.clickButton("copy_kitten")
         )
-        guess_copy_kitten.grid(column=8, row=3, columnspan=2, sticky="se")
+        guess_copy_kitten.grid(column=8, row=3, columnspan=2, sticky="sw")
         
         guess_copy_cat = StyleSheet().text_btn(
-            self, "糕餅小傑", 180, 60, lambda: self.clickButton("copy_cat")
+            self, "糕餅小傑", 170, 60, lambda: self.clickButton("copy_cat")
         )
-        guess_copy_cat.grid(column=10, row=3, columnspan=2, sticky="se")
+        guess_copy_cat.grid(column=10, row=3, columnspan=2, sticky="sw")
         
         guess_always_black = StyleSheet().text_btn(
-            self, "鬼畜小傑", 180, 60, lambda: self.clickButton("always_black")
+            self, "鬼畜小傑", 170, 60, lambda: self.clickButton("always_black")
         )
-        guess_always_black.grid(column=6, row=4, columnspan=2, sticky="se")
+        guess_always_black.grid(column=6, row=4, columnspan=2, sticky="sw")
         
         guess_sherlock = StyleSheet().text_btn(
-            self, "福爾摩斯傑", 180, 60, lambda: self.clickButton("sherlock")
+            self, "福爾摩斯傑", 170, 60, lambda: self.clickButton("sherlock")
         )
-        guess_sherlock.grid(column=8, row=4, columnspan=2, sticky="se")
+        guess_sherlock.grid(column=8, row=4, columnspan=2, sticky="sw")
         
         guess_coop_until_cheated = StyleSheet().text_btn(
-            self, "鳳梨酥傑", 180, 60, lambda: self.clickButton("coop_until_cheated")
+            self, "鳳梨酥傑", 170, 60, lambda: self.clickButton("coop_until_cheated")
         )
-        guess_coop_until_cheated.grid(column=10, row=4, columnspan=2, sticky="se")
+        guess_coop_until_cheated.grid(column=10, row=4, columnspan=2, sticky="sw")
         self.controller.currentPage = 9
 
     def clickButton(self, choice):
@@ -1839,5 +1839,5 @@ class Page16_WA(tk.Frame):
 
 
 
-app = Trust_App("JayJay! Trust me")
+app = Trust_App("傑哥是你？！")
 app.mainloop()
