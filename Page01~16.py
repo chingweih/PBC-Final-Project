@@ -1221,68 +1221,41 @@ class Page09(tk.Frame):
         coop_until_cheated.grid(column=4, row=3, columnspan=2, rowspan=2, sticky="nsew")
         
         guess_always_coop = StyleSheet().text_btn(
-            self, "好好小傑", 180, 60, self.clickAlwaysCoop
+            self, "好好小傑", 180, 60, lambda: self.clickButton("always_coop")
         )
         guess_always_coop.grid(column=6, row=3, columnspan=2, sticky="se")
         
         guess_copy_kitten = StyleSheet().text_btn(
-            self, "玩具小傑", 180, 60, self.clickCopyKitten
+            self, "玩具小傑", 180, 60, lambda: self.clickButton("copy_kitten")
         )
         guess_copy_kitten.grid(column=8, row=3, columnspan=2, sticky="se")
         
         guess_copy_cat = StyleSheet().text_btn(
-            self, "糕餅小傑", 180, 60, self.clickCopyCat
+            self, "糕餅小傑", 180, 60, lambda: self.clickButton("copy_cat")
         )
         guess_copy_cat.grid(column=10, row=3, columnspan=2, sticky="se")
         
         guess_always_black = StyleSheet().text_btn(
-            self, "鬼畜小傑", 180, 60, self.clickAlwaysBlack
+            self, "鬼畜小傑", 180, 60, lambda: self.clickButton("always_black")
         )
         guess_always_black.grid(column=6, row=4, columnspan=2, sticky="se")
         
-        guess_sherlock= StyleSheet().text_btn(
-            self, "福爾摩斯傑", 180, 60, self.clickSherlock
+        guess_sherlock = StyleSheet().text_btn(
+            self, "福爾摩斯傑", 180, 60, lambda: self.clickButton("sherlock")
         )
         guess_sherlock.grid(column=8, row=4, columnspan=2, sticky="se")
         
         guess_coop_until_cheated = StyleSheet().text_btn(
-            self, "鳳梨酥傑", 180, 60, self.clickCoopUntilCheated
+            self, "鳳梨酥傑", 180, 60, lambda: self.clickButton("coop_until_cheated")
         )
         guess_coop_until_cheated.grid(column=10, row=4, columnspan=2, sticky="se")
         self.controller.currentPage = 9
 
-    def clickAlwaysCoop(self):
-        if self.controller.OPPONENT == "always_coop":
+    def clickButton(self, choice):
+        if self.controller.OPPONENT == choice:
             self.controller.show_frame(Page10_AC)
         else:
             self.controller.show_frame(Page10_WA)
-    
-    def clickAlwaysBlack(self):
-        if self.controller.OPPONENT == "always_black":
-            self.controller.show_frame(Page10_AC)
-        else:
-            self.controller.show_frame(Page10_WA)
-    def clickCopyKitten(self):
-        if self.controller.OPPONENT == "copy_kitten":
-            self.controller.show_frame(Page10_AC)
-        else:
-            self.controller.show_frame(Page10_WA)
-    def clickSherlock(self):
-        if self.controller.OPPONENT == "sherlock":
-            self.controller.show_frame(Page10_AC)
-        else:
-            self.controller.show_frame(Page10_WA)        
-    def clickCopyCat(self):
-        if self.controller.OPPONENT == "copy_cat":
-            self.controller.show_frame(Page10_AC)
-        else:
-            self.controller.show_frame(Page10_WA)  
-    def clickCoopUntilCheated(self):
-        if self.controller.OPPONENT == "coop_until_cheated":
-            self.controller.show_frame(Page10_AC)
-        else:
-            self.controller.show_frame(Page10_WA)
-
 
 class Page10_AC(tk.Frame):
     def __init__(self, parent, controller):
