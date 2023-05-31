@@ -43,7 +43,7 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - os: macos-latest
+                    - os: macos-arm64
                       TARGET: macos
                       CMD_BUILD: >
                           pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" -i assets/icons/icon.icns --target-arch universal2 "GUI_App.py" &&
