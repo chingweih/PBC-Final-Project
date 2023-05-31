@@ -10,7 +10,6 @@ from module_trust import Trust
 
 
 # hiiiya
-page = [4]
 font = "Hannotate TC"
 bg_color = "#E8E9DC"
 actbg_color = "#9BAA9D"
@@ -76,6 +75,7 @@ class StyleSheet:
             command=command,
         )
 
+
 class GIFLabel(tk.Label):
     def __init__(self, parent, width, height, path):
         tk.Label.__init__(self, parent, width=width,
@@ -107,6 +107,7 @@ class GIFLabel(tk.Label):
             if self.loc < len(self.frames):
                 self.config(image=self.frames[self.loc])
                 self.after(self.delay, lambda: self.next_frame(loop))
+
 
 class Trust_App(tk.Tk):
     def __init__(self, name):
@@ -159,11 +160,11 @@ class Trust_App(tk.Tk):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
-        
+
         self.show_frame(Page01)
 
     def show_frame(self, nextF):
-        
+
         frame = self.frames[nextF]
         frame.tkraise()
         show_btn = getattr(frame, "showButton", None)
@@ -173,8 +174,9 @@ class Trust_App(tk.Tk):
         try:
             frame.gifLabel.load(frame.loop)
             frame.opponent_gifLabel.load(frame.loop)
-        except:
+        except Exception:
             pass
+
 
 class Page01(tk.Frame):
     def __init__(self, parent, controller):
@@ -276,7 +278,7 @@ class Page04(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
-        
+
         self.rowconfigure(index=0, weight=1)
         self.rowconfigure(index=5, weight=1)
         self.columnconfigure(index=0, weight=1)
@@ -290,6 +292,15 @@ class Page04(tk.Frame):
         self.my_font1 = tkFont.Font(family=font, size=40, weight="bold")
         self.Button_img = []
 
+        self.OPPONENT_FRAME = {
+                "copy_cat": Page04_copy_cat,
+                "always_black": Page04_always_black,
+                "always_coop": Page04_always_coop,
+                "coop_until_cheated": Page04_coop_until_cheated,
+                "sherlock": Page04_sherlock,
+                "copy_kitten": Page04_copy_kitten,
+            }
+
         for character in tuple(opponent.values()):
             image = (
                 Image.open(asset_path / "角色(png)" / f"{character}.png")
@@ -299,47 +310,47 @@ class Page04(tk.Frame):
             Button_img = ImageTk.PhotoImage(image)
             self.Button_img.append(Button_img)
 
-        always_coop_B = StyleSheet().img_btn(
-            self,
-            self.Button_img[2],
-            240,
-            300,
-            lambda: controller.show_frame(Page04_always_coop),
-        )
-        always_black_B = StyleSheet().img_btn(
-            self,
-            self.Button_img[1],
-            240,
-            300,
-            lambda: controller.show_frame(Page04_always_black),
-        )
-        copy_kitten = StyleSheet().img_btn(
-            self,
-            self.Button_img[5],
-            240,
-            300,
-            lambda: controller.show_frame(Page04_copy_kitten),
-        )
-        sherlock = StyleSheet().img_btn(
-            self,
-            self.Button_img[4],
-            240,
-            300,
-            lambda: controller.show_frame(Page04_sherlock),
-        )
         copy_cat = StyleSheet().img_btn(
             self,
             self.Button_img[0],
             240,
             300,
-            lambda: controller.show_frame(Page04_copy_cat),
+            lambda: self.clickButton_character("copy_cat"),
+        )
+        always_black = StyleSheet().img_btn(
+            self,
+            self.Button_img[1],
+            240,
+            300,
+            lambda: self.clickButton_character("always_black"),
+        )
+        always_coop = StyleSheet().img_btn(
+            self,
+            self.Button_img[2],
+            240,
+            300,
+            lambda: self.clickButton_character("always_coop"),
         )
         coop_until_cheated = StyleSheet().img_btn(
             self,
             self.Button_img[3],
             240,
             300,
-            lambda: controller.show_frame(Page04_coop_until_cheated),
+            lambda: self.clickButton_character("coop_until_cheated"),
+        )
+        sherlock = StyleSheet().img_btn(
+            self,
+            self.Button_img[4],
+            240,
+            300,
+            lambda: self.clickButton_character("sherlock"),
+        )
+        copy_kitten = StyleSheet().img_btn(
+            self,
+            self.Button_img[5],
+            240,
+            300,
+            lambda: self.clickButton_character("copy_kitten"),
         )
 
         words = tk.Label(
@@ -356,8 +367,8 @@ class Page04(tk.Frame):
 
         words.grid(column=4, row=1, sticky="s")
         words1.grid(column=4, row=2, columnspan=1, rowspan=1, sticky="s")
-        always_coop_B.grid(column=1, row=1, rowspan=2, sticky="nsew")
-        always_black_B.grid(column=1, row=3, rowspan=2, sticky="nsew")
+        always_coop.grid(column=1, row=1, rowspan=2, sticky="nsew")
+        always_black.grid(column=1, row=3, rowspan=2, sticky="nsew")
         copy_kitten.grid(column=2, row=1, rowspan=2, sticky="nsew")
         sherlock.grid(column=2, row=3, rowspan=2, sticky="nsew")
         copy_cat.grid(column=3, row=1, rowspan=2, sticky="nsew")
@@ -366,7 +377,11 @@ class Page04(tk.Frame):
             self, "我都看完了\n準備挑戰", 240, 100, self.clickButton
         )
         nextPage_B.grid(column=4, row=4, sticky="se")
+
+    def clickButton_character(self, character):
         self.controller.currentPage = 4
+        self.controller.show_frame(self.OPPONENT_FRAME[character])
+
     def clickButton(self):
         self.controller.currentPage = 5
         self.controller.show_frame(Page05)
@@ -379,7 +394,6 @@ class Page04_always_coop(tk.Frame):
         image = Image.open(
             asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_好好小傑.jpeg"
         ).resize((1280, 750))
-        # Resize the image using resize() method
         self.bg_img = ImageTk.PhotoImage(image)
 
         bgcanvas = tk.Canvas(
@@ -406,11 +420,10 @@ class Page04_always_coop(tk.Frame):
         )
 
     def clickButton(self):
-        if page[0] == 4:
+        if self.controller.currentPage == 4:
             self.controller.show_frame(Page04)
-        elif page[0] == 9:
+        elif self.controller.currentPage == 9:
             self.controller.show_frame(Page09)
-
 
 
 class Page04_always_black(tk.Frame):
@@ -431,7 +444,7 @@ class Page04_always_black(tk.Frame):
             asset_path / "Frames" / "Page04-1~6_玩家介紹" / "Page04_鬼畜小傑.jpeg"
         ).resize(
             (1280, 750)
-        )  # (width, height)
+        )
 
         self.bg_img = ImageTk.PhotoImage(image)
 
@@ -460,9 +473,9 @@ class Page04_always_black(tk.Frame):
         )
 
     def clickButton(self):
-        if page[0] == 4:
+        if self.controller.currentPage == 4:
             self.controller.show_frame(Page04)
-        elif page[0] == 9:
+        elif self.controller.currentPage == 9:
             self.controller.show_frame(Page09)
 
 
@@ -509,9 +522,9 @@ class Page04_copy_kitten(tk.Frame):
             140, 380, anchor="w", window=picture)
 
     def clickButton(self):
-        if page[0] == 4:
+        if self.controller.currentPage == 4:
             self.controller.show_frame(Page04)
-        elif page[0] == 9:
+        elif self.controller.currentPage == 9:
             self.controller.show_frame(Page09)
 
 
@@ -556,9 +569,9 @@ class Page04_sherlock(tk.Frame):
             140, 380, anchor="w", window=picture)
 
     def clickButton(self):
-        if page[0] == 4:
+        if self.controller.currentPage == 4:
             self.controller.show_frame(Page04)
-        elif page[0] == 9:
+        elif self.controller.currentPage == 9:
             self.controller.show_frame(Page09)
 
 
@@ -605,9 +618,9 @@ class Page04_copy_cat(tk.Frame):
             140, 380, anchor="w", window=picture)
 
     def clickButton(self):
-        if page[0] == 4:
+        if self.controller.currentPage == 4:
             self.controller.show_frame(Page04)
-        elif page[0] == 9:
+        elif self.controller.currentPage == 9:
             self.controller.show_frame(Page09)
 
 
@@ -652,9 +665,9 @@ class Page04_coop_until_cheated(tk.Frame):
             140, 380, anchor="w", window=picture)
 
     def clickButton(self):
-        if page[0] == 4:
+        if self.controller.currentPage == 4:
             self.controller.show_frame(Page04)
-        elif page[0] == 9:
+        elif self.controller.currentPage == 9:
             self.controller.show_frame(Page09)
 
 
@@ -821,6 +834,7 @@ class Page07(tk.Frame):
         self.controller.play = Trust(self.controller.OPPONENT)  # 將對手重置為之前選擇的對手
         self.controller.show_frame(Page07)  # 返回初始遊戲頁面
 
+
 class Page08_tt(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
@@ -855,7 +869,7 @@ class Page08_tt(tk.Frame):
         self.restart_B = StyleSheet().text_btn(
             self.bgcanvas, "重新挑戰", 240, 60, lambda: self.clickButton("RESTART")
         )
-        # self.restart_B_window = None
+
     def showButton(self):
         def createButton():
             self.Button_window = self.bgcanvas.create_window(
@@ -888,8 +902,6 @@ class Page08_tt(tk.Frame):
         delete_restart_B = self.bgcanvas.delete(self.restart_B_window)
 
     def clickGuessButton(self):
-        page[0] = 9
-        self.controller.currentPage = 9
         self.controller.show_frame(Page09)
 
 
@@ -928,7 +940,6 @@ class Page08_tc(tk.Frame):
         self.restart_B = StyleSheet().text_btn(
             self.bgcanvas, "重新挑戰", 240, 60, lambda: self.clickButton("RESTART")
         )
-        # self.restart_B_window = None
 
     def showButton(self):
         def createButton():
@@ -962,9 +973,8 @@ class Page08_tc(tk.Frame):
         delete_restart_B = self.bgcanvas.delete(self.restart_B_window)
 
     def clickGuessButton(self):
-        page[0] = 9
-        self.controller.currentPage = 9
         self.controller.show_frame(Page09)
+
 
 class Page08_ct(tk.Frame):
     def __init__(self, parent, controller):
@@ -1000,7 +1010,6 @@ class Page08_ct(tk.Frame):
         self.restart_B = StyleSheet().text_btn(
             self.bgcanvas, "重新挑戰", 240, 60, lambda: self.clickButton("RESTART")
         )
-        # self.restart_B_window = None
 
     def showButton(self):
         def createButton():
@@ -1037,8 +1046,6 @@ class Page08_ct(tk.Frame):
         self.controller.frames[Page07].restart()
 
     def clickGuessButton(self):
-        page[0] = 9
-        self.controller.currentPage = 9
         self.controller.show_frame(Page09)
 
 
@@ -1076,7 +1083,6 @@ class Page08_cc(tk.Frame):
         self.restart_B = StyleSheet().text_btn(
             self.bgcanvas, "重新挑戰", 240, 60, lambda: self.clickButton("RESTART")
         )
-        # self.restart_B_window = None
 
     def showButton(self):
         def createButton():
@@ -1113,8 +1119,6 @@ class Page08_cc(tk.Frame):
         self.controller.frames[Page07].restart()
 
     def clickGuessButton(self):
-        page[0] = 9
-        self.controller.currentPage = 9
         self.controller.show_frame(Page09)
 
 
@@ -1123,7 +1127,7 @@ class Page09(tk.Frame):
         tk.Frame.__init__(self, parent, width=1280, height=800, bg=bg_color)
         self.controller = controller
         self.controller.isPage09 = True
-        
+
         self.rowconfigure(index=0, weight=1)
         self.rowconfigure(index=5, weight=1)
         self.columnconfigure(index=0, weight=1)
@@ -1138,68 +1142,52 @@ class Page09(tk.Frame):
         self.columnconfigure(index=9, weight=1)
         self.columnconfigure(index=10, weight=1)
         self.columnconfigure(index=11, weight=1)
-        
 
         self.my_font = tkFont.Font(family=font, size=24, weight="bold")
         self.my_font1 = tkFont.Font(family=font, size=40, weight="bold")
-        self.Button_img = []
-        
-        for character in [
-            "好好小傑",
-            "鬼畜小傑",
-            "玩具小傑",
-            "福爾摩斯小傑",
-            "糕餅小傑",
-            "鳳梨酥小傑",
-        ]:  # opponent.values()
-            image = Image.open(asset_path / "角色(png)" / f"{character}.png").crop(
-                [300, 100, 950, 1100]).resize(
-                (195, 320)
-            )
-            Button_img = ImageTk.PhotoImage(image)
-            self.Button_img.append(Button_img)
+        self.Button_img = controller.frames[Page04].Button_img
 
-        always_coop_B = StyleSheet().img_btn(
+        copy_cat = StyleSheet().img_btn(
             self,
             self.Button_img[0],
             240,
             300,
-            lambda: controller.show_frame(Page04_always_coop)
+            lambda: self.clickButton_character("copy_cat"),
         )
-        always_black_B = StyleSheet().img_btn(
+        always_black = StyleSheet().img_btn(
             self,
             self.Button_img[1],
             240,
             300,
-            lambda: controller.show_frame(Page04_always_black),
+            lambda: self.clickButton_character("always_black"),
         )
-        copy_kitten = StyleSheet().img_btn(
+        always_coop = StyleSheet().img_btn(
             self,
             self.Button_img[2],
             240,
             300,
-            lambda: controller.show_frame(Page04_copy_kitten),
+            lambda: self.clickButton_character("always_coop"),
         )
-        sherlock = StyleSheet().img_btn(
+        coop_until_cheated = StyleSheet().img_btn(
             self,
             self.Button_img[3],
             240,
             300,
-            lambda: controller.show_frame(Page04_sherlock),
+            lambda: self.clickButton_character("coop_until_cheated"),
         )
-        copy_cat = StyleSheet().img_btn(
+        sherlock = StyleSheet().img_btn(
             self,
             self.Button_img[4],
             240,
             300,
-            lambda: controller.show_frame(Page04_copy_cat),
+            lambda: self.clickButton_character("sherlock"),
         )
-        coop_until_cheated = StyleSheet().img_btn(
+        copy_kitten = StyleSheet().img_btn(
             self,
             self.Button_img[5],
             240,
             300,
-            lambda: controller.show_frame(Page04_coop_until_cheated),
+            lambda: self.clickButton_character("copy_kitten"),
         )
 
         words = tk.Label(
@@ -1214,51 +1202,55 @@ class Page09(tk.Frame):
             fg=text_color,
         )
 
-        words.grid(column=6, row=1, columnspan=5, sticky="nsew" )
+        words.grid(column=6, row=1, columnspan=5, sticky="nsew")
         words1.grid(column=6, row=2, columnspan=5, rowspan=1, sticky="nsew")
-        always_coop_B.grid(column=0, row=1, columnspan=2, rowspan=2, sticky="nsew")
-        always_black_B.grid(column=0, row=3, columnspan=2, rowspan=2, sticky="nsew")
+        always_coop.grid(column=0, row=1, columnspan=2, rowspan=2, sticky="nsew")
+        always_black.grid(column=0, row=3, columnspan=2, rowspan=2, sticky="nsew")
         copy_kitten.grid(column=2, row=1, columnspan=2, rowspan=2, sticky="nsew")
         sherlock.grid(column=2, row=3, columnspan=2, rowspan=2, sticky="nsew")
         copy_cat.grid(column=4, row=1, columnspan=2, rowspan=2, sticky="nsew")
         coop_until_cheated.grid(column=4, row=3, columnspan=2, rowspan=2, sticky="nsew")
-        
+
         guess_always_coop = StyleSheet().text_btn(
             self, "好好小傑", 170, 60, lambda: self.clickButton("always_coop")
         )
         guess_always_coop.grid(column=6, row=3, columnspan=2, sticky="sw")
-        
+
         guess_copy_kitten = StyleSheet().text_btn(
             self, "玩具小傑", 170, 60, lambda: self.clickButton("copy_kitten")
         )
         guess_copy_kitten.grid(column=8, row=3, columnspan=2, sticky="sw")
-        
+
         guess_copy_cat = StyleSheet().text_btn(
             self, "糕餅小傑", 170, 60, lambda: self.clickButton("copy_cat")
         )
         guess_copy_cat.grid(column=10, row=3, columnspan=2, sticky="sw")
-        
+
         guess_always_black = StyleSheet().text_btn(
             self, "鬼畜小傑", 170, 60, lambda: self.clickButton("always_black")
         )
         guess_always_black.grid(column=6, row=4, columnspan=2, sticky="sw")
-        
+
         guess_sherlock = StyleSheet().text_btn(
             self, "福爾摩斯傑", 170, 60, lambda: self.clickButton("sherlock")
         )
         guess_sherlock.grid(column=8, row=4, columnspan=2, sticky="sw")
-        
+
         guess_coop_until_cheated = StyleSheet().text_btn(
             self, "鳳梨酥傑", 170, 60, lambda: self.clickButton("coop_until_cheated")
         )
         guess_coop_until_cheated.grid(column=10, row=4, columnspan=2, sticky="sw")
+
+    def clickButton_character(self, character):
         self.controller.currentPage = 9
+        self.controller.show_frame(self.controller.frames[Page04].OPPONENT_FRAME[character])
 
     def clickButton(self, choice):
         if self.controller.OPPONENT == choice:
             self.controller.show_frame(Page10_AC)
         else:
             self.controller.show_frame(Page10_WA)
+
 
 class Page10_AC(tk.Frame):
     def __init__(self, parent, controller):
@@ -1768,17 +1760,17 @@ class Page16_AC(tk.Frame):
     def showButton(self):
         def createtext():
             self.text = tk.Label(
-            self.bgcanvas,
-            text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {required_score[self.controller.OPPONENT]} 分，\
-            \n恭喜你！得到與{opponent[self.controller.OPPONENT]}對戰可以拿到的最高分，\
-            \n看來你已足夠熟悉對手小傑的策略，並以此配置自己的決策\
-            \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
-            \n歡迎你再玩一次，體驗與其他小傑對戰～',
-            font=self.my_font,
-            bg=bg_color,
-            bd=0,
-            fg=text_color,
-        )
+                self.bgcanvas,
+                text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {required_score[self.controller.OPPONENT]} 分，\
+                \n恭喜你！得到與{opponent[self.controller.OPPONENT]}對戰可以拿到的最高分，\
+                \n看來你已足夠熟悉對手小傑的策略，並以此配置自己的決策\
+                \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
+                \n歡迎你再玩一次，體驗與其他小傑對戰～',
+                font=self.my_font,
+                bg=bg_color,
+                bd=0,
+                fg=text_color,
+            )
             self.bgcanvas.create_window(685, 350, window=self.text)
 
         # def createButton():
@@ -1789,6 +1781,7 @@ class Page16_AC(tk.Frame):
 
     # def clickButton(self):
     #     self.controller.show_frame(Page01)
+
 
 class Page16_WA(tk.Frame):
     def __init__(self, parent, controller):
@@ -1815,17 +1808,17 @@ class Page16_WA(tk.Frame):
     def showButton(self):
         def createtext():
             self.text = tk.Label(
-            self.bgcanvas,
-            text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {self.controller.final_score[0]} 分，\
-            \n非常可惜...你沒有拿到與他對戰可以拿到的最高分，\
-            \n不妨再思考看看，有沒有更好的方法呢？\
-            \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
-            \n歡迎你再玩一次，體驗與其他小傑對戰～',
-            font=self.my_font,
-            bg=bg_color,
-            bd=0,
-            fg=text_color,
-        )
+                self.bgcanvas,
+                text=f'在本回合與{opponent[self.controller.OPPONENT]}的對戰中，你總共獲得 {self.controller.final_score[0]} 分，\
+                \n非常可惜...你沒有拿到與他對戰可以拿到的最高分，\
+                \n不妨再思考看看，有沒有更好的方法呢？\
+                \n\n事實上，與不同對手小傑對戰，可獲得的最高分數也不一樣喔！\
+                \n歡迎你再玩一次，體驗與其他小傑對戰～',
+                font=self.my_font,
+                bg=bg_color,
+                bd=0,
+                fg=text_color,
+            )
             self.bgcanvas.create_window(685, 350, window=self.text)
 
         # def createButton():
@@ -1836,7 +1829,6 @@ class Page16_WA(tk.Frame):
 
     # def clickButton(self):
     #     self.controller.show_frame(Page01)
-
 
 
 app = Trust_App("傑哥是你？！")
