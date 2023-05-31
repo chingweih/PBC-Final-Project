@@ -43,10 +43,10 @@ jobs:
         strategy:
             matrix:
                 include:
-                    - os: macos-arm64
+                    - os: macos-latest
                       TARGET: macos
                       CMD_BUILD: >
-                          pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" -i assets/icons/icon.icns --target-arch universal2 "GUI_App.py" &&
+                          pyinstaller --clean --onefile -w --add-data "assets:./assets" -n "Trust" -i assets/icons/icon.icns "GUI_App.py" &&
                           cd dist/ &&
                           zip -r9 "Trust" Trust.app/
                       OUT_FILE_NAME: Trust.zip
